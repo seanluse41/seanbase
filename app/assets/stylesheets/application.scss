@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:600&display=swap');
+
+.blurbox {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-family: sans-serif;
+    text-align: center;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    padding: 10px 20px;
+    margin: 3% auto;
+    color: seashell;
+    font-family: 'Open Sans', sans-serif;
+}
+.main-container a:link {
+    text-decoration: none;
+    color: seashell;
+}
+.main-container a:visited {
+    color: seashell;
+}
+.main-container a:hover {
+    color: seashell;
+}
+.main-info-box {
+    font-size: 1em;
+}
+.main-info-box h1 {
+    line-height: .1;
+    font-size: 3em;
+}
+.profile-text-box h1 {
+    font-size: 3em;
+    line-height: .5;
+}
+.profile-text-box p {
+    font-size: 1em;
+    line-height: .5;
+}
+body {
+    background-image: url(asset_path("yellow-flower.jpg"));
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.main-container {
+    display: grid;
+    grid-template-areas:
+        "infobox projects"
+        "infobox projects";
+    grid-template-columns: 1.1fr 1fr;
+    grid-column-gap: 5%;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-right: 7%;
+    justify-content: space-around;
+    align-content: space-between;
+}
+.infobox {
+    grid-area: infobox;
+    display: flex;
+    flex-direction: column;
+    top: 50px;
+    position: fixed;
+    margin: auto;
+}
+.infobox img {
+    max-width: 32px;
+    max-height: 32px;
+    vertical-align: middle;
+    margin-right: 3%;
+    float: left;
+}
+.projectcolumn {
+    grid-area: projects;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
+    padding: 10px;
+}
+.projectcolumn-header {
+    font-size: 1em;
+}
+.button {
+    border-radius: 100%;
+    width: 64px;
+    height: 64px;
+    position: fixed;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.2);
+    color: seashell;
+    text-align: center;
+    font-weight: bolder;
+    z-index: 2;
+    outline: none !important;
+    border-style: solid;
+    border-color: seashell;
+}
+.button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.english {
+    display: inline-grid;
+}
+.japanese {
+    display: none;
+}
+@media only screen and (min-width: 2000px) {
+    .main-container {
+        margin: 8%;
+    }
+    .main-info-box {
+        font-size: 2em;
+    }
+    .main-info-box h1 {
+        line-height: .1;
+        font-size: 4em;
+    }
+    .profile-text-box h1 {
+        font-size: 6em;
+        line-height: .5;
+    }
+    .profile-text-box p {
+        font-size: 2em;
+        line-height: .5;
+    }
+    .projectcolumn-header {
+        font-size: 2em;
+    }
+    .button {
+        width: 128px;
+        height: 128px;
+        font-size: 2em;
+    }
+    .infobox img {
+        max-width: 64px;
+        max-height: 64px;
+        margin-right: 3%;
+        margin-left: 1%;
+    }
+}
+@media only screen and (max-width : 890px) {
+    .main-container {
+        display: grid;
+        grid-template-areas:
+            "infobox"
+            "projects";
+        grid-template-columns: 1fr;
+        grid-template-rows: 1.2fr 2fr;
+        margin: 1%;
+    }
+    .infobox {
+        grid-area: infobox;
+        display: flex;
+        position: relative !important;
+        margin: 0%;
+    }
+    .main-info-box {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+    }
+    .main-info-box h1 {
+        line-height: .8;
+    }
+    main-info-box-img {
+        display: flex;
+        flex-direction: column;
+    }
+    .profile-text-box p {
+        line-height: 1;
+    }
+    .profile-text-box h1 {
+        line-height: .8;
+    }
+    .projectcolumn {
+        grid-area: projects;
+        display: flex;
+        margin-left: 0% !important;
+    }
+    .button {
+        grid-area: button;
+        position: absolute;
+        margin: 5%;
+    }
+    .projectcolumn-header {
+        font-size: 1em;
+    }
+}
