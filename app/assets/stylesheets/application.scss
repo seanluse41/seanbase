@@ -1,5 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:600&display=swap');
 
+.linkbox {
+    grid-area: infobox;    
+}
+
+.linkbox-image-column {
+    display: flex;
+    flex-direction: column;
+    max-width: 32px;
+    max-height: 32px;
+    vertical-align: middle;
+    margin-right: 3%;
+    float: left;
+    justify-content: space-evenly;
+}
+
+.linkbox-link-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 2em;
+}
+
 .blurbox {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
@@ -35,7 +57,7 @@
 }
 .profile-text-box p {
     font-size: 1em;
-    line-height: .5;
+    line-height: 1.2;
 }
 body {
     background-image: url(asset_path("yellow-flower.jpg"));
@@ -84,6 +106,9 @@ body {
     font-size: 1em;
 }
 .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 100%;
     width: 64px;
     height: 64px;
@@ -97,7 +122,9 @@ body {
     z-index: 2;
     outline: none !important;
     border-style: solid;
+    border-width: .1em;
     border-color: seashell;
+    text-decoration: none;
 }
 .button:hover {
     background-color: rgba(255, 255, 255, 0.5);
@@ -146,10 +173,11 @@ body {
     .main-container {
         display: grid;
         grid-template-areas:
+            "button"
             "infobox"
             "projects";
         grid-template-columns: 1fr;
-        grid-template-rows: 1.2fr 2fr;
+        grid-template-rows: .5fr 1.2fr 2fr;
         margin: 1%;
     }
     .infobox {
@@ -183,8 +211,8 @@ body {
     }
     .button {
         grid-area: button;
-        position: absolute;
         margin: 5%;
+        position: relative;
     }
     .projectcolumn-header {
         font-size: 1em;

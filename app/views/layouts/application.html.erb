@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Seanbase</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <title>Seanbase</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+
+  <a href="#" class="button">日本語</a>
+
+  </div>
+  <div class="main-container">
+    <div class="main-info-box">
+      <div class="profile-text-box">
+        <div class="blurbox">
+          <h1>Sean Luse</h1>
+          <p>I am a mobile and web developer based in Tokyo. I specialize in Ruby/Rails, Dart/Flutter, and web design. I
+            speak fluent Japanese as well. Let's work together!</p>
+        </div>
+      </div>
+      <div class="profile-text-box">
+        <div class="blurbox">
+          <p> <%= image_tag("linkedin.png", class: "linkbox-image-column") %>
+            <div class="linkbox-link-column"><a href="https://www.linkedin.com/in/sean-luse/">LinkedIn</a></p>
+        </div>
+        <p> <%= image_tag("linkedin.png", class: "linkbox-image-column") %>
+          <div class="linkbox-link-column"><a href="https://www.linkedin.com/in/sean-luse/">LinkedIn</a></p>
+      </div>
+      <p> <%= image_tag("linkedin.png", class: "linkbox-image-column") %>
+        <div class="linkbox-link-column"><a href="https://www.linkedin.com/in/sean-luse/">LinkedIn</a></p>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <%= yield %>
+  </div>
+</body>
+
 </html>

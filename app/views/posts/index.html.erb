@@ -1,12 +1,12 @@
-<h1>seanbase</h1>
-
+<div class="projectcolumn">
 <% @posts.each do |post| %>
 
-<div class="blurbox">
-    <div class="projectcolumn-header">
-        <h1><%= post.title %></h1>
-        <p><%= post.content %></p>
-    </div>
-</div>
 
+    <div class="blurbox">
+        <div class="projectcolumn-header">
+            <h1><%= post.title %></h1>
+            <p><%= post.content %></p>
+        </div>
+    </div>
 <% end %>
+</div>
