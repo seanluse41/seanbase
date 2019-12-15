@@ -14,32 +14,31 @@
 
   <a href="#" class="button">日本語</a>
 
-  </div>
   <div class="main-container">
-    <div class="main-info-box">
-      <div class="profile-text-box">
+    <div class="infobox">
+      <div class="blurbox">
+        <h1>Sean Luse</h1>
+        <p>I am a mobile and web developer based in Tokyo. I specialize in Ruby/Rails, Dart/Flutter, and web design. I
+          speak fluent Japanese as well. Let's work together!</p>
+      </div>
+      <div class="link-container">
         <div class="blurbox">
-          <h1>Sean Luse</h1>
-          <p>I am a mobile and web developer based in Tokyo. I specialize in Ruby/Rails, Dart/Flutter, and web design. I
-            speak fluent Japanese as well. Let's work together!</p>
+          <div class="linkbox">
+              <a href="https://www.linkedin.com/in/sean-luse/"><%= image_tag("linkedin.png") %></a>
+            <p><a href="https://www.linkedin.com/in/sean-luse/">LinkedIn</a></p>
+          </div>
+          <div class="linkbox">
+              <a href="https://github.com/seanluse41"><%= image_tag("github-icon.png") %></a>
+            <p><a href="https://github.com/seanluse41">Github</a></p>
+          </div>
+          <div class="linkbox">
+            <a href="mailto:seanluse41@gmail.com"><%= image_tag("mail-white.png") %></a>
+            <p><a href="mailto:seanluse41@gmail.com">Email</a></p>
+          </div>
         </div>
       </div>
-      <div class="profile-text-box">
-        <div class="blurbox">
-          <p> <%= image_tag("linkedin.png", class: "linkbox-image-column") %>
-            <div class="linkbox-link-column"><a href="https://www.linkedin.com/in/sean-luse/">LinkedIn</a></p>
-        </div>
-        <p> <%= image_tag("linkedin.png", class: "linkbox-image-column") %>
-          <div class="linkbox-link-column"><a href="https://www.linkedin.com/in/sean-luse/">LinkedIn</a></p>
-      </div>
-      <p> <%= image_tag("linkedin.png", class: "linkbox-image-column") %>
-        <div class="linkbox-link-column"><a href="https://www.linkedin.com/in/sean-luse/">LinkedIn</a></p>
     </div>
-  </div>
-  </div>
-  </div>
-
-  <%= yield %>
+    <%= yield %>
   </div>
 </body>
 

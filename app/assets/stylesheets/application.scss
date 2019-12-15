@@ -1,220 +1,245 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:600&display=swap");
 
-.linkbox {
-    grid-area: infobox;    
+body {
+  background-image: url(asset_path("purple-flower.jpg"));
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.main-container {
+  display: grid;
+  grid-template-areas: "infobox projects";
+  grid-template-columns: 1fr 1.2fr;
+  grid-column-gap: 3%;
+  margin-top: 3%;
+  margin-left: 7%;
+  margin-right: 7%;
+  justify-content: space-around;
+  align-content: space-between;
 }
 
-.linkbox-image-column {
-    display: flex;
-    flex-direction: column;
-    max-width: 32px;
-    max-height: 32px;
-    vertical-align: middle;
-    margin-right: 3%;
-    float: left;
-    justify-content: space-evenly;
+.main-container a:link {
+  text-decoration: none;
+  color: seashell;
 }
-
-.linkbox-link-column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    font-size: 2em;
+.main-container a:visited {
+  color: seashell;
+}
+.main-container a:hover {
+  color: seashell;
 }
 
 .blurbox {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    font-family: sans-serif;
-    text-align: center;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    padding: 10px 20px;
-    margin: 3% auto;
-    color: seashell;
-    font-family: 'Open Sans', sans-serif;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  font-family: sans-serif;
+  text-align: center;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  padding: 10px 20px;
+  margin: 3% auto;
+  color: seashell;
+  font-family: "Open Sans", sans-serif;
 }
-.main-container a:link {
-    text-decoration: none;
-    color: seashell;
-}
-.main-container a:visited {
-    color: seashell;
-}
-.main-container a:hover {
-    color: seashell;
-}
-.main-info-box {
-    font-size: 1em;
-}
-.main-info-box h1 {
-    line-height: .1;
-    font-size: 3em;
-}
-.profile-text-box h1 {
-    font-size: 3em;
-    line-height: .5;
-}
-.profile-text-box p {
-    font-size: 1em;
-    line-height: 1.2;
-}
-body {
-    background-image: url(asset_path("yellow-flower.jpg"));
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-}
-.main-container {
-    display: grid;
-    grid-template-areas:
-        "infobox projects"
-        "infobox projects";
-    grid-template-columns: 1.1fr 1fr;
-    grid-column-gap: 5%;
-    margin-top: 3%;
-    margin-left: 5%;
-    margin-right: 7%;
-    justify-content: space-around;
-    align-content: space-between;
-}
-.infobox {
-    grid-area: infobox;
-    display: flex;
-    flex-direction: column;
-    top: 50px;
-    position: fixed;
-    margin: auto;
-}
-.infobox img {
-    max-width: 32px;
-    max-height: 32px;
-    vertical-align: middle;
-    margin-right: 3%;
-    float: left;
-}
-.projectcolumn {
-    grid-area: projects;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 30px;
-    padding: 10px;
-}
-.projectcolumn-header {
-    font-size: 1em;
-}
+
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100%;
-    width: 64px;
-    height: 64px;
-    position: fixed;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    background-color: rgba(255, 255, 255, 0.2);
-    color: seashell;
-    text-align: center;
-    font-weight: bolder;
-    z-index: 2;
-    outline: none !important;
-    border-style: solid;
-    border-width: .1em;
-    border-color: seashell;
-    text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  width: 64px;
+  height: 64px;
+  position: fixed;
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.2);
+  color: seashell;
+  text-align: center;
+  font-weight: bolder;
+  z-index: 2;
+  border-style: solid;
+  border-width: 0.1em;
+  border-color: seashell;
+  text-decoration: none;
 }
 .button:hover {
-    background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.5);
 }
-.english {
-    display: inline-grid;
+
+.infobox {
+    grid-area: infobox;
+    position: fixed;
+    max-width: 40%;
+} 
+
+.infobox h1 {
+  font-size: 3em;
+  line-height: 0.3;
 }
-.japanese {
-    display: none;
+.infobox p {
+  font-size: 1.2em;
+  line-height: 1.2;
+  font-weight: bold;
 }
+
+.link-container {
+    max-width: 60%;
+    margin: auto;
+}
+
+.linkbox {
+  display: flex;
+}
+
+.linkbox img {
+  flex-direction: column;
+  max-width: 32px;
+  max-height: 32px;
+  vertical-align: middle;
+  margin-left: 10%;
+}
+
+.linkbox p {
+  flex-direction: column;
+  font-size: 1.5em;
+  font-weight: bolder;
+  line-height: 0;
+  margin: auto;
+}
+
+.projectcolumn {
+  grid-area: projects;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 30px;
+  padding: 10px;
+}
+.projectcolumn h1 {
+  font-size: 2em;
+  font-weight: bolder;
+}
+
+.projectcolumn p {
+  font-size: 1em;
+  font-weight: bold;
+}
+
 @media only screen and (min-width: 2000px) {
-    .main-container {
-        margin: 8%;
-    }
-    .main-info-box {
-        font-size: 2em;
-    }
-    .main-info-box h1 {
-        line-height: .1;
-        font-size: 4em;
-    }
-    .profile-text-box h1 {
-        font-size: 6em;
-        line-height: .5;
-    }
-    .profile-text-box p {
-        font-size: 2em;
-        line-height: .5;
-    }
-    .projectcolumn-header {
-        font-size: 2em;
-    }
-    .button {
-        width: 128px;
-        height: 128px;
-        font-size: 2em;
-    }
-    .infobox img {
-        max-width: 64px;
-        max-height: 64px;
-        margin-right: 3%;
-        margin-left: 1%;
-    }
+  .main-container {
+    margin: 8%;
+  }
+
+  .infobox h1 {
+    font-size: 6em;
+    line-height: 0.5;
+  }
+  .infobox p {
+    font-size: 3em;
+    line-height: 1.2;
+    font-weight: bold;
+  }
+
+  .linkbox {
+    display: flex;
+  }
+
+  .linkbox img {
+    flex-direction: column;
+    float: left;
+    max-width: 64px;
+    max-height: 64px;
+    vertical-align: middle;
+    margin-right: 3%;
+  }
+
+  .linkbox a {
+    flex-direction: column;
+    float: right;
+    font-size: 1.3em;
+    font-weight: bolder;
+  }
+
+  .projectcolumn h1 {
+    font-size: 5em;
+    font-weight: bolder;
+  }
+  
+  .projectcolumn p {
+    font-size: 3em;
+    font-weight: bold;
+  }
+
+  .button {
+    width: 128px;
+    height: 128px;
+    font-size: 2em;
+  }
 }
-@media only screen and (max-width : 890px) {
-    .main-container {
-        display: grid;
-        grid-template-areas:
-            "button"
-            "infobox"
-            "projects";
-        grid-template-columns: 1fr;
-        grid-template-rows: .5fr 1.2fr 2fr;
-        margin: 1%;
+@media only screen and (max-width: 890px) {
+  .main-container {
+    display: grid;
+    grid-template-areas:
+      "button"
+      "infobox"
+      "projects";
+    grid-template-columns: 1fr;
+    margin: 3%;
+  }
+  .infobox {
+    grid-area: infobox;
+    position: relative !important;
+    margin: 0%;
+    max-width: 100%;
+  }
+
+  .infobox h1 {
+      line-height: .7;
+  }
+
+  .link-container {
+      max-width: 40%;
+      margin: auto;
+  }
+
+  linkbox a {
+      font-size: .7rem;
+  }
+
+  .linkbox img {
+      max-width: 32px;
+      max-height: 32px;
+      margin: auto;
+  }
+
+  .projectcolumn {
+    grid-area: projects;
+    display: flex;
+    margin-left: 0% !important;
+  }
+  .button {
+    grid-area: button;
+    margin: 3%;
+    position: sticky;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+    .linkbox p {
+        display: none;
     }
-    .infobox {
-        grid-area: infobox;
-        display: flex;
-        position: relative !important;
-        margin: 0%;
+
+    .linkbox a {
+        margin: auto;
     }
-    .main-info-box {
-        display: flex;
-        flex-direction: column;
-        line-height: 1.2;
+
+    .linkbox img {
+        max-width: 32px;
+        max-height: 32px;
     }
-    .main-info-box h1 {
-        line-height: .8;
-    }
-    main-info-box-img {
-        display: flex;
-        flex-direction: column;
-    }
-    .profile-text-box p {
-        line-height: 1;
-    }
-    .profile-text-box h1 {
-        line-height: .8;
-    }
-    .projectcolumn {
-        grid-area: projects;
-        display: flex;
-        margin-left: 0% !important;
-    }
-    .button {
-        grid-area: button;
-        margin: 5%;
-        position: relative;
-    }
-    .projectcolumn-header {
+
+    .infobox p {
         font-size: 1em;
     }
 }
