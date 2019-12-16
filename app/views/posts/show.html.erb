@@ -1,2 +1,13 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.content %></p>
+<div class="projectcolumn">
+    <div class="blurbox">
+        <h1><%= @post.title %></h1>
+        <p><%= @post.content %></p>
+        <p> Edit
+            <%= link_to "Edit", edit_post_path(@post), class: "button" %>
+        </p>
+        <p> Delete
+            <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "are you sure?"}, class: "button"%>
+        </p>
+        
+    </div>
+</div>

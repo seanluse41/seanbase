@@ -1,10 +1,7 @@
-<h1>new post</h1>
+<div class="projectcolumn">
+    <div class="blurbox">
+        <h1>new post</h1>
+    </div>
 
-<div class="section">
-    <%= simple_form_for @post do |f| %>
-    <%= f.input :title %>
-    <%= f.input :content %>
-    <%= f.button :submit %>
-    <% end %>
-</div>
+    <%= render 'form' %>
 </div>
