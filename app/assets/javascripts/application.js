@@ -14,3 +14,13 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+function toggleLanguage(language) {
+    let name = document.getElementById("name");
+    if (language === "Japanese") {
+        name.innerHTML = "ショーン・ルース";
+    }
+    else {
+        name.innerHTML = "Sean Luse";
+    }
+}
