@@ -13,16 +13,13 @@
 
 <body>
 
-  <a href="#" class="button" onclick="toggleLanguage('Japanese')">日本語</a>
+  <a href="www.seanbase.com?locale=ja" class="button">日本語</a>
 
   <div class="main-container">
     <div class="infobox">
       <div class="blurbox">
-        <h1 id="name" lang="en">Sean Luse</h1>
-                <h1 id="name" lang="ja">ショーン・ルース</h1>
-        <p id="profile" lang="en">I am a mobile and web developer based in Tokyo. I specialize in Ruby/Rails, Dart/Flutter, and web design. I
-          speak fluent Japanese as well. Let's work together!</p>
-          <p id="profile" lang="ja">東京在住のモバイル・ウエブ開発者のショーンと申します。Ruby/Rails、Dart/Flutter、ウエブデザインやAdobeの専門家です。英語と日本両方は対応可能ですのでぜひとも貴団体のプロジェクトを実現させてください。</p>
+        <h1 id="name"><%= t :name %></h1>
+        <p id="profile"><%= t :profile %></p>
       </div>
       <div class="link-container">
         <div class="blurbox">
