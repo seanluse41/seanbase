@@ -1,14 +1,13 @@
 <div class="projectcolumn">
-    <div class="blurbox">
-        <h1><%= @post.title %></h1>
-        <p><%= @post.content %></p>
-        <%= image_tag(@post.image)%>
-        <p> Edit
-            <%= link_to "Edit", edit_post_path(@post), class: "button" %>
-        </p>
-        <p> Delete
-            <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "are you sure?"}, class: "button"%>
-        </p>
-        
+  <div class="buttonbox">
+    <%= link_to "Edit", edit_post_path(@post), class: "editbutton" %>
+    <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "are you sure?"}, class: "editbutton" %>
+  </div>
+  <div class="blurbox">
+    <h1><%= @post.title %></h1>
+    <p><%= @post.content %></p>
+    <div class="postimage">
+      <%= image_tag(@post.image)%>
     </div>
+  </div>
 </div>
