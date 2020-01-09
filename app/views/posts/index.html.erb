@@ -4,31 +4,39 @@
       <h1><%= post.title %></h1>
       <p><%= post.content %></p>
       <div class="postimage">
+        <div class="modal-btn">
+          <%= image_tag(post.image)%>
+        </div>
+      </div>
+    </div>
+    <div class="modal" id="myModal">
+      <div class="blurbox">
+        <span class="close-btn">&times;</span>
         <%= image_tag(post.image)%>
       </div>
     </div>
-            <button id="modal-btn"> click me, I make a modal</button>
-        <div class="modal">
-          <div class="blurbox">
-            <span class="close-btn">&times;</span>
-            <p>this is the text inside the modal</p>
-          </div>
-        </div>
-
   <% end %>
 </div>
-
-<script>let modalBtn = document.getElementById("modal-btn")
-let modal = document.querySelector(".modal")
-let closeBtn = document.querySelector(".close-btn")
-modalBtn.onclick = function(){
-  modal.style.display = "block"
-}
-closeBtn.onclick = function(){
-  modal.style.display = "none"
-}
-window.onclick = function(e){
-  if(e.target == modal){
-    modal.style.display = "none"
+<script>
+  // select images by class name
+  var img = document.getElementsByClassName('postimage');
+  var modalImg = document.getElementsByClassName("postimage");
+  var modal = document.getElementById("myModal");
+  
+  // show modal function
+  var showModal = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
   }
-}</script>
+  
+  // bind click event to each img
+  for (var i = 0; i < img.length; i++) {
+      img[i].addEventListener('click', showModal);
+  }
+  
+  var span = document.getElementsByClassName("close-btn")[0];
+  
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+</script>
