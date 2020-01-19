@@ -4,13 +4,11 @@
       <h1><%= post.title %></h1>
       <p><%= post.content %></p>
       <div class="postimage">
-        <%= image_tag(post.image)%>
+        <%= image_tag(post.image, alt: "See my Github for source.")%>
       </div>
     </div>
   <% end %>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <!-- Trigger the Modal -->
-  <img class="postimage" src="http://www.chinabuddhismencyclopedia.com/en/images/thumb/b/b8/Nature.jpg/240px-Nature.jpg" alt="Trolltunga, Norway" width="300" height="200">
   <!-- The Modal -->
   <div id="myModal" class="modal">
     <!-- The Close Button -->
@@ -35,11 +33,11 @@
   var captionText = document.getElementById("caption");
   $('.postimage').click(function(){
       modal.style.display = "block";
-      var newSrc = this.src;
-      modalImg.attr('src', newSrc);
-      captionText.innerHTML = this.alt;
-  });
-  
+      var imageSrc = $(this).find("img").attr("src");
+      var imageAlt = $(this).find("img").attr("alt");
+      modalImg.attr('src', imageSrc);
+      captionText.innerHTML = imageAlt;
+  });    
   // Get the <span> element that closes the modal
   var span = document.getElementsByClassName("close")[0];
   
