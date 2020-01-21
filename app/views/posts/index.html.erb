@@ -4,7 +4,7 @@
       <h1><%= post.title %></h1>
       <p><%= post.content %></p>
       <div class="postimage">
-        <%= image_tag(post.image, alt: "See my Github for source.")%>
+        <%= image_tag(post.image, alt: "See my Github for source.") if post.image.attached? %>
       </div>
     </div>
   <% end %>
