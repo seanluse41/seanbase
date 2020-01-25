@@ -160,11 +160,17 @@ body {
 .projectcolumn h1 {
   font-size: 2em;
   font-weight: bolder;
+  margin: 5px;
 }
 
 .projectcolumn p {
   font-size: 1em;
   font-weight: bold;
+}
+
+.projectcolumn img {
+  height: auto;
+  width: 30%;
 }
 
 
@@ -265,6 +271,12 @@ body {
     margin: 3%;
     position: sticky;
   }
+
+  .modal-content {
+    padding: 20px;
+    max-width: 60%;
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -289,8 +301,18 @@ body {
         font-size: 1.5em;
     }
 
+    .projectcolumn img {
+      width: 50%;
+    }
+
     .blurbox {
       padding: 10px;
+    }
+
+    .modal-content {
+      padding: 0px;
+      height: auto;
+      max-width: 100%;
     }
 }
 
@@ -316,8 +338,9 @@ body {
 .modal-content {
   margin: auto;
   display: block;
-  width: 80%;
-  max-width: 700px;
+  max-width: 100%;
+  width: auto;
+  height: 100%;
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
@@ -371,6 +394,10 @@ body {
 /* 100% Image Width on Smaller Screens */
 @media only screen and (max-width: 700px){
   .modal-content {
-      width: 100%;
+    padding: 20px;
+    max-width: auto;
+    max-height: 70%;
+    height: auto;
+    width: 100%;
   }
 }
