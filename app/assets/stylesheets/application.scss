@@ -98,9 +98,9 @@ body {
 }
 
 .postimage img{
-  max-width: 50%;
+  max-width: 70%;
   height: auto;
-  transition: 0.3s;
+  transition: 0.8s;
   cursor: pointer;
 }
 
@@ -154,7 +154,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 30px;
+  margin-left: 50px;
   padding: 10px;
 }
 .projectcolumn h1 {
@@ -283,6 +283,14 @@ body {
 
     .infobox p {
         font-size: 1em;
+    }
+
+    .projectcolumn h1 {
+        font-size: 1.5em;
+    }
+
+    .blurbox {
+      padding: 10px;
     }
 }
 

@@ -13,7 +13,12 @@
 
 <body>
 
-  <a href="www.seanbase.com?locale=ja" class="button">日本語</a>
+  <% if I18n.locale == :en %>
+  <a href="?locale=ja" class="button">日本語</a>
+  <% else I18n.locale == :jp %>
+  <a href="?locale=en" class="button">ENG</a>
+  <% end %>
+
 
   <div class="main-container">
     <div class="infobox">
