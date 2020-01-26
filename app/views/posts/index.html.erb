@@ -3,6 +3,10 @@
   
     <div class="blurbox">
       <h1><%= post.title %></h1>
+    <% if current_user %>
+    <%= link_to "Edit", edit_post_path(post) if current_user.admin %>
+    <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "are you sure?" } if current_user.admin %>
+    <% end %>
       <p><%= post.content %></p>
       <div class="postimage">
         <%= image_tag(post.image, alt: "See my Github for source.") if post.image.attached? %>
