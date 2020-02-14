@@ -7,6 +7,9 @@ gem "devise"
 gem "rb-readline"
 gem "irb"
 gem "aws-sdk"
+
+gem "rack-rewrite"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem "rails", "~> 5.2.3"
 # Use postgresql as the database for Active Record
