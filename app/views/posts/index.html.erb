@@ -9,7 +9,7 @@
     <% end %>
       <p><%= post.content %></p>
       <div class="postimage">
-        <%= image_tag(post.image, alt: "See my Github for source.") if post.image.attached? %>
+        <%= image_tag(post.image, alt: '<a href="www.github.com/seanluse41>See my github source code.</a>') if post.image.attached? %>
       </div>
     </div>
   <% end %>
