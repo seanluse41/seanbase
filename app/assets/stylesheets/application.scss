@@ -1,21 +1,26 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:600&display=swap");
 
 body {
-  background-image: url('https://seanbase.s3-ap-northeast-1.amazonaws.com/purple-flower.jpg');
+  background-image: url("https://seanbase.s3-ap-northeast-1.amazonaws.com/purple-flower.jpg");
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
 }
+
 .main-container {
+  display: -ms-grid;
   display: grid;
   grid-template-areas: "infobox projects";
+  -ms-grid-columns: 1fr 3% 1.2fr;
   grid-template-columns: 1fr 1.2fr;
   grid-column-gap: 3%;
   margin-top: 3%;
   margin-left: 7%;
   margin-right: 7%;
+  -ms-flex-pack: distribute;
   justify-content: space-around;
+  -ms-flex-line-pack: justify;
   align-content: space-between;
 }
 
@@ -97,7 +102,7 @@ body {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.postimage img{
+.postimage img {
   max-width: 70%;
   height: auto;
   transition: 0.8s;
@@ -109,10 +114,10 @@ body {
 }
 
 .infobox {
-    grid-area: infobox;
-    position: fixed;
-    max-width: 40%;
-} 
+  grid-area: infobox;
+  position: fixed;
+  max-width: 40%;
+}
 
 .infobox h1 {
   font-size: 3em;
@@ -125,8 +130,8 @@ body {
 }
 
 .link-container {
-    max-width: 60%;
-    margin: auto;
+  max-width: 60%;
+  margin: auto;
 }
 
 .linkbox {
@@ -186,8 +191,8 @@ body {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
 }
 
 /* Modal Content (Image) */
@@ -213,7 +218,8 @@ body {
 }
 
 /* Add Animation - Zoom in the Modal */
-.modal-content, #caption {
+.modal-content,
+#caption {
   -webkit-animation-name: zoom;
   -webkit-animation-duration: 0.6s;
   animation-name: zoom;
@@ -221,13 +227,21 @@ body {
 }
 
 @-webkit-keyframes zoom {
-  from {-webkit-transform:scale(0)}
-  to {-webkit-transform:scale(1)}
+  from {
+    -webkit-transform: scale(0);
+  }
+  to {
+    -webkit-transform: scale(1);
+  }
 }
 
 @keyframes zoom {
-  from {transform:scale(0)}
-  to {transform:scale(1)}
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 /* The Close Button */
@@ -247,7 +261,6 @@ body {
   text-decoration: none;
   cursor: pointer;
 }
-
 
 @media only screen and (min-width: 2000px) {
   .main-container {
@@ -288,7 +301,7 @@ body {
     font-size: 5em;
     font-weight: bolder;
   }
-  
+
   .projectcolumn p {
     font-size: 3em;
     font-weight: bold;
@@ -306,7 +319,7 @@ body {
     max-height: 90vh;
   }
 
-    /* Modal Content (Image) */
+  /* Modal Content (Image) */
   .modal-content {
     max-width: 95vw !important;
     max-height: none;
@@ -318,7 +331,7 @@ body {
     font-size: 64px;
   }
 
-/* The Close Button */
+  /* The Close Button */
   .close {
     top: 15px;
     right: 35px;
@@ -328,14 +341,17 @@ body {
 
 @media only screen and (max-width: 890px) {
   .main-container {
+    display: -ms-grid;
     display: grid;
     grid-template-areas:
       "button"
       "infobox"
       "projects";
+    -ms-grid-columns: 1fr;
     grid-template-columns: 1fr;
     margin: 3%;
   }
+  
   .infobox {
     grid-area: infobox;
     position: relative !important;
@@ -344,22 +360,22 @@ body {
   }
 
   .infobox h1 {
-      line-height: .7;
+    line-height: 0.7;
   }
 
   .link-container {
-      max-width: 40%;
-      margin: auto;
+    max-width: 40%;
+    margin: auto;
   }
 
   linkbox a {
-      font-size: .7rem;
+    font-size: 0.7rem;
   }
 
   .linkbox img {
-      max-width: 32px;
-      max-height: 32px;
-      margin: auto;
+    max-width: 32px;
+    max-height: 32px;
+    margin: auto;
   }
 
   .projectcolumn {
@@ -387,39 +403,38 @@ body {
 }
 
 @media only screen and (max-width: 500px) {
+  .infobox h1 {
+    font-size: 2em;
+  }
 
-    .infobox h1 {
-      font-size: 2em;
-    }
+  .linkbox p {
+    display: none;
+  }
 
-    .linkbox p {
-      display: none;
-    }
+  .linkbox a {
+    margin: auto;
+  }
 
-    .linkbox a {
-        margin: auto;
-    }
+  .linkbox img {
+    max-width: 32px;
+    max-height: 32px;
+  }
 
-    .linkbox img {
-        max-width: 32px;
-        max-height: 32px;
-    }
+  .infobox p {
+    font-size: 1em;
+  }
 
-    .infobox p {
-        font-size: 1em;
-    }
+  .projectcolumn h1 {
+    font-size: 1.7em;
+  }
 
-    .projectcolumn h1 {
-        font-size: 1.7em;
-    }
+  .blurbox {
+    padding: 10px;
+  }
 
-    .blurbox {
-      padding: 10px;
-    }
-
-    .modal-content {
-      padding: 0px;
-      height: auto;
-      max-width: 100%;
-    }
+  .modal-content {
+    padding: 0px;
+    height: auto;
+    max-width: 100%;
+  }
 }
