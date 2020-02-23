@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+    before_action :authorize_admin, only: [:new, :create, :edit, :destroy, :update]
+
     def index
         @posts = Post.all.order("created_at DESC")
     end

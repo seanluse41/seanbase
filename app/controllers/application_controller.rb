@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
       redirect_to "www.seanbase.com" + request.fullpath, :status => 301
     end
   end
+
+  def authorize_admin
+    redirect_to :root, status: 401 unless current_user != nil && current_user.admin
+  end
 end
