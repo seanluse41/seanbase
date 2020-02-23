@@ -1,25 +1,23 @@
 <div class="projectcolumn">
   <div class="buttonbox">
-
-  <% if current_user %>
-
-    <%= link_to "Edit", edit_post_path(@post), class: "editbutton" if current_user.admin %>
-    <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "are you sure?"}, class: "editbutton" if current_user.admin %>
-  <div class="blurbox">
-    <h1><%= @post.title %></h1>
-    <p><%= @post.content %></p>
-    <div class="postimage">
-      <%= image_tag(@post.image, alt: '<a href="www.github.com/seanluse41>See my github source code.</a>') if @post.image.attached? %>
+    <% if current_user %>
+      <%= link_to "Edit", edit_post_path(@post), class: "editbutton" if current_user.admin %>
+      <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "are you sure?"}, class: "editbutton" if current_user.admin %>
+      <div class="blurbox">
+        <h1><%= @post.title %></h1>
+        <p><%= @post.content %></p>
+        <div class="postimage">
+          <%= image_tag(@post.image, alt: '<a href="www.github.com/seanluse41>See my github source code.</a>') if @post.image.attached? %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   <% else %>
     <div class="blurbox">
-    <h1><%= @post.title %></h1>
-    <p><%= @post.content %></p>
-    <div class="postimage">
-      <%= image_tag(@post.image, alt: '<a href="www.github.com/seanluse41>See my github source code.</a>') if @post.image.attached? %>
+      <h1><%= @post.title %></h1>
+      <p><%= @post.content %></p>
+      <div class="postimage">
+        <%= image_tag(@post.image, alt: '<a href="www.github.com/seanluse41>See my github source code.</a>') if @post.image.attached? %>
+      </div>
     </div>
   </div>
-</div>
-  <% end %>
+<% end %>

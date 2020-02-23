@@ -319,6 +319,14 @@ body {
     max-height: 90vh;
   }
 
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+  }
+
   /* Modal Content (Image) */
   .modal-content {
     max-width: 95vw !important;

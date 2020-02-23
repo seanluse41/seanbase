@@ -1,18 +1,26 @@
 <div class="projectcolumn">
   <% @posts.each do |post| %>
-  
     <div class="blurbox">
       <h1><%= post.title %></h1>
-    <% if current_user %>
-    <%= link_to "Edit", edit_post_path(post) if current_user.admin %>
-    <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "are you sure?" } if current_user.admin %>
-    <% end %>
+      <% if current_user %>
+        <%= link_to "Edit", edit_post_path(post) if current_user.admin %>
+        <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "are you sure?" } if current_user.admin %>
+      <% end %>
       <p><%= post.content %></p>
       <div class="postimage">
         <%= image_tag(post.image, alt: '<a href="www.github.com/seanluse41>See my github source code.</a>') if post.image.attached? %>
       </div>
     </div>
   <% end %>
+  <div class="footer">
+    <%= render 'layouts/alerts' %>
+    <% if current_user %>
+      <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'Sign up', new_user_registration_path %>
+      <%= link_to 'Sign in', new_user_session_path %>
+    <% end %>
+  </div>
   <!-- The Modal -->
   <div id="myModal" class="modal">
     <!-- The Close Button -->
