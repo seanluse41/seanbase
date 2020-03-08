@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_admin
-    redirect_to :root unless current_user != nil && current_user.admin
+    unless current_user && current_user.admin?
+      redirect_to root_path, notice: "Admin Needed"
+    end
   end
 end
