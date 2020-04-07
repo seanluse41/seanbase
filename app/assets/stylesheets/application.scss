@@ -48,6 +48,11 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+.blurbox a:hover {
+  text-decoration: initial;
+  color: initial;
+}
+
 .button {
   display: flex;
   justify-content: center;
