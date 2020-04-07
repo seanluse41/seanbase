@@ -5,7 +5,8 @@
       <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "are you sure?"}, class: "editbutton" if current_user.admin %>
       <div class="blurbox">
         <h1><%= @post.title %></h1>
-        <a href="<% @post.content %>"><%= @post.content %></a>
+        <p><%= @post.content%></p>
+        <a href="<% @post.link %>"><%= @post.link %></a>
         <div class="postimage">
           <%= image_tag(@post.image, alt: '<a href="www.github.com/seanluse41>See my github source code.</a>') if @post.image.attached? %>
         </div>
