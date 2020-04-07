@@ -6,7 +6,7 @@
         <%= link_to "Edit", edit_post_path(post) if current_user.admin %>
         <%= link_to "Delete", post_path(post), method: :delete, data: { confirm: "are you sure?" } if current_user.admin %>
       <% end %>
-        <p><a href="www.github.com"><%= post.content%></a></p>
+        <p><a href="//<%= post.content %>"><%= post.content%></a></p>
         <div class="postimage">
         <%= image_tag(post.image, alt: '<a href="www.github.com/seanluse41>See my github source code.</a>') if post.image.attached? %>
       </div>
