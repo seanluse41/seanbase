@@ -49,7 +49,7 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   #better errors
-  gem "better_errors", "~> 2.5", ">= 2.5.1"
+  gem "better_errors", "~> 2.8"
   #guard
   gem "guard", "~> 2.16", ">= 2.16.1"
   gem "guard-livereload", "~> 2.5", ">= 2.5.2", require: false
