@@ -1,5 +1,9 @@
 {
     "page_title": "Page title",
     "sign_in": "Sign in",
-    "sign_up": "Sign up"
+    "sign_up": "Sign up",
+    "nav_home": "Home",
+    "nav_gamedev": "GameDev",
+    "nav_kintone": "Kintone Plugins",
+    "nav_hire": "Hire"
 }
