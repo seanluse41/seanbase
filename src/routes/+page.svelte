@@ -1,8 +1,21 @@
 <script lang="js">
-	import { _ } from 'svelte-i18n'
+	import { _ } from "svelte-i18n";
+	import { Heading, P } from "flowbite-svelte";
+	import logo from "../lib/logo-cropped.png"
+	import ProjectCard from "../components/projectCard.svelte";
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-
-{$_('sign_up')}
+<div class="text-left">
+	<Heading
+		tag="h1"
+		class="mb-4"
+		customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl"
+		>{$_("main_name")}</Heading
+	>
+	<P class="mb-6 text-lg lg:text-xl xl:px-48 dark:text-gray-400"
+		>{$_("main_subtitle")}</P
+	>
+	<div class="flex flex-row flex-wrap justify-evenly">
+		<ProjectCard image={logo} title={`aaa`} link={"/"}/>
+	</div>
+</div>

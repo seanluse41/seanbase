@@ -2,8 +2,10 @@
     "page_title": "Page title",
     "sign_in": "Sign in",
     "sign_up": "Sign up",
-    "nav_home": "Home",
+    "nav_blog": "Blog",
     "nav_gamedev": "GameDev",
     "nav_kintone": "Kintone Plugins",
-    "nav_hire": "Hire"
+    "nav_hire": "Hire",
+    "main_name": "Sean Luse",
+    "main_subtitle": "Developer in Tokyo, working on Web Development, Game Development, and Kintone Customizations."
 }

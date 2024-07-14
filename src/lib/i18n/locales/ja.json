@@ -2,8 +2,10 @@
     "page_title": "タイトル",
     "sign_in": "サインイン",
     "sign_up": "会員登録",
-    "nav_home": "トップへ",
+    "nav_blog": "ブログ",
     "nav_gamedev": "ゲーム開発",
     "nav_kintone": "Kintone開発",
-    "nav_hire": "ご相談"
+    "nav_hire": "ご相談",
+    "main_name": "ルース ショーン",
+    "main_subtitle": "東京在住Web・ゲーム・Kintone開発者。10年以上日本に住んでおり、フリーランスとして仕事し始めました。"
 }
