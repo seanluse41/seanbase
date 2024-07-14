@@ -20,4 +20,4 @@ Four routes:
 - gamedev
 - kintone dev
 - hire / contact
-- probably one other one
+- blog
