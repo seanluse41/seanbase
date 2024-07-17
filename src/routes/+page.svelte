@@ -3,6 +3,26 @@
 	import { Heading, P } from "flowbite-svelte";
 	import ProjectCard from "../components/projectCard.svelte";
 	import Loader from "../components/loader.svelte";
+	import { projectsStore } from "../stores/projects.js";
+
+	const getImage = async (recordID) => {
+		let imageURL;
+		const imageRequest = await fetch("/getImages", {
+			method: "POST",
+			credentials: "same-origin",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify({ recordID }),
+		});
+		if (imageRequest.status == 200) {
+			let imageBlob = await imageRequest.blob();
+			imageURL = URL.createObjectURL(imageBlob);
+		} else {
+			imageURL = null;
+		}
+		return imageURL;
+	};
 
 	const getProjects = async () => {
 		const projectRequest = await fetch("/", {
@@ -12,8 +32,13 @@
 				"content-type": "application/json",
 			},
 		});
-		const projects = await projectRequest.json();
-		console.log(projects);
+		let projects = await projectRequest.json();
+
+		for (const project of projects) {
+			let imageURL = await getImage(project.Record_number.value)
+			project.imageURL = imageURL	
+		}
+		projectsStore.set(projects);
 		return projects;
 	};
 </script>
@@ -22,7 +47,6 @@
 	<Heading
 		tag="h1"
 		class="mb-4"
-		id="top"
 		customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl"
 		>{$_("main_name")}</Heading
 	>
@@ -39,6 +63,8 @@
 					description={project.description.value}
 					id={project.Record_number.value}
 					type={project.type.value}
+					link={project.link.value}
+					imageURL={project.imageURL}
 				/>
 			{/each}
 		</div>

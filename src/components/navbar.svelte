@@ -24,7 +24,7 @@
   };
 </script>
 
-<div class="flex px-8">
+<div class="flex px-8" id="top">
   <Navbar
     class="p-0 fixed w-full z-20 top-0 start-0 border-b"
     style="background-color: #8875b5"

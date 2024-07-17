@@ -1,24 +1,16 @@
 <script>
     import { onMount } from "svelte";
-    import { SpeedDial } from "flowbite-svelte";
+    import { Button } from "flowbite-svelte";
     import { CaretUpSolid } from "flowbite-svelte-icons";
     let scrollToTop;
-
-    let test = () => {
-        console.log("test");
-    };
 
     onMount(() => {
         let topElement = document.getElementById("top");
         scrollToTop = () => {
-            console.log("hello");
-            topElement ? window.scrollTo(0,0) : null;
+            topElement ? window.scrollTo({top: 0, left: 0, behavior: "smooth"}) : null;
         };
     });
 </script>
 
-<div on:click={scrollToTop} role="button">
-    <SpeedDial color="purple">
-        <CaretUpSolid class="w-6 h-6" slot="icon" />
-    </SpeedDial>
-</div>
+<Button on:click={scrollToTop} pill={true} class="!p-2"><CaretUpSolid class="w-6 h-6" /></Button>
+
