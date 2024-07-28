@@ -20,7 +20,6 @@ const getProjectBySlug = async (slug, projects) => {
     const files = await getFiles(projectObject.Record_number.value);
     files.forEach(file => {
         if (file.contentType.startsWith('image/')) {
-            console.log(projectObject.detailImages)
             projectObject.detailImages.push(file)
         } else if (file.contentType.startsWith('video/')) {
             projectObject.videos.push(file)

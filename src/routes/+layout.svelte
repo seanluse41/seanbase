@@ -21,7 +21,7 @@
     .main {
         min-height: 100vh;
         background-color: whitesmoke;
-        padding: 3%;
+        padding: 5%;
     }
 
     .fabContainer {

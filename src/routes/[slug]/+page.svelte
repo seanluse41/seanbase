@@ -16,7 +16,7 @@
 	});
 </script>
 
-<Carousel {images} let:Indicators let:Controls>
+<Carousel imgClass="object-contain h-full w-fit rounded-sm" {images} let:Indicators let:Controls duration={3000}>
 	<Controls />
 	<Indicators />
 </Carousel>
@@ -25,3 +25,5 @@
 {#if data.videos.length > 0}
 	<Video src={data.videos[0].url} controls trackSrc={data.videos[0].name} class="mt-10" />
 {/if}
+
+<P class="mt-10">{data.longDescription2.value}</P>
