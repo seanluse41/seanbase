@@ -20,10 +20,10 @@
         </div>
       {/if}
       <div class="flex flex-col flex-grow p-2">
-        <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
+        <h5 class="text-2xl font-bold tracking-tight text-stone-700 mb-2">
           {$_(title)}
         </h5>
-        <P class="flex-grow overflow-hidden" color="text-gray-500 dark:text-gray-400">
+        <P class="flex-grow overflow-hidden" color="text-stone-700">
           <span class="line-clamp-3">{$_(description)}</span>
         </P>
       </div>

@@ -2,11 +2,14 @@
     import "../app.pcss";
     import Fab from "../components/fab.svelte";
     import Navbar from "../components/navbar.svelte";
+    import ParticleBackground from "../components/particleBackground.svelte";
 </script>
 
-<div>
+
+<div class="main">
+    <ParticleBackground/>
     <Navbar />
-    <div class="main flex flex-col">
+    <div class="flex flex-col mt-24 z-10 relative">
         <slot></slot>
     </div>
 </div>
@@ -16,10 +19,8 @@
 
 <style>
     .main {
-        margin-top: 64px;
         min-height: 100vh;
         background-color: whitesmoke;
-        color: #3C3D36;
         padding: 3%;
     }
 

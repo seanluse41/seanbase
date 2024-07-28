@@ -7,7 +7,6 @@ export async function GET() {
 	let subdomain = import.meta.env.VITE_SUBDOMAIN
 	const parameters = 'query=order by Record_number asc';
 	const getRecordsURL = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appid}&${parameters}`
-    console.log(getRecordsURL)
 	const fetchOptions = {
 		method: 'GET',
 		headers: {

@@ -49,17 +49,17 @@
 <div>
 	<Heading
 		tag="h1"
-		class="mb-4"
+		class="mb-4 text-stone-700"
 		customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl"
 		>{$_("main_name")}</Heading
 	>
-	<P class="mb-6 text-lg lg:text-xl dark:text-gray-400"
+	<P class="mb-6 text-lg lg:text-xl text-stone-700"
 		>{$_("main_subtitle")}</P
 	>
 	{#await getProjects()}
 		<Loader />
 	{:then projects}
-		<div class="flex flex-row flex-wrap justify-evenly">
+		<div class="flex flex-row flex-wrap">
 			{#each projects as project, i}
 				<div in:fly|global={{ y: 200, duration: 2000, delay: i * cardDelay }}>
 					<ProjectCard
