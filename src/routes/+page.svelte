@@ -10,7 +10,7 @@
 
 	const getImage = async (recordID) => {
 		let imageURL;
-		const imageRequest = await fetch("/getImages", {
+		const imageRequest = await fetch("/getImage", {
 			method: "POST",
 			credentials: "same-origin",
 			headers: {
@@ -40,6 +40,8 @@
 		for (const project of projects) {
 			let imageURL = await getImage(project.Record_number.value);
 			project.imageURL = imageURL;
+			project.detailImages = [];
+			project.videos = [];
 		}
 		projectsStore.set(projects);
 		return projects;
@@ -53,15 +55,19 @@
 		customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl"
 		>{$_("main_name")}</Heading
 	>
-	<P class="mb-6 text-lg lg:text-xl text-stone-700"
-		>{$_("main_subtitle")}</P
-	>
+	<P class="mb-6 text-lg lg:text-xl text-stone-700">{$_("main_subtitle")}</P>
 	{#await getProjects()}
 		<Loader />
 	{:then projects}
 		<div class="flex flex-row flex-wrap">
 			{#each projects as project, i}
-				<div in:fly|global={{ y: 200, duration: 2000, delay: i * cardDelay }}>
+				<div
+					in:fly|global={{
+						y: 200,
+						duration: 2000,
+						delay: i * cardDelay,
+					}}
+				>
 					<ProjectCard
 						title={project.title.value}
 						description={project.description.value}

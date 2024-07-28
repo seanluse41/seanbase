@@ -2,6 +2,7 @@
 import { error } from '@sveltejs/kit';
 
 export async function POST({ request, setHeaders }) {
+
 	setHeaders({
 		"cache-control": "max-age=60",
 	});
@@ -23,32 +24,14 @@ export async function POST({ request, setHeaders }) {
 	}
 	let response = await fetch(getRecordURL, fetchOptions);
 	const responseData = await response.json();
-
 	if (responseData.record.image.value.length >= 1) {
-		const filePromises = responseData.record.detailImages.value.map(async (file) => {
-			const fileKey = file.fileKey;
-			const getFileURL = `https://${subdomain}.kintone.com/k/v1/file.json?fileKey=${fileKey}`;
-			const fileData = await fetch(getFileURL, fetchOptions);
-			const blob = await fileData.blob();
-			return {
-				blob: blob,
-				contentType: blob.type,
-				name: file.name
-			};
-		});
-
-		const files = await Promise.all(filePromises);
-
-		// Prepare the response data
-		const responseBody = await Promise.all(files.map(async file => ({
-			contentType: file.contentType,
-			name: file.name,
-			data: Array.from(new Uint8Array(await file.blob.arrayBuffer()))
-		})));
-
-		return new Response(JSON.stringify(responseBody), {
+		const fileKey = responseData.record.image?.value[0].fileKey;
+		const getFileURL = `https://${subdomain}.kintone.com/k/v1/file.json?fileKey=${fileKey}`;
+		const imageData = await fetch(getFileURL, fetchOptions);
+		const imageDataBlob = await imageData.blob();
+		return new Response(imageDataBlob, {
 			headers: {
-				'Content-Type': 'application/json',
+				'Content-Type': 'image/webp', // Set the content type for WebP images
 			},
 		});
 	} else {
