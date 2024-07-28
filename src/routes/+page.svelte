@@ -4,6 +4,9 @@
 	import ProjectCard from "../components/projectCard.svelte";
 	import Loader from "../components/loader.svelte";
 	import { projectsStore } from "../stores/projects.js";
+	import { fly } from "svelte/transition";
+
+	let cardDelay = 100; // Delay between each card in milliseconds
 
 	const getImage = async (recordID) => {
 		let imageURL;
@@ -35,15 +38,15 @@
 		let projects = await projectRequest.json();
 
 		for (const project of projects) {
-			let imageURL = await getImage(project.Record_number.value)
-			project.imageURL = imageURL	
+			let imageURL = await getImage(project.Record_number.value);
+			project.imageURL = imageURL;
 		}
 		projectsStore.set(projects);
 		return projects;
 	};
 </script>
 
-<div class="text-left">
+<div>
 	<Heading
 		tag="h1"
 		class="mb-4"
@@ -57,15 +60,16 @@
 		<Loader />
 	{:then projects}
 		<div class="flex flex-row flex-wrap justify-evenly">
-			{#each projects as project}
-				<ProjectCard
-					title={project.title.value}
-					description={project.description.value}
-					id={project.Record_number.value}
-					type={project.type.value}
-					link={project.link.value}
-					imageURL={project.imageURL}
-				/>
+			{#each projects as project, i}
+				<div in:fly|global={{ y: 200, duration: 2000, delay: i * cardDelay }}>
+					<ProjectCard
+						title={project.title.value}
+						description={project.description.value}
+						type={project.type.value}
+						link={project.link.value}
+						imageURL={project.imageURL}
+					/>
+				</div>
 			{/each}
 		</div>
 	{/await}

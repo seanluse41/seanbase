@@ -1,7 +1,6 @@
 <script>
   import { _ } from "svelte-i18n";
-  import { Card, ImagePlaceholder } from "flowbite-svelte";
-  export let id;
+  import { Card, ImagePlaceholder, P } from "flowbite-svelte";
   export let title;
   export let type;
   export let description;
@@ -9,24 +8,39 @@
   export let imageURL;
 </script>
 
-<div class="space-y-4 m-4">
-    {#if imageURL}
-      <Card class="!p-0 h-64 w-80" href={`/${link}?id=${id}`}>
-        <img class="p-0 rounded-t-lg max-h-48 object-contain" src={imageURL} alt={title} />
-        <h5
-          class="p-2 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-        >
+<div class="space-y-4 m-4 hover:scale-105 transition ease-in-out duration-150">
+    <Card class="!p-0 h-[350px] w-80 flex flex-col" href={`/${link}`}>
+      {#if imageURL}
+        <div class="imageFrame h-48">
+          <img class="p-0 rounded-t-lg h-full w-full object-cover" src={imageURL} alt={title} />          
+        </div>
+      {:else}
+        <div class="h-48">
+          <ImagePlaceholder imgOnly={true} class="h-full"/>
+        </div>
+      {/if}
+      <div class="flex flex-col flex-grow p-2">
+        <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-2">
           {$_(title)}
         </h5>
-      </Card>
-    {:else}
-      <Card class="!p-0 h-64 w-80 items-center" href={link}>
-        <ImagePlaceholder imgOnly={true}/>
-        <h5
-          class="p-2 mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
-        >
-          {$_(title)}
-        </h5>
-      </Card>
-    {/if}
+        <P class="flex-grow overflow-hidden" color="text-gray-500 dark:text-gray-400">
+          <span class="line-clamp-3">{$_(description)}</span>
+        </P>
+      </div>
+    </Card>
 </div>
+
+<style>
+  .imageFrame {
+    display: flex;
+    justify-content: center;
+    background: lightgray;
+  }
+
+  :global(.line-clamp-3) {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
