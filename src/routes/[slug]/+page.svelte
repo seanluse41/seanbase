@@ -1,21 +1,24 @@
 <script>
-    import { Carousel, Heading, P } from "flowbite-svelte";
-    import { onMount } from 'svelte';
+    import { Carousel, Heading, P, Button } from "flowbite-svelte";
+    import { onMount } from "svelte";
+    import { CaretRightOutline, CaretLeftOutline } from 'flowbite-svelte-icons';
     import Loader from "../../components/loader.svelte";
     export let data;
     let { project } = data;
     let images = [];
     let imagesLoaded = false;
-    
+
     onMount(async () => {
         if (project) {
             const imagePromises = [
                 loadImage(project.imageURL),
-                ...project.detailImagesStore.map(file => {
-                    const blob = new Blob([new Uint8Array(file.data)], { type: file.contentType });
+                ...project.detailImagesStore.map((file) => {
+                    const blob = new Blob([new Uint8Array(file.data)], {
+                        type: file.contentType,
+                    });
                     const fileURL = URL.createObjectURL(blob);
                     return loadImage(fileURL);
-                })
+                }),
             ];
             await Promise.all(imagePromises);
             images = [
@@ -24,15 +27,17 @@
                     title: project.title.value,
                     alt: project.description.value,
                 },
-                ...project.detailImagesStore.map(file => {
-                    const blob = new Blob([new Uint8Array(file.data)], { type: file.contentType });
+                ...project.detailImagesStore.map((file) => {
+                    const blob = new Blob([new Uint8Array(file.data)], {
+                        type: file.contentType,
+                    });
                     const fileURL = URL.createObjectURL(blob);
                     return {
                         src: fileURL,
                         title: file.name,
                         alt: file.name,
                     };
-                })
+                }),
             ];
 
             imagesLoaded = true;
@@ -51,8 +56,17 @@
 
 {#if project}
     {#if imagesLoaded}
-        <Carousel imgClass="object-contain h-full w-fit rounded-sm" {images} let:Indicators let:Controls duration={3000}>
-            <Controls class="items-center text-red-400 pt-4" />
+        <Carousel
+            imgClass="object-contain h-full w-fit rounded-sm"
+            {images}
+            let:Indicators
+            let:Controls
+            duration={3000}
+        >
+            <Controls class="items-center text-red-400 pt-4" let:changeSlide>
+                <Button name="Previous" forward={false} pill class="p-2 absolute top-1/2 -translate-y-1/2 font-bold" on:click={()=>changeSlide(false)}><CaretLeftOutline /></Button>
+                <Button name="Next" forward={true} pill class="p-2 absolute top-1/2 -translate-y-1/2 end-4 font-bold" on:click={()=>changeSlide(true)}><CaretRightOutline /></Button>
+            </Controls>
             <Indicators />
         </Carousel>
         <Heading class="mb-10 mt-10">{project.title.value}</Heading>
