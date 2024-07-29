@@ -69,7 +69,6 @@ const getProjectBySlug = async (slug, projects, fetch) => {
 
     // Check if we already loaded project's detail images
     if (projectObject.detailImagesStore.length === 0) {
-        console.log("fetching detail images...")
         const files = await getFiles(projectObject.Record_number.value, fetch);
         projectObject.detailImagesStore = files;
 
