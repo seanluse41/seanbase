@@ -10,16 +10,26 @@
   } from "flowbite-svelte";
   import { LanguageOutline } from "flowbite-svelte-icons";
   import logo from "../lib/logo.svg";
+  import { navigating } from "$app/stores";
 
   let currentLocale = "en";
+  let hamburgerMenuHidden = true;
+
+  $: if ($navigating) {
+    hamburgerMenuHidden = true;
+  }
+
+  const toggleHamburgerMenu = () => {
+    hamburgerMenuHidden = !hamburgerMenuHidden
+  }
 
   const changeLocale = () => {
     if (currentLocale == "en") {
       locale.set("ja");
-      currentLocale = "ja"
+      currentLocale = "ja";
     } else if (currentLocale == "ja") {
       locale.set("en");
-      currentLocale = "en"
+      currentLocale = "en";
     }
   };
 </script>
@@ -33,16 +43,18 @@
       <img src={logo} class="w-24" alt="Purple Flower Logo" />
     </NavBrand>
     <div class="flex md:order-2">
-      <Button color=primary on:click={changeLocale} size="sm"><LanguageOutline class="w-6 h-6"/></Button>
-      <NavHamburger />
+      <Button color="primary" on:click={changeLocale} size="sm"
+        ><LanguageOutline class="w-6 h-6" /></Button
+      >
+      <NavHamburger onClick={toggleHamburgerMenu} />
     </div>
-    <NavUl>
-      <NavLi class="text-white" href="/blog" active={true}
+    <NavUl hidden={hamburgerMenuHidden}>
+      <NavLi class="text-stone-700 sm:text-white" href="/blog"
         >{$_("nav_blog")}</NavLi
       >
-      <NavLi class="text-white" href="/kintone">{$_("nav_kintone")}</NavLi>
-      <NavLi class="text-white" href="/gamedev">{$_("nav_gamedev")}</NavLi>
-      <NavLi class="text-white" href="/hire">{$_("nav_hire")}</NavLi>
+      <NavLi class="text-stone-700 sm:text-white" href="/kintone">{$_("nav_kintone")}</NavLi>
+      <NavLi class="text-stone-700 sm:text-white" href="/gamedev">{$_("nav_gamedev")}</NavLi>
+      <NavLi class="text-stone-700 sm:text-white" href="/hire">{$_("nav_hire")}</NavLi>
     </NavUl>
   </Navbar>
 </div>
