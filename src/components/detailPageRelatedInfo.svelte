@@ -50,7 +50,7 @@
                 </p>
             </div>
             <div
-                class="text-lg font-medium text-primary-600 hover:underline dark:text-primary-500 truncate"
+                class="text-lg font-medium text-primary-600 hover:underline dark:text-primary-500 truncate !ml-20"
             >
                 <a href={item.value.linkBoxLink.value}
                     >{item.value.linkBoxLink.value}</a

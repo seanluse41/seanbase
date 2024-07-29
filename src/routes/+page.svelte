@@ -63,7 +63,7 @@
 <div>
     <Heading
         tag="h1"
-        class="mb-4 text-stone-700"
+        class="mb-10 text-stone-700"
         customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl"
     >{$_("main_name")}</Heading>
     <P class="mb-6 text-lg lg:text-xl text-stone-700">{$_("main_subtitle")}</P>

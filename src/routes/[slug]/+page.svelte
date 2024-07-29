@@ -78,7 +78,7 @@
                 ></iframe>
             </div>
         {/if}
-        <P class="mt-10 mb-10">{project.longDescription2.value}</P>
+        <P class="mt-10 mb-10">{@html project.longDescription3.value}</P>
         {#if project.linkBox.value.length > 0}
             <DetailPageRelatedInfo linkBox={project.linkBox.value} />
         {/if}
