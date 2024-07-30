@@ -24,7 +24,7 @@ export async function POST({ request, setHeaders }) {
 	let response = await fetch(getRecordURL, fetchOptions);
 	const responseData = await response.json();
 
-	if (responseData.record.image.value.length >= 1) {
+	if (responseData.record.detailImages.value.length >= 1) {
 		const filePromises = responseData.record.detailImages.value.map(async (file) => {
 			const fileKey = file.fileKey;
 			const getFileURL = `https://${subdomain}.kintone.com/k/v1/file.json?fileKey=${fileKey}`;

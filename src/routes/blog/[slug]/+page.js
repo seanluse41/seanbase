@@ -1,6 +1,5 @@
 import { get } from 'svelte/store';
 import { blogStore } from '../../../stores/blogPosts.js';
-import { error } from '@sveltejs/kit';
 
 export const load = async ({ params, fetch }) => {
     let blogPosts = get(blogStore);
