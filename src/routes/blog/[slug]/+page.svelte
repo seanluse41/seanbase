@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
     import { Heading, P, Breadcrumb, BreadcrumbItem } from "flowbite-svelte";
     import Loader from "../../../components/loader.svelte"
+    import BadgePicker from "../../../components/badgePicker.svelte"
     export let data;
     let images = [];
     let imagesLoaded = false;
@@ -44,7 +45,14 @@
     <BreadcrumbItem href="/blog">Blog</BreadcrumbItem>
     <BreadcrumbItem>{data.post.Record_number.value}</BreadcrumbItem>
 </Breadcrumb>
-<Heading class="mt-8">{data.post.title.value}</Heading>
+<div class="flex">
+    <Heading class="mt-8">{data.post.title.value}</Heading>
+    <div class="flex justify-end items-center flex-wrap">
+        {#each data.post.tags.value as tag}
+            <BadgePicker type={tag}/>
+        {/each}
+    </div>
+</div>
 
 {#if isLoading}
   <p>Loading...</p>

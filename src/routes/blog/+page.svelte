@@ -1,8 +1,9 @@
 <script>
 	import { Card, P, Heading } from "flowbite-svelte";
-	import { SyncLoader } from "svelte-loading-spinners";
+	import Loader from "../../components/loader.svelte"
 	import { blogStore } from "../../stores/blogPosts.js";
 	import { get } from "svelte/store";
+    import BadgePicker from "../../components/badgePicker.svelte";
 
 	let postsPromise;
 
@@ -30,13 +31,18 @@
 
 <div class="blogMain">
 	{#await postsPromise}
-		<div class="loadingContainer">
-			<SyncLoader size="200" color="#8c86aa" unit="px" duration="1s" />
-		</div>
+		<Loader />
 	{:then posts}
 		{#each posts as post}
-			<Card class="mb-10" href={`/blog/${post.Record_number.value}`}>
-				<Heading>{post.title.value}</Heading>
+			<Card size="lg" class="mb-10" href={`/blog/${post.Record_number.value}`}>
+				<div class="flex justify-between items-center mb-4">
+					<Heading class="font-bold leading-none text-gray-900 dark:text-white">{post.title.value}</Heading>
+					<div class="flex justify-end flex-wrap">
+						{#each post.tags.value as tag}
+							<BadgePicker type={tag}/>
+						{/each}
+					</div>
+				  </div>
 				<P>{post.description.value}</P>
 			</Card>
 		{/each}
@@ -50,6 +56,6 @@
 		justify-content: center;
 		align-items: center;
 		padding: 0% 5%;
-		margin-top: 24px;
+		margin-top: 2.5rem;
 	}
 </style>
