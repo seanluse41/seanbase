@@ -1,9 +1,11 @@
 <script>
     import { onMount } from "svelte";
     import { Heading, P, Breadcrumb, BreadcrumbItem } from "flowbite-svelte";
+    import Loader from "../../../components/loader.svelte"
     export let data;
     let images = [];
     let imagesLoaded = false;
+    let isLoading = true;
 
     onMount(async () => {
         if (data.post.detailImagesStore) {
@@ -22,6 +24,7 @@
             await Promise.all(images.map((img) => loadImage(img.src)));
             imagesLoaded = true;
         }
+        isLoading = false;
     });
 
     const loadImage = (src) =>
@@ -43,42 +46,39 @@
 </Breadcrumb>
 <Heading class="mt-8">{data.post.title.value}</Heading>
 
+{#if isLoading}
+  <p>Loading...</p>
+  <Loader />
+{:else}
+<P class="mt-8">{@html data.post.blogIntro.value}</P>
+
 <div class="mt-8 flex flex-col md:flex-row gap-4">
-    {#if imagesLoaded && image1Position === "left"}
-        <img
-            src={images[0].src}
-            alt="blog 1"
-            class="w-80 md:w-1/3 h-auto object-cover"
-        />
-    {/if}
-    <div class="flex-1">
-        <P>{data.post.body.value}</P>
+    <div class="flex-1 flex flex-col md:flex-row gap-4 {image1Position === 'left' ? 'md:flex-row-reverse' : ''}">
+        <div class="flex-1">
+            <P>{data.post.body.value}</P>
+        </div>
+        {#if imagesLoaded}
+            <img
+                src={images[0].src}
+                alt="blog 1"
+                class="w-full md:w-1/3 h-auto object-cover"
+            />
+        {/if}
     </div>
-    {#if imagesLoaded && image1Position === "right"}
-        <img
-            src={images[0].src}
-            alt="blog 1"
-            class="w-80 md:w-1/3 h-auto object-cover"
-        />
-    {/if}
 </div>
 
 <div class="mt-8 flex flex-col md:flex-row gap-4">
-    {#if imagesLoaded && image2Position === "left"}
-        <img
-            src={images[1].src}
-            alt="blog 2"
-            class="w-80 md:w-1/3 h-auto object-cover"
-        />
-    {/if}
-    <div class="flex-1">
-        <P>{data.post.body2.value}</P>
+    <div class="flex-1 flex flex-col md:flex-row gap-4 {image2Position === 'left' ? 'md:flex-row-reverse' : ''}">
+        <div class="flex-1">
+            <P>{data.post.body2.value}</P>
+        </div>
+        {#if imagesLoaded}
+            <img
+                src={images[1].src}
+                alt="blog 2"
+                class="w-full md:w-1/3 h-auto object-cover"
+            />
+        {/if}
     </div>
-    {#if imagesLoaded && image2Position === "right"}
-        <img
-            src={images[1].src}
-            alt="blog 2"
-            class="w-80 md:w-1/3 h-auto object-cover"
-        />
-    {/if}
 </div>
+{/if}
