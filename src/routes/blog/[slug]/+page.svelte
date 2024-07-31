@@ -1,8 +1,8 @@
 <script>
     import { onMount } from "svelte";
     import { Heading, P, Breadcrumb, BreadcrumbItem } from "flowbite-svelte";
-    import Loader from "../../../components/loader.svelte"
-    import BadgePicker from "../../../components/badgePicker.svelte"
+    import Loader from "../../../components/loader.svelte";
+    import BadgePicker from "../../../components/badgePicker.svelte";
     export let data;
     let images = [];
     let imagesLoaded = false;
@@ -36,6 +36,17 @@
             img.src = src;
         });
 
+    let processHtml = (html) => {
+        const div = document.createElement("div");
+        div.innerHTML = html;
+
+        const links = div.getElementsByTagName("a");
+        for (let link of links) {
+            link.classList.add("blog-link");
+        }
+        return div.innerHTML;
+    }
+
     let image1Position = data.post.imageLocation1.value;
     let image2Position = data.post.imageLocation2.value;
 </script>
@@ -49,44 +60,67 @@
     <Heading class="mt-8">{data.post.title.value}</Heading>
     <div class="flex justify-end items-center flex-wrap">
         {#each data.post.tags.value as tag}
-            <BadgePicker type={tag}/>
+            <BadgePicker type={tag} />
         {/each}
     </div>
 </div>
 
 {#if isLoading}
-  <p>Loading...</p>
-  <Loader />
+    <p>Loading...</p>
+    <Loader />
 {:else}
-<P class="mt-8">{@html data.post.blogIntro.value}</P>
-
-<div class="mt-8 flex flex-col md:flex-row gap-4">
-    <div class="flex-1 flex flex-col md:flex-row gap-4 {image1Position === 'left' ? 'md:flex-row-reverse' : ''}">
-        <div class="flex-1">
-            <P>{data.post.body.value}</P>
+    <P class="mt-8">{@html processHtml(data.post.blogIntro.value)}</P>
+    <div class="mt-8 flex flex-col md:flex-row gap-4">
+        <div
+            class="flex-1 flex flex-col md:flex-row gap-4 {image1Position ===
+            'left'
+                ? 'md:flex-row-reverse'
+                : ''}"
+        >
+            <div class="flex self-center">
+                <P>{data.post.body.value}</P>
+            </div>
+            {#if imagesLoaded}
+                <img
+                    src={images[0].src}
+                    alt="blog 1"
+                    class="w-full md:w-1/3 h-auto object-cover"
+                />
+            {/if}
         </div>
-        {#if imagesLoaded}
-            <img
-                src={images[0].src}
-                alt="blog 1"
-                class="w-full md:w-1/3 h-auto object-cover"
-            />
-        {/if}
     </div>
-</div>
 
-<div class="mt-8 flex flex-col md:flex-row gap-4">
-    <div class="flex-1 flex flex-col md:flex-row gap-4 {image2Position === 'left' ? 'md:flex-row-reverse' : ''}">
-        <div class="flex-1">
-            <P>{data.post.body2.value}</P>
+    <div class="mt-8 flex flex-col md:flex-row gap-4">
+        <div
+            class="flex-1 flex flex-col md:flex-row gap-4 {image2Position ===
+            'left'
+                ? 'md:flex-row-reverse'
+                : ''}"
+        >
+            <div class="flex-1 self-center">
+                <P>{data.post.body2.value}</P>
+            </div>
+            {#if imagesLoaded}
+                <img
+                    src={images[1].src}
+                    alt="blog 2"
+                    class="w-full md:w-1/3 h-auto object-cover"
+                />
+            {/if}
         </div>
-        {#if imagesLoaded}
-            <img
-                src={images[1].src}
-                alt="blog 2"
-                class="w-full md:w-1/3 h-auto object-cover"
-            />
-        {/if}
     </div>
-</div>
 {/if}
+
+<style>
+    :global(.blog-link) {
+        color: #2563eb; /* blue-600 */
+        text-decoration: underline !important;
+    }
+    :global(.blog-link:hover) {
+        text-decoration: underline;
+    }
+    :global(.blog-link:visited) {
+        color: purple;
+        text-decoration: underline;
+    }
+</style>
