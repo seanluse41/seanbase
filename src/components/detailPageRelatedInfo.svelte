@@ -5,7 +5,7 @@
         CodeBranchOutline,
         EnvelopeOutline,
         GlobeOutline,
-    } from "flowbite-svelte-icons"
+    } from "flowbite-svelte-icons";
 
     export let linkBox;
 </script>
@@ -18,14 +18,8 @@
             Related Info
         </h3>
     </div>
-    <Listgroup
-        items={linkBox}
-        let:item
-        class="border-0 dark:!bg-transparent"
-    >
-        <div
-            class="flex items-center space-x-4 rtl:space-x-reverse"
-        >
+    <Listgroup items={linkBox} let:item class="border-0 dark:!bg-transparent">
+        <div class="flex items-center space-x-4 rtl:space-x-reverse">
             {#if item.value.linkBoxIcon.value == "Web"}
                 <GlobeOutline />
             {:else if item.value.linkBoxIcon.value == "Github"}
@@ -44,7 +38,7 @@
 
             <div class="min-w-0">
                 <p
-                    class="text-lg font-medium text-gray-900 font-bold dark:text-white nowrap"
+                    class="text-lg text-gray-900 font-bold dark:text-white nowrap"
                 >
                     {item.value.linkBoxName.value}
                 </p>
@@ -52,8 +46,10 @@
             <div
                 class="text-lg font-medium text-primary-600 hover:underline dark:text-primary-500 truncate !ml-20"
             >
-                <a href={item.value.linkBoxLink.value}
-                    >{item.value.linkBoxLink.value}</a
+                <a
+                    href={item.value.linkBoxLink.value}
+                    target="_blank"
+                    rel="noopener noreferrer">{item.value.linkBoxLink.value}</a
                 >
             </div>
         </div>

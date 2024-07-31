@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import { Heading, P, Breadcrumb, BreadcrumbItem } from "flowbite-svelte";
+    import { Heading, P, Breadcrumb, BreadcrumbItem, Card } from "flowbite-svelte";
     import Loader from "../../../components/loader.svelte";
     import BadgePicker from "../../../components/badgePicker.svelte";
     export let data;
@@ -57,8 +57,8 @@
     <BreadcrumbItem>{data.post.Record_number.value}</BreadcrumbItem>
 </Breadcrumb>
 <div class="flex">
-    <Heading class="mt-8">{data.post.title.value}</Heading>
-    <div class="flex justify-end items-center flex-wrap">
+    <Heading class="mt-8 text-slate-900">{data.post.title.value}</Heading>
+    <div class="flex justify-end items-center flex-wrap md:mr-8">
         {#each data.post.tags.value as tag}
             <BadgePicker type={tag} />
         {/each}
@@ -69,7 +69,8 @@
     <p>Loading...</p>
     <Loader />
 {:else}
-    <P class="mt-8">{@html processHtml(data.post.blogIntro.value)}</P>
+<Card size="lg" class="mt-8 max-w-max lg:p-24">
+    <P class="mt-8 text-slate-900 lg:text-2xl">{@html processHtml(data.post.blogIntro.value)}</P>
     <div class="mt-8 flex flex-col md:flex-row gap-4">
         <div
             class="flex-1 flex flex-col md:flex-row gap-4 {image1Position ===
@@ -78,7 +79,7 @@
                 : ''}"
         >
             <div class="flex self-center">
-                <P>{data.post.body.value}</P>
+                <P class="text-slate-900 lg:text-2xl">{data.post.body.value}</P>
             </div>
             {#if imagesLoaded}
                 <img
@@ -98,7 +99,7 @@
                 : ''}"
         >
             <div class="flex-1 self-center">
-                <P>{data.post.body2.value}</P>
+                <P class="text-slate-900 lg:text-2xl">{data.post.body2.value}</P>
             </div>
             {#if imagesLoaded}
                 <img
@@ -109,6 +110,7 @@
             {/if}
         </div>
     </div>
+</Card>
 {/if}
 
 <style>
