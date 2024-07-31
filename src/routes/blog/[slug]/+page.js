@@ -4,7 +4,11 @@ import { blogStore } from '../../../stores/blogPosts.js';
 export const load = async ({ params, fetch }) => {
     let blogPosts = get(blogStore);
     let post = await getPost(params.slug, fetch, blogPosts)
-    return {post}
+    if (post.detailImages.value.length > 0) {
+        let images = await getFiles(params.slug, fetch);
+        post.detailImagesStore = images;
+    }
+    return { post }
 }
 
 const getPost = async (id, fetch, blogPosts) => {
@@ -30,3 +34,20 @@ const getBlogPost = async (id, fetch) => {
     let blogPost = await blogPostResponse.json()
     return blogPost
 }
+
+const getFiles = async (recordID, fetch) => {
+    let files = [];
+    const fileRequest = await fetch("/getImages", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "content-type": "application/json",
+        },
+        body: JSON.stringify({ recordID: recordID, path: "blog" }),
+    });
+
+    if (fileRequest.status === 200) {
+        files = await fileRequest.json();
+    }
+    return files;
+};

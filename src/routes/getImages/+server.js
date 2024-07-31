@@ -6,22 +6,31 @@ export async function POST({ request, setHeaders }) {
 		"cache-control": "max-age=60",
 	});
 
-	let token = import.meta.env.VITE_PROJECT_TOKEN
-	let appid = import.meta.env.VITE_PROJECT_APPID
+	let blogToken = import.meta.env.VITE_BLOG_TOKEN
+	let blogAppid = import.meta.env.VITE_BLOG_APPID
+	let projectToken = import.meta.env.VITE_PROJECT_TOKEN
+	let projectAppid = import.meta.env.VITE_PROJECT_APPID
 	let subdomain = import.meta.env.VITE_SUBDOMAIN
 
 	const body = await request.json();
 	const recordID = body.recordID;
+	const path = body.path;
 
-	const getRecordURL = `https://${subdomain}.kintone.com/k/v1/record.json?app=${appid}&id=${recordID}`
+	const getProjectRecordURL = `https://${subdomain}.kintone.com/k/v1/record.json?app=${projectAppid}&id=${recordID}`
+	const getBlogRecordURL = `https://${subdomain}.kintone.com/k/v1/record.json?app=${blogAppid}&id=${recordID}`
 
 	const fetchOptions = {
 		method: 'GET',
 		headers: {
-			'X-Cybozu-API-Token': token,
+			'X-Cybozu-API-Token': path == "blog" ? blogToken : projectToken,
 		}
 	}
-	let response = await fetch(getRecordURL, fetchOptions);
+	let response;
+	if (path == "blog") {
+		response = await fetch(getBlogRecordURL, fetchOptions);
+	} else {
+		response = await fetch(getProjectRecordURL, fetchOptions);
+	}
 	const responseData = await response.json();
 
 	if (responseData.record.detailImages.value.length >= 1) {

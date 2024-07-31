@@ -39,5 +39,6 @@
 		justify-content: center;
 		align-items: center;
 		padding: 0% 5%;
+		margin-top: 24px;
 	}
 </style>

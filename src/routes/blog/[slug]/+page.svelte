@@ -1,7 +1,34 @@
 <script>
+    import { onMount } from "svelte";
     import { Heading, P, Breadcrumb, BreadcrumbItem } from "flowbite-svelte";
     export let data;
-    console.log(data)
+    let images = [];
+    let imagesLoaded = false;
+
+    onMount(async () => {
+        const detailImages = data.post.detailImagesStore.map((file) => {
+            const blob = new Blob([new Uint8Array(file.data)], {
+                type: file.contentType,
+            });
+            return {
+                src: URL.createObjectURL(blob),
+                title: file.name,
+                alt: file.name,
+            };
+        });
+
+        images = [...detailImages];
+        await Promise.all(images.map((img) => loadImage(img.src)));
+        imagesLoaded = true;
+    });
+
+    const loadImage = (src) =>
+        new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = resolve;
+            img.onerror = reject;
+            img.src = src;
+        });
 </script>
 
 <Breadcrumb aria-label="BreadCrumbs" class="mt-8">
@@ -11,11 +38,11 @@
 </Breadcrumb>
 <Heading class="mt-8">{data.post.title.value}</Heading>
 <P class="mt-8">{data.post.body.value}</P>
-{#if data.post.images}
-    <img src={data.post.blob1} alt="blog 1" />
+{#if imagesLoaded}
+    <img src={images[0].src} alt="blog 1" />
 {/if}
 <P class="mt-8">{data.post.body2.value}</P>
 
-{#if data.post.images}
-    <img src={data.post.blob2} alt="blog 2" />
+{#if imagesLoaded}
+    <img src={images[1].src} alt="blog 2" />
 {/if}

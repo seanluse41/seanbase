@@ -5,13 +5,11 @@ import { error } from '@sveltejs/kit';
 
 export async function load({ params, fetch }) {
     let projects = get(projectsStore);
-    
+
     if (projects.length === 0) {
         projects = await getAllProjects(fetch);
     }
-
     let project = await getProjectBySlug(params.slug, projects, fetch);
-    
     if (project) {
         return { project };
     }
@@ -27,7 +25,6 @@ const getAllProjects = async (fetch) => {
         },
     });
     let projects = await projectRequest.json();
-
     for (const project of projects) {
         if (!project.imageURL) {
             let imageURL = await getImage(project.Record_number.value, fetch);
@@ -71,7 +68,6 @@ const getProjectBySlug = async (slug, projects, fetch) => {
     if (projectObject.detailImagesStore.length === 0) {
         const files = await getFiles(projectObject.Record_number.value, fetch);
         projectObject.detailImagesStore = files;
-
         // Update the store with the new project data
         projectsStore.update(currentProjects => {
             let updatedProjects = [...currentProjects];
@@ -91,9 +87,9 @@ const getFiles = async (recordID, fetch) => {
         headers: {
             "content-type": "application/json",
         },
-        body: JSON.stringify({ recordID }),
+        body: JSON.stringify({ recordID: recordID, path: "projects" }),
     });
-    
+
     if (fileRequest.status === 200) {
         files = await fileRequest.json();
     }

@@ -9,7 +9,7 @@
 <div class="main">
     <ParticleBackground/>
     <Navbar />
-    <div class="flex flex-col mt-24 z-10 relative">
+    <div class="flex flex-col mt-8 z-10 relative">
         <slot></slot>
     </div>
 </div>
