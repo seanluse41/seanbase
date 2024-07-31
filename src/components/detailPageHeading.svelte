@@ -8,17 +8,19 @@
 
 <div id="ref-left" class="flex align-center">
     <Heading class="mb-10 mt-10 mr-10 w-auto">{title}</Heading>
-    <a
-        id="ext-ref"
-        class="self-center justify-left"
-        href={githubLink}
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <CodeBranchOutline size="xl" />
-    </a>
-    <Tooltip placement="top">Check it out on Github</Tooltip>
-    <Tooltip reference="#ext-ref" triggeredBy="[id^='ref-']" placement="top"
-        >Check it out on Github</Tooltip
-    >
+    {#if githubLink}
+        <a
+            id="ext-ref"
+            class="self-center justify-left"
+            href={githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <CodeBranchOutline size="xl" />
+        </a>
+        <Tooltip placement="top">Check it out on Github</Tooltip>
+        <Tooltip reference="#ext-ref" triggeredBy="[id^='ref-']" placement="top"
+            >Check it out on Github</Tooltip
+        >
+    {/if}
 </div>

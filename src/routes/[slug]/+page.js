@@ -26,7 +26,8 @@ const getAllProjects = async (fetch) => {
     });
     let projects = await projectRequest.json();
     for (const project of projects) {
-        if (!project.imageURL) {
+        console.log(project)
+        if (!project.imageURL && project.image.value.length > 0) {
             let imageURL = await getImage(project.Record_number.value, fetch);
             project.imageURL = imageURL;
         }
@@ -65,7 +66,7 @@ const getProjectBySlug = async (slug, projects, fetch) => {
     let projectObject = { ...projects[projectIndex] };
 
     // Check if we already loaded project's detail images
-    if (projectObject.detailImagesStore.length === 0) {
+    if (projectObject.detailImagesStore.length === 0 && projectObject.detailImages.value.length > 0) {
         const files = await getFiles(projectObject.Record_number.value, fetch);
         projectObject.detailImagesStore = files;
         // Update the store with the new project data

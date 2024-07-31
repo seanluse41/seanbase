@@ -46,7 +46,7 @@
         projects = await projectRequest.json();
 
         for (const project of projects) {
-            if (!project.imageURL) {
+            if (!project.imageURL && project.image.value.length > 0) {
                 let imageURL = await getImage(project.Record_number.value);
                 project.imageURL = imageURL;
             }

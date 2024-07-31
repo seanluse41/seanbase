@@ -10,14 +10,16 @@
     let { project } = data;
     let images = [];
     let imagesLoaded = false;
-
+    let mainImage;
     onMount(async () => {
         if (project) {
-            const mainImage = {
-                src: project.imageURL,
-                title: project.title.value,
-                alt: project.description.value,
-            };
+            if (project.imageURL) {
+                mainImage = {
+                    src: project.imageURL,
+                    title: project.title.value,
+                    alt: project.description.value,
+                };
+            }
             const detailImages = project.detailImagesStore.map((file) => {
                 const blob = new Blob([new Uint8Array(file.data)], {
                     type: file.contentType,
@@ -29,8 +31,14 @@
                 };
             });
 
-            images = [mainImage, ...detailImages];
-            await Promise.all(images.map((img) => loadImage(img.src)));
+            if (project.imageURL && detailImages) {
+                images = [mainImage, ...detailImages];
+                await Promise.all(images.map((img) => loadImage(img.src)));
+            }
+            if (!project.imageURL && detailImages) {
+                images = [...detailImages];
+                await Promise.all(images.map((img) => loadImage(img.src)));
+            }
             imagesLoaded = true;
         }
     });
@@ -47,12 +55,14 @@
 {#if project}
     <div class="mt-8">
         {#if imagesLoaded}
-                <DetailPageCarousel {images} />
-                <DetailPageHeading
-                    title={project.title.value}
-                    githubLink={project.github.value}
-                />
-                <Card size="lg" class="mt-8 max-w-max lg:p-24">
+        {#if images.length > 0}
+            <DetailPageCarousel {images} />
+        {/if}
+            <DetailPageHeading
+                title={project.title.value}
+                githubLink={project.github.value}
+            />
+            <Card size="lg" class="mt-8 max-w-max lg:p-24">
                 <P class="lg:text-2xl">{project.longDescription.value}</P>
                 {#if project.youtube.value}
                     <div class="mt-10 flex justify-center">
@@ -67,7 +77,8 @@
                         ></iframe>
                     </div>
                 {/if}
-                <P class="mt-10 mb-10 lg:text-2xl">{@html project.longDescription3.value}</P
+                <P class="mt-10 mb-10 lg:text-2xl"
+                    >{@html project.longDescription3.value}</P
                 >
                 {#if project.linkBox.value.length}
                     <DetailPageRelatedInfo linkBox={project.linkBox.value} />
