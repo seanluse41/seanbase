@@ -19,29 +19,31 @@
         </h3>
     </div>
     <Listgroup items={linkBox} let:item class="border-0 dark:!bg-transparent">
-        <div class="flex items-center space-x-4 rtl:space-x-reverse">
-            {#if item.value.linkBoxIcon.value == "Web"}
-                <GlobeOutline />
-            {:else if item.value.linkBoxIcon.value == "Github"}
-                <CodeBranchOutline />
-            {:else if item.value.linkBoxIcon.value == "Steam"}
-                <GlobeOutline />
-            {:else if item.value.linkBoxIcon.value == "Youtube"}
-                <ClapperboardPlayOutline />
-            {:else if item.value.linkBoxIcon.value == "Twitter"}
-                <GlobeOutline />
-            {:else if item.value.linkBoxIcon.value == "Email"}
-                <EnvelopeOutline />
-            {:else}
-                <GlobeOutline />
-            {/if}
+        <div class="flex items-center space-x-4 rtl:space-x-reverse justify-between">
+            <div class="flex items-center w-96">
+                {#if item.value.linkBoxIcon.value == "Web"}
+                    <GlobeOutline />
+                {:else if item.value.linkBoxIcon.value == "Github"}
+                    <CodeBranchOutline />
+                {:else if item.value.linkBoxIcon.value == "Steam"}
+                    <GlobeOutline />
+                {:else if item.value.linkBoxIcon.value == "Youtube"}
+                    <ClapperboardPlayOutline />
+                {:else if item.value.linkBoxIcon.value == "Twitter"}
+                    <GlobeOutline />
+                {:else if item.value.linkBoxIcon.value == "Email"}
+                    <EnvelopeOutline />
+                {:else}
+                    <GlobeOutline />
+                {/if}
 
-            <div class="min-w-0">
-                <p
-                    class="text-lg text-gray-900 font-bold dark:text-white nowrap"
-                >
-                    {item.value.linkBoxName.value}
-                </p>
+                <div class="min-w-0 ml-2">
+                    <p
+                        class="text-lg text-gray-900 font-bold dark:text-white"
+                    >
+                        {item.value.linkBoxName.value}
+                    </p>
+                </div>
             </div>
             <div
                 class="text-lg font-medium text-primary-600 hover:underline dark:text-primary-500 truncate !ml-20"
