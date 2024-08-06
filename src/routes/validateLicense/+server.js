@@ -3,7 +3,7 @@
 import jwt from 'jsonwebtoken';
 import { error, json } from '@sveltejs/kit';
 import { checkLicense } from '../../requests/kintoneLicenseCheck';
-import { RateLimiter } from 'sveltekit-rate-limiter';
+import { RateLimiter } from 'sveltekit-rate-limiter/server';
 
 const JWT_SECRET = import.meta.env.VITE_JWT_SECRET;
 const ALLOWED_ORIGINS = import.meta.env.VITE_ALLOWED_ORIGINS.split(',');
