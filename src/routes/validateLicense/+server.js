@@ -1,4 +1,4 @@
-// src/routes/api/validate-license/+server.js
+// src/routes/validatelicense/+server.js
 
 import jwt from 'jsonwebtoken';
 import { error, json } from '@sveltejs/kit';
@@ -13,7 +13,7 @@ const nonKintoneLimiter = new RateLimiter({
   IP: [10, 'h'], // 10 requests per hour per IP for non-Kintone requests
 });
 
-export async function POST({ request, getClientAddress }) {
+export async function GET({ url, request, getClientAddress }) {
     const origin = request.headers.get('origin');
 
     // Check if the request is coming from a valid Kintone domain
@@ -32,8 +32,8 @@ export async function POST({ request, getClientAddress }) {
         throw error(403, 'Forbidden');
     }
 
-    // Get secret key from custom header
-    const secretKey = request.headers.get('X-Secret-Key');
+    // Get secret key from query parameter
+    const secretKey = url.searchParams.get('secretKey');
     if (!secretKey) {
         throw error(400, 'Missing secret key');
     }
