@@ -1,44 +1,65 @@
-// src/requests/kintoneLicenseCheck.js
+// src/routes/api/validate-license/+server.js
 
-const subdomain = import.meta.env.VITE_SUBDOMAIN;
-const appId = import.meta.env.VITE_CUSTOMER_INFO_APPID;
-const apiToken = import.meta.env.VITE_CUSTOMER_INFO_TOKEN;
+import jwt from 'jsonwebtoken';
+import { error, json } from '@sveltejs/kit';
+import { checkLicense } from '../../requests/kintoneLicenseCheck';
+import { RateLimiter } from 'sveltekit-rate-limiter/server';
 
-export async function checkLicense(secretKey) {
-    const query = `secretKey="${secretKey}"`;
-    const fields = ['secretKey', 'validToDate'];
-    
-    const url = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appId}&query=${encodeURIComponent(query)}&fields=${fields.join(',')}`;
+const JWT_SECRET = import.meta.env.VITE_JWT_SECRET;
+const ALLOWED_ORIGINS = import.meta.env.VITE_ALLOWED_ORIGINS.split(',');
+
+// Create a rate limiter instance for non-Kintone requests
+const nonKintoneLimiter = new RateLimiter({
+  IP: [10, 'h'], // 10 requests per hour per IP for non-Kintone requests
+});
+
+export async function GET({ url, request, getClientAddress }) {
+    const origin = request.headers.get('origin');
+
+    // Check if the request is coming from a valid Kintone domain
+    const isValidKintoneOrigin = ALLOWED_ORIGINS.some(domain => origin?.endsWith(domain.trim()));
+
+    if (!isValidKintoneOrigin) {
+        console.log("not valid origin")
+        console.log(origin)
+        // Apply strict rate limiting to non-Kintone requests
+        try {
+            await nonKintoneLimiter.check(request, getClientAddress());
+        } catch (rateLimitError) {
+            throw error(429, 'Too Many Requests');
+        }
+        // Even if they pass rate limiting, we still block non-Kintone requests
+        throw error(403, 'Forbidden');
+    }
+
+    // Get secret key from query parameter
+    const secretKey = url.searchParams.get('secretKey');
+    if (!secretKey) {
+        throw error(400, 'Missing secret key');
+    }
 
     try {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'X-Cybozu-API-Token': apiToken,
-                'Content-Type': 'application/json'
-            }
-        });
+        // Check license in Kintone
+        const record = await checkLicense(secretKey);
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        if (!record) {
+            throw error(404, 'Invalid secret key');
         }
 
-        const data = await response.json();
+        // Check expiration date
+        const expirationDate = new Date(record.expirationDate);
+        const today = new Date();
 
-        if (data.records.length === 0) {
-            return null; // No matching record found
+        if (expirationDate < today) {
+            return json({ status: 'expired' });
         }
 
-        // Assuming the first record is the one we want
-        const record = data.records[0];
+        // Generate JWT token
+        const token = jwt.sign({ secretKey }, JWT_SECRET, { expiresIn: '7d' });
 
-        return {
-            secretKey: record.secretKey.value,
-            expirationDate: record.validToDate.value
-        };
-
-    } catch (error) {
-        console.error('Error checking license in Kintone:', error);
-        throw error;
+        return json({ status: 'active', token });
+    } catch (err) {
+        console.error(err);
+        throw error(500, 'Internal Server Error');
     }
 }
