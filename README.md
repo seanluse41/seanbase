@@ -3,6 +3,8 @@
 We sure are web-deving now aren't we. Free database. Free hosting. Stolen computer. Pirated Linux.
 Hosted on netlify @ [www.seanbase.com](seanbase.com)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/dac07780-2226-4d44-9bae-9b179cedf1bd/deploy-status)](https://app.netlify.com/sites/seanbase/deploys)
+
 ## Run it locally (why?)
 
 ``` shell
