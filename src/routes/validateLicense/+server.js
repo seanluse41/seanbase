@@ -14,9 +14,8 @@ const nonKintoneLimiter = new RateLimiter({
 });
 
 export async function GET({ url, request, getClientAddress }) {
-    console.log("request found")
     const origin = request.headers.get('origin');
-    console.log(origin)
+    console.log('Request origin:', origin);
 
     // Check if the request is coming from a valid Kintone domain
     const isValidKintoneOrigin = ALLOWED_ORIGINS.some(domain => origin?.endsWith(domain.trim()));

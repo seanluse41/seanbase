@@ -9,7 +9,8 @@ export async function checkLicense(secretKey) {
     const fields = ['secretKey', 'validToDate'];
     
     const url = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appId}&query=${encodeURIComponent(query)}&fields=${fields.join(',')}`;
-
+    console.log("licenseCheck URL")
+    console.log(url)
     try {
         const response = await fetch(url, {
             method: 'GET',
@@ -22,9 +23,11 @@ export async function checkLicense(secretKey) {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-
+        console.log("response")
+        console.log(response)
         const data = await response.json();
-
+        console.log("data")
+        console.log(data)
         if (data.records.length === 0) {
             return null; // No matching record found
         }
