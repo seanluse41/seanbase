@@ -31,6 +31,8 @@ export async function checkLicense(secretKey) {
 
         // Assuming the first record is the one we want
         const record = data.records[0];
+        console.log("record from licenseCheck")
+        console.log(record)
 
         return {
             secretKey: record.secretKey.value,

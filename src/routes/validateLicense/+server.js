@@ -14,6 +14,7 @@ const nonKintoneLimiter = new RateLimiter({
 });
 
 export async function GET({ url, request, getClientAddress }) {
+    console.log("request found")
     const origin = request.headers.get('origin');
 
     // Check if the request is coming from a valid Kintone domain
@@ -34,6 +35,8 @@ export async function GET({ url, request, getClientAddress }) {
 
     // Get secret key from query parameter
     const secretKey = url.searchParams.get('secretKey');
+    console.log("secretKey")
+    console.log(secretKey)
     if (!secretKey) {
         throw error(400, 'Missing secret key');
     }
@@ -45,7 +48,8 @@ export async function GET({ url, request, getClientAddress }) {
         if (!record) {
             throw error(404, 'Invalid secret key');
         }
-
+        console.log("record from server.js")
+        console.log(record)
         // Check expiration date
         const expirationDate = new Date(record.expirationDate);
         const today = new Date();
