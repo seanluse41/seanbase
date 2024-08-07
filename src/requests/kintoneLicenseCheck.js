@@ -5,10 +5,10 @@ const appId = import.meta.env.VITE_CUSTOMER_INFO_APPID;
 const apiToken = import.meta.env.VITE_CUSTOMER_INFO_TOKEN;
 
 export async function checkLicense(secretKey) {
-    const query = `secretKey="${secretKey}"`;
+    const query = `secretKey = "${secretKey}"`;
     //const fields = ['secretKey', 'validToDate'];
     
-    const url = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appId}&query=${encodeURIComponent(query)}`;
+    const url = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appId}&query=${query}}`;
 
     try {
         const response = await fetch(url, {
