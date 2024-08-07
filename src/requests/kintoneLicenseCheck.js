@@ -1,5 +1,9 @@
 // src/requests/kintoneLicenseCheck.js
 
+const subdomain = import.meta.env.VITE_SUBDOMAIN;
+const appId = import.meta.env.VITE_CUSTOMER_INFO_APPID;
+const apiToken = import.meta.env.VITE_CUSTOMER_INFO_TOKEN;
+
 export async function checkLicense(secretKey) {
     const query = `secretKey="${encodeURIComponent(secretKey)}"`;
     const fields = ['secretKey', 'validToDate'];
