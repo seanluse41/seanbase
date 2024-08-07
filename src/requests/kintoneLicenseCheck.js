@@ -8,7 +8,7 @@ export async function checkLicense(secretKey) {
     const query = `secretKey = "${secretKey}"`;
     //const fields = ['secretKey', 'validToDate'];
     
-    const url = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appId}&query=${query}}`;
+    const url = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appId}&query=${query}`;
 
     try {
         const response = await fetch(url, {
