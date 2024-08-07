@@ -10,7 +10,7 @@ const ALLOWED_ORIGINS = import.meta.env.VITE_ALLOWED_ORIGINS.split(',');
 
 // Create a rate limiter instance for non-Kintone requests
 const nonKintoneLimiter = new RateLimiter({
-    IP: [10, 'h'], // 10 requests per hour per IP for non-Kintone requests
+  IP: [10, 'h'], // 10 requests per hour per IP for non-Kintone requests
 });
 
 export async function GET({ url, request, getClientAddress }) {
@@ -55,16 +55,13 @@ export async function GET({ url, request, getClientAddress }) {
         // Generate JWT token
         const token = jwt.sign({ secretKey }, JWT_SECRET, { expiresIn: '7d' });
 
-        // Set the token as an HTTP cookie
-        cookies.set('license_token', token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: 'strict',
-            path: '/',
-            maxAge: 60 * 60 * 24 * 7 // 7 days in seconds
-        });
+        // Create the response
+        const response = json({ status: 'active' });
 
-        return json({ status: 'active' });
+        // Set the cookie
+        response.headers.set('Set-Cookie', `license_token=${token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${60 * 60 * 24 * 7}`);
+
+        return response;
     } catch (err) {
         console.error(err);
         throw error(500, 'Internal Server Error');
