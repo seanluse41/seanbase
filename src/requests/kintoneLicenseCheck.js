@@ -5,12 +5,11 @@ const appId = import.meta.env.VITE_CUSTOMER_INFO_APPID;
 const apiToken = import.meta.env.VITE_CUSTOMER_INFO_TOKEN;
 
 export async function checkLicense(secretKey) {
-    const query = `secretKey= "${secretKey}"`;
+    const query = `secretKey="${secretKey}"`;
     const fields = ['secretKey', 'validToDate'];
     
     const url = `https://${subdomain}.kintone.com/k/v1/records.json?app=${appId}&query=${encodeURIComponent(query)}&fields=${fields.join(',')}`;
-    console.log("licenseCheck URL")
-    console.log(url)
+
     try {
         const response = await fetch(url, {
             method: 'GET',
@@ -20,10 +19,20 @@ export async function checkLicense(secretKey) {
             }
         });
 
-        console.log("response")
-        console.log(response)
+        // Log the x-cybozu-error header if present
+        const cybozu_error = response.headers.get('x-cybozu-error');
+        if (cybozu_error) {
+            console.error('Cybozu Error:', cybozu_error);
+        }
+
+        // Log all headers for debugging
+        console.log('All response headers:');
+        for (let [key, value] of response.headers) {
+            console.log(`${key}: ${value}`);
+        }
+
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status}, Cybozu Error: ${cybozu_error || 'None'}`);
         }
 
         const data = await response.json();
