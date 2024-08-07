@@ -54,13 +54,7 @@ export async function GET({ url, request, getClientAddress }) {
 
         // Generate JWT token
         const token = jwt.sign({ secretKey }, JWT_SECRET, { expiresIn: '7d' });
-
-        // Create the response
-        const response = json({ status: 'active' });
-
-        // Set the cookie
-        response.headers.set('Set-Cookie', `license_token=${token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${60 * 60 * 24 * 7}`);
-
+        const response = json({ status: 'active', token: token });
         return response;
     } catch (err) {
         console.error(err);
