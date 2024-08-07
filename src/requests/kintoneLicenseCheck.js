@@ -16,9 +16,6 @@ export async function checkLicense(secretKey) {
     
     const url = `https://${subdomain}.kintone.com/k/v1/records.json?${params.toString()}`;
 
-    // Log the URL (with sensitive info redacted)
-    console.log('Request URL:', url.replace(appId, 'APP_ID').replace(secretKey, 'SECRET_KEY'));
-
     try {
         const response = await fetch(url, {
             method: 'GET',
@@ -27,9 +24,6 @@ export async function checkLicense(secretKey) {
             }
         });
 
-        console.log('Response status:', response.status);
-        console.log('Response headers:', Object.fromEntries(response.headers));
-
         if (!response.ok) {
             const responseText = await response.text();
             console.error('Response body:', responseText);
@@ -37,8 +31,6 @@ export async function checkLicense(secretKey) {
         }
 
         const data = await response.json();
-        console.log('Response data:', JSON.stringify(data, null, 2));
-
         if (data.records.length === 0) {
             return null; // No matching record found
         }

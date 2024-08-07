@@ -10,20 +10,16 @@ const ALLOWED_ORIGINS = import.meta.env.VITE_ALLOWED_ORIGINS.split(',');
 
 // Create a rate limiter instance for non-Kintone requests
 const nonKintoneLimiter = new RateLimiter({
-  IP: [10, 'h'], // 10 requests per hour per IP for non-Kintone requests
+    IP: [10, 'h'], // 10 requests per hour per IP for non-Kintone requests
 });
 
 export async function GET({ url, request, getClientAddress }) {
     const origin = request.headers.get('origin');
-    console.log('Request origin:', origin);
 
     // Check if the request is coming from a valid Kintone domain
     const isValidKintoneOrigin = ALLOWED_ORIGINS.some(domain => origin?.endsWith(domain.trim()));
-    console.log(isValidKintoneOrigin)
 
     if (!isValidKintoneOrigin) {
-        console.log("not valid origin")
-        console.log(origin)
         // Apply strict rate limiting to non-Kintone requests
         try {
             await nonKintoneLimiter.check(request, getClientAddress());
@@ -36,8 +32,7 @@ export async function GET({ url, request, getClientAddress }) {
 
     // Get secret key from query parameter
     const secretKey = url.searchParams.get('secretKey');
-    console.log("secretKey")
-    console.log(secretKey)
+
     if (!secretKey) {
         throw error(400, 'Missing secret key');
     }
@@ -49,8 +44,6 @@ export async function GET({ url, request, getClientAddress }) {
         if (!record) {
             throw error(404, 'Invalid secret key');
         }
-        console.log("record from server.js")
-        console.log(record)
         // Check expiration date
         const expirationDate = new Date(record.expirationDate);
         const today = new Date();
@@ -62,7 +55,16 @@ export async function GET({ url, request, getClientAddress }) {
         // Generate JWT token
         const token = jwt.sign({ secretKey }, JWT_SECRET, { expiresIn: '7d' });
 
-        return json({ status: 'active', token });
+        // Set the token as an HTTP cookie
+        cookies.set('license_token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'strict',
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7 // 7 days in seconds
+        });
+
+        return json({ status: 'active' });
     } catch (err) {
         console.error(err);
         throw error(500, 'Internal Server Error');
