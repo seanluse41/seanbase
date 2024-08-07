@@ -16,7 +16,6 @@ export async function checkLicense(secretKey) {
             method: 'GET',
             headers: {
                 'X-Cybozu-API-Token': apiToken,
-                'Content-Type': 'application/json'
             }
         });
 
