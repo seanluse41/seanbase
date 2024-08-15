@@ -31,11 +31,10 @@ export async function GET({ url, setHeaders }) {
     try {
         let response = await fetch(getRecordURL, fetchOptions);
         const responseData = await response.json();
-        console.log(responseData)
 
         if (responseData.records && responseData.records.length > 0) {
             const latestRecord = responseData.records[0];
-            const latestVersion = latestRecord.version.value;
+            const latestVersion = latestRecord.versionNumber.value;
             const breakingChange = latestRecord.breakingChange.value;
             const isCurrent = currentVersion === latestVersion;
 
