@@ -27,9 +27,13 @@ export const load = async ({ params, fetch }) => {
 // If not found (usually from direct browser navigation to the blog post in question)
 // Fetches blog post from DB
 const getPost = async (id, fetch, blogPosts) => {
-    let blogPost = await blogPosts.find(post => post.Record_number.value === id);
+    let blogPost = blogPosts.find(post => post.Record_number.value === id);
     if (!blogPost) {
-        blogPost = await getBlogPost(id, fetch);
+        const response = await fetch(`/blog?id=${id}`);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        blogPost = await response.json();
     }
     return { ...blogPost };
 }

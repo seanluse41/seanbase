@@ -6,8 +6,10 @@ import { getBlogPosts } from '../../requests/kintoneBlogRequests';
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ url }) {
     const projectFieldCode = url.searchParams.get('project') || '';
+    const id = url.searchParams.get('id') || '';
+    
     try {
-        const records = await getBlogPosts({ projectFieldCode });
+        const records = await getBlogPosts({ projectFieldCode, id });
         return json(records);
     } catch (error) {
         console.error('Error in GET handler:', error);
