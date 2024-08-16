@@ -1,5 +1,6 @@
 <script>
     import { Card, Listgroup } from "flowbite-svelte";
+    import { _ } from "svelte-i18n";
     import {
         ClapperboardPlayOutline,
         CodeBranchOutline,
@@ -15,7 +16,7 @@
         <h3
             class="text-2xl font-bold leading-none text-gray-900 dark:text-white"
         >
-            Related Info
+        {$_("related_info")}
         </h3>
     </div>
     <Listgroup items={linkBox} let:item class="border-0 dark:!bg-transparent">

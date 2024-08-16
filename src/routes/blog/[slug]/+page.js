@@ -1,3 +1,4 @@
+// /src/routes/blog/[slug]/+page.js
 import { get } from 'svelte/store';
 import { blogStore } from '../../../stores/blogPosts.js';
 

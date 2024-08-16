@@ -22,7 +22,6 @@
                     alt: file.name,
                 };
             });
-
             try {
                 await Promise.all(images.map((img) => loadImage(img.src)));
                 imagesLoaded = true;

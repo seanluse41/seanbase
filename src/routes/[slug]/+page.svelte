@@ -8,6 +8,7 @@
 
     export let data;
     let { project } = data;
+    console.log(project)
     let images = [];
     let imagesLoaded = false;
     let mainImage;
@@ -55,9 +56,9 @@
 {#if project}
     <div class="mt-8">
         {#if imagesLoaded}
-        {#if images.length > 0}
-            <DetailPageCarousel {images} />
-        {/if}
+            {#if images.length > 0}
+                <DetailPageCarousel {images} />
+            {/if}
             <DetailPageHeading
                 title={project.title.value}
                 githubLink={project.github.value}
