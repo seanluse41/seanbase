@@ -33,7 +33,10 @@
             <p>No related blog posts found.</p>
         {:else}
             <Listgroup active items={blogPosts} let:item class="border-0 dark:!bg-transparent">
-                <div class="flex items-center justify-between w-full">
+                <a 
+                    href={`https://www.seanbase.com/blog/${item.Record_number.value}`}
+                    class="flex items-center justify-between w-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200 ease-in-out p-3 rounded"
+                >
                     <div class="flex items-center flex-grow min-w-0 flex-[3]">
                         <div class="min-w-0 ml-2 overflow-hidden">
                             <p class="text-lg text-gray-900 font-bold dark:text-white truncate">
@@ -42,11 +45,11 @@
                         </div>
                     </div>
                     <div class="text-sm text-gray-500 dark:text-gray-400">
-                        {#if item.updatedTime?.value}
+                        {#if item.updatedTime.value}
                             Updated: {formatDate(item.updatedTime.value)}
                         {/if}
                     </div>
-                </div>
+                </a>
             </Listgroup>
         {/if}
     {:catch error}
