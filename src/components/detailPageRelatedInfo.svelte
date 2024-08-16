@@ -1,5 +1,5 @@
 <script>
-    import { Card, Listgroup } from "flowbite-svelte";
+    import { Accordion, AccordionItem, Card } from "flowbite-svelte";
     import { _ } from "svelte-i18n";
     import {
         ClapperboardPlayOutline,
@@ -9,52 +9,44 @@
     } from "flowbite-svelte-icons";
 
     export let linkBox;
+
+    function getIcon(iconName) {
+        switch (iconName) {
+            case "Web": return GlobeOutline;
+            case "Github": return CodeBranchOutline;
+            case "Steam": return GlobeOutline;
+            case "Youtube": return ClapperboardPlayOutline;
+            case "Twitter": return GlobeOutline;
+            case "Email": return EnvelopeOutline;
+            default: return GlobeOutline;
+        }
+    }
 </script>
 
 <Card padding="xl" size="xl">
     <div class="flex justify-between items-center mb-4">
-        <h3
-            class="text-2xl font-bold leading-none text-gray-900 dark:text-white"
-        >
-        {$_("related_info")}
+        <h3 class="text-2xl font-bold leading-none text-gray-900 dark:text-white">
+            {$_("related_info")}
         </h3>
     </div>
-    <Listgroup items={linkBox} let:item class="border-0 dark:!bg-transparent">
-        <div class="flex items-center space-x-4 rtl:space-x-reverse justify-between">
-            <div class="flex items-center w-96">
-                {#if item.value.linkBoxIcon.value == "Web"}
-                    <GlobeOutline />
-                {:else if item.value.linkBoxIcon.value == "Github"}
-                    <CodeBranchOutline />
-                {:else if item.value.linkBoxIcon.value == "Steam"}
-                    <GlobeOutline />
-                {:else if item.value.linkBoxIcon.value == "Youtube"}
-                    <ClapperboardPlayOutline />
-                {:else if item.value.linkBoxIcon.value == "Twitter"}
-                    <GlobeOutline />
-                {:else if item.value.linkBoxIcon.value == "Email"}
-                    <EnvelopeOutline />
-                {:else}
-                    <GlobeOutline />
-                {/if}
-
-                <div class="min-w-0 ml-2">
-                    <p
-                        class="text-lg text-gray-900 font-bold dark:text-white"
+    <Accordion class="border-0 dark:!bg-transparent">
+        {#each linkBox as item}
+            <AccordionItem>
+                <span slot="header" class="text-base flex items-center gap-2">
+                    <svelte:component this={getIcon(item.value.linkBoxIcon.value)} class="w-5 h-5" />
+                    <span class="font-semibold">{item.value.linkBoxName.value}</span>
+                </span>
+                <div class="py-2">
+                    <a
+                        href={item.value.linkBoxLink.value}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-blue-600 dark:text-blue-500 hover:underline break-all"
                     >
-                        {item.value.linkBoxName.value}
-                    </p>
+                        {item.value.linkBoxLink.value}
+                    </a>
                 </div>
-            </div>
-            <div
-                class="text-lg font-medium text-primary-600 hover:underline dark:text-primary-500 truncate !ml-20"
-            >
-                <a
-                    href={item.value.linkBoxLink.value}
-                    target="_blank"
-                    rel="noopener noreferrer">{item.value.linkBoxLink.value}</a
-                >
-            </div>
-        </div>
-    </Listgroup>
+            </AccordionItem>
+        {/each}
+    </Accordion>
 </Card>

@@ -3,12 +3,12 @@
     import { onMount } from "svelte";
     import DetailPageHeading from "../../components/detailPageHeading.svelte";
     import DetailPageRelatedInfo from "../../components/detailPageRelatedInfo.svelte";
+    import DetailPageRelatedBlog from "../../components/detailPageRelatedBlog.svelte";
     import Loader from "../../components/loader.svelte";
     import DetailPageCarousel from "../../components/detailPageCarousel.svelte";
 
     export let data;
     let { project } = data;
-    console.log(project)
     let images = [];
     let imagesLoaded = false;
     let mainImage;
@@ -82,8 +82,15 @@
                     >{@html project.longDescription3.value}</P
                 >
                 {#if project.linkBox.value.length}
-                    <DetailPageRelatedInfo linkBox={project.linkBox.value} />
+                    <div class="mt-5">
+                        <DetailPageRelatedInfo
+                            linkBox={project.linkBox.value}
+                        />
+                    </div>
                 {/if}
+                <div class="mt-5">
+                    <DetailPageRelatedBlog project={project.title.value} />
+                </div>
             </Card>
         {:else}
             <Loader />
