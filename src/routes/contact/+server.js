@@ -1,6 +1,5 @@
-const subdomain = import.meta.env.VITE_SUBDOMAIN;
-const appId = import.meta.env.VITE_INQUIRY_APPID;
-const apiToken = import.meta.env.VITE_INQUIRY_TOKEN;
+// src/routes/contact/+server.js
+import { submitInquiry } from '../../requests/kintoneInquiryRequests';
 
 export async function POST({ request }) {
     try {
@@ -14,30 +13,7 @@ export async function POST({ request }) {
             });
         }
 
-        const record = {
-            name: { value: formData.get('name') },
-            companyName: { value: formData.get('company') },
-            phoneNumber: { value: formData.get('phone') },
-            email: { value: formData.get('email') }
-        };
-        const url = `https://${subdomain}.kintone.com/k/v1/record.json`;
-
-
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'X-Cybozu-API-Token': apiToken,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                app: appId,
-                record: record
-            })
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to post to Kintone');
-        }
+        await submitInquiry(formData);
 
         return new Response(JSON.stringify({ success: true }), {
             status: 200,
