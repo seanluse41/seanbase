@@ -14,18 +14,6 @@ export async function POST({ request }) {
             });
         }
 
-        // Check submission time
-        const submissionTime = parseInt(formData.get('submissionTime'), 10);
-        const serverTime = Date.now();
-        const timeDifference = serverTime - submissionTime;
-
-        if (timeDifference < 3000 || timeDifference > 3600000) { // Less than 3 seconds or more than 1 hour
-            return new Response(JSON.stringify({ success: false, error: 'Invalid submission' }), {
-                status: 400,
-                headers: { 'Content-Type': 'application/json' }
-            });
-        }
-
         const record = {
             name: { value: formData.get('name') },
             companyName: { value: formData.get('company') },
