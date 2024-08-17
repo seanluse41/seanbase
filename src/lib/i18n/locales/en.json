@@ -48,5 +48,9 @@
     "contact_form_company": "Company Name",
     "contact_form_email": "Email Address",
     "contact_form_phone": "Phone Number (Optional)",
-    "contact_form_submit": "Submit"
+    "contact_form_submit": "Submit",
+    "contact_form_website": "Website",
+    "contact_form_submitting": "Submitting...",
+    "contact_form_thank_you": "Thank you for your submission!",
+    "contact_form_error": "There was an error submitting the form. Please try again."
 }

@@ -48,5 +48,9 @@
     "contact_form_company": "会社名",
     "contact_form_email": "メールアドレス",
     "contact_form_phone": "電話番号（任意）",
-    "contact_form_submit": "送信"
+    "contact_form_submit": "送信",
+    "contact_form_website": "ホームページ",
+    "contact_form_submitting": "送信中...",
+    "contact_form_thank_you": "お問い合わせありがとうございます",
+    "contact_form_error": "フォームの送信中にエラーが発生しました。もう一度お試しください。"
 }
