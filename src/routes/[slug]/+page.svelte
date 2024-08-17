@@ -1,6 +1,5 @@
 <script>
-    import { P, Card, Button } from "flowbite-svelte";
-    import { CheckCircleSolid } from "flowbite-svelte-icons";
+    import { P, Card } from "flowbite-svelte";
     import { onMount } from "svelte";
     import DetailPageHeading from "../../components/detailPageHeading.svelte";
     import Loader from "../../components/loader.svelte";
@@ -88,7 +87,7 @@
                         ></iframe>
                     </div>
                 {/if}
-                {#if project.sale.value}
+                {#if project.sale.value[0]}
                     <div class="mt-8" bind:this={paymentCardRef}>
                         <PaymentStartCard />
                     </div>
