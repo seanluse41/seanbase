@@ -5,24 +5,23 @@
   
     export let open = false;
   
-    function handleSubmit(event) {
-      // We don't need to prevent default behavior as Netlify will handle the form submission
-      console.log('Form submitted');
-      // Close the modal after submission
+    function handleSubmit() {
+      // Close the modal after form submission
       setTimeout(() => {
         open = false;
-      }, 1000); // Delay to allow Netlify to process the form
+      }, 1000);
     }
   </script>
   
   <Modal bind:open size="xs" autoclose={false} class="w-full">
     <form 
-      name="kGuidecontact" 
+      name="contact" 
       method="POST" 
       data-netlify="true" 
       netlify-honeypot="bot-field" 
       on:submit={handleSubmit} 
       class="flex flex-col space-y-6"
+      netlify
     >
       <input type="hidden" name="form-name" value="contact" />
       <p class="hidden">

@@ -2,7 +2,7 @@
 import { get } from 'svelte/store';
 import { projectsStore } from '../../stores/projects.js';
 import { error } from '@sveltejs/kit';
-
+export const prerender = true;
 export async function load({ params, fetch }) {
     let projects = get(projectsStore);
 
