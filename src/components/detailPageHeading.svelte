@@ -1,3 +1,4 @@
+<!-- /src/components/detailPageHeading.svelte -->
 <script>
     import { Button, Heading, Tooltip } from "flowbite-svelte";
     import { CodeBranchOutline, CartSolid } from "flowbite-svelte-icons";
@@ -6,8 +7,10 @@
     export let title;
     export let githubLink;
     export let showBuyNowButton;
+    export let onBuyNowClick;
+
     const buyNowButtonClick = () => {
-        console.log("buy now")
+        onBuyNowClick();
     }
 </script>
 

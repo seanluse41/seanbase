@@ -12,6 +12,8 @@
     let images = [];
     let imagesLoaded = false;
     let mainImage;
+    let paymentCardRef;
+
     onMount(async () => {
         if (project) {
             if (project.imageURL) {
@@ -51,6 +53,11 @@
             img.onerror = reject;
             img.src = src;
         });
+    const scrollToPaymentCard = () => {
+        if (paymentCardRef) {
+            paymentCardRef.scrollIntoView({ behavior: "smooth" });
+        }
+    };
 </script>
 
 {#if project}
@@ -64,6 +71,7 @@
                     title={project.title.value}
                     githubLink={project.github.value}
                     showBuyNowButton={project.sale.value}
+                    onBuyNowClick={scrollToPaymentCard}
                 />
 
                 <P class="lg:text-2xl">{project.longDescription.value}</P>
@@ -81,7 +89,7 @@
                     </div>
                 {/if}
                 {#if project.sale.value}
-                    <div class="mt-8">
+                    <div class="mt-8" bind:this={paymentCardRef}>
                         <PaymentStartCard />
                     </div>
                 {/if}
