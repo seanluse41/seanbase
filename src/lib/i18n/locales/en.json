@@ -17,6 +17,7 @@
     "kGuide_features4": "Permissions based guide creation. Limit guide creation to App Admins",
     "kGuide_features5": "No App limitation, no user limitations.",
     "kGuide_features6": "Customer Support Responses within 24 hours",
+    "kGuide_features7": "A security review before installation can be conducted. Please contact us via email.",
     "payment_card_subscribe_now": "Subscribe Now",
     "payment_card_inquiry": "Get More Information First",
     "commerce_disclosure_title": "Commercial Disclosure",
@@ -41,5 +42,11 @@
     "payment_period": "Payment Period",
     "payment_period_value": "Automatically Monthly",
     "price": "Price",
-    "price_value": "Price Depends on Product"
+    "price_value": "Price Depends on Product",
+    "contact_form_title": "Contact Us",
+    "contact_form_name": "Your Name",
+    "contact_form_company": "Company Name",
+    "contact_form_email": "Email Address",
+    "contact_form_phone": "Phone Number (Optional)",
+    "contact_form_submit": "Submit"
 }

@@ -17,7 +17,7 @@
     "kGuide_features4": "権限ベースのガイド作成。ガイド作成をアプリ管理者に限定することも可能",
     "kGuide_features5": "アプリやユーザ制限なし",
     "kGuide_features6": "24時間以内カスタマーサポート保証",
-    "kGuide_features7": "導入する前にセキュリティ",
+    "kGuide_features7": "導入する前にセキュリティチェックも可能ですので気になる方はご相談ください。",
     "payment_card_subscribe_now": "購入に進む",
     "payment_card_inquiry": "まずは問い合わせる",
     "commerce_disclosure_title": "特定商取引法に基づく表記",
@@ -42,5 +42,11 @@
     "payment_period": "支払期間",
     "payment_period_value": "毎月自動的に支払い",
     "price": "販売価格",
-    "price_value": "商品によって価格が異なります"
+    "price_value": "商品によって価格が異なります",
+    "contact_form_title": "お問い合わせ",
+    "contact_form_name": "お名前",
+    "contact_form_company": "会社名",
+    "contact_form_email": "メールアドレス",
+    "contact_form_phone": "電話番号（任意）",
+    "contact_form_submit": "送信"
 }
