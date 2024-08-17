@@ -1,9 +1,14 @@
 <script>
-    import { Heading, Tooltip } from "flowbite-svelte";
-    import { CodeBranchOutline } from "flowbite-svelte-icons";
+    import { Button, Heading, Tooltip } from "flowbite-svelte";
+    import { CodeBranchOutline, CartSolid } from "flowbite-svelte-icons";
+    import { _ } from "svelte-i18n"
 
     export let title;
     export let githubLink;
+    export let showBuyNowButton;
+    const buyNowButtonClick = () => {
+        console.log("buy now")
+    }
 </script>
 
 <div id="ref-left" class="flex align-center">
@@ -18,9 +23,14 @@
         >
             <CodeBranchOutline size="xl" />
         </a>
-        <Tooltip placement="top">Check it out on Github</Tooltip>
+        <Tooltip placement="top">{$_("check_out_github")}</Tooltip>
         <Tooltip reference="#ext-ref" triggeredBy="[id^='ref-']" placement="top"
-            >Check it out on Github</Tooltip
+            >{$_("check_out_github")}</Tooltip
         >
+    {/if}
+    {#if showBuyNowButton}
+    <Button class="h-1/2 self-center" on:click={buyNowButtonClick}>
+        <CartSolid class="w-5 h-5 me-2" /> {$_("buy_now")}
+      </Button>
     {/if}
 </div>

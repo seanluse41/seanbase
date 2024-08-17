@@ -1,11 +1,11 @@
 <script>
-    import { P, Card } from "flowbite-svelte";
+    import { P, Card, Button } from "flowbite-svelte";
+    import { CheckCircleSolid } from "flowbite-svelte-icons";
     import { onMount } from "svelte";
     import DetailPageHeading from "../../components/detailPageHeading.svelte";
-    import DetailPageRelatedInfo from "../../components/detailPageRelatedInfo.svelte";
-    import DetailPageRelatedBlog from "../../components/detailPageRelatedBlog.svelte";
     import Loader from "../../components/loader.svelte";
     import DetailPageCarousel from "../../components/detailPageCarousel.svelte";
+    import PaymentStartCard from "../../components/paymentStartCard.svelte";
 
     export let data;
     let { project } = data;
@@ -59,11 +59,13 @@
             {#if images.length > 0}
                 <DetailPageCarousel {images} />
             {/if}
-            <DetailPageHeading
-                title={project.title.value}
-                githubLink={project.github.value}
-            />
-            <Card size="lg" class="mt-8 max-w-max lg:p-24">
+            <Card size="lg" class="mt-8 max-w-max lg:p-24 lg:pt-8">
+                <DetailPageHeading
+                    title={project.title.value}
+                    githubLink={project.github.value}
+                    showBuyNowButton={project.sale.value}
+                />
+
                 <P class="lg:text-2xl">{project.longDescription.value}</P>
                 {#if project.youtube.value}
                     <div class="mt-10 flex justify-center">
@@ -78,19 +80,11 @@
                         ></iframe>
                     </div>
                 {/if}
-                <P class="mt-10 mb-10 lg:text-2xl"
-                    >{@html project.longDescription3.value}</P
-                >
-                {#if project.linkBox.value.length}
-                    <div class="mt-5">
-                        <DetailPageRelatedInfo
-                            linkBox={project.linkBox.value}
-                        />
+                {#if project.sale.value}
+                    <div class="mt-8">
+                        <PaymentStartCard />
                     </div>
                 {/if}
-                <div class="mt-5">
-                    <DetailPageRelatedBlog project={project.title.value} />
-                </div>
             </Card>
         {:else}
             <Loader />
