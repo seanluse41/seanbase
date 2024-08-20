@@ -1,9 +1,9 @@
 <script>
 	import { Card, P, Heading } from "flowbite-svelte";
-	import Loader from "../../components/loader.svelte"
+	import Loader from "../../components/loader.svelte";
 	import { blogStore } from "../../stores/blogPosts.js";
 	import { get } from "svelte/store";
-    import BadgePicker from "../../components/badgePicker.svelte";
+	import BadgePicker from "../../components/badgePicker.svelte";
 
 	let postsPromise;
 
@@ -27,6 +27,10 @@
 	};
 	// Initialize the promise
 	postsPromise = getPosts();
+	function formatDate(dateString) {
+		const options = { year: "numeric", month: "long", day: "numeric" };
+		return new Date(dateString).toLocaleDateString(undefined, options);
+	}
 </script>
 
 <div class="blogMain">
@@ -34,16 +38,24 @@
 		<Loader />
 	{:then posts}
 		{#each posts as post}
-			<Card size="lg" class="mb-10" href={`/blog/${post.Record_number.value}`}>
+			<Card
+				size="lg"
+				class="mb-10"
+				href={`/blog/${post.Record_number.value}`}
+			>
 				<div class="flex justify-between items-center mb-4">
-					<Heading class="font-bold leading-none text-gray-900 dark:text-white">{post.title.value}</Heading>
+					<Heading
+						class="font-bold leading-none text-gray-900 dark:text-white"
+						>{post.title.value}</Heading
+					>
 					<div class="flex justify-end flex-wrap">
 						{#each post.tags.value as tag}
-							<BadgePicker type={tag}/>
+							<BadgePicker type={tag} />
 						{/each}
 					</div>
-				  </div>
+				</div>
 				<P>{post.description.value}</P>
+				<P class="self-end">Updated: {formatDate(post.updatedTime.value)}</P>
 			</Card>
 		{/each}
 	{/await}

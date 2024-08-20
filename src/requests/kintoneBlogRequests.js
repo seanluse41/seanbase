@@ -29,7 +29,7 @@ export async function getBlogPosts(options = {}) {
         const data = await fetchFromKintone(url);
         return data.record;
     } else {
-        let query = 'order by Record_number asc';
+        let query = 'order by Record_number desc';
         if (projectFieldCode) {
             query = `project="${encodeURIComponent(projectFieldCode)}" ${query}`;
         }

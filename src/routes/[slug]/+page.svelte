@@ -5,6 +5,8 @@
     import Loader from "../../components/loader.svelte";
     import DetailPageCarousel from "../../components/detailPageCarousel.svelte";
     import PaymentStartCard from "../../components/paymentStartCard.svelte";
+    import RelatedBlogPosts from "../../components/detailPageRelatedBlog.svelte"
+    import DetailPageRelatedInfo from "../../components/detailPageRelatedInfo.svelte";
 
     export let data;
     let { project } = data;
@@ -12,6 +14,11 @@
     let imagesLoaded = false;
     let mainImage;
     let paymentCardRef;
+
+    let forSale = false;
+    if (project.sale.value.length > 0) {
+        forSale = project.sale.value[0]
+    }
 
     onMount(async () => {
         if (project) {
@@ -69,7 +76,7 @@
                 <DetailPageHeading
                     title={project.title.value}
                     githubLink={project.github.value}
-                    showBuyNowButton={project.sale.value}
+                    showBuyNowButton={forSale}
                     onBuyNowClick={scrollToPaymentCard}
                 />
 
@@ -87,11 +94,18 @@
                         ></iframe>
                     </div>
                 {/if}
-                {#if project.sale.value[0]}
+                <P class="mt-8">{@html project.longDescription3.value}</P>
+                {#if forSale}
                     <div class="mt-8" bind:this={paymentCardRef}>
                         <PaymentStartCard />
                     </div>
                 {/if}
+                <div class="mt-8">
+                    <RelatedBlogPosts project={project.title.value} />
+                </div>
+                <div class="mt-8">
+                    <DetailPageRelatedInfo linkBox={project.linkBox.value} />
+                </div>
             </Card>
         {:else}
             <Loader />
