@@ -38,20 +38,6 @@ const getPost = async (id, fetch, blogPosts) => {
     return { ...blogPost };
 }
 
-// Fetches blog post from DB
-const getBlogPost = async (id, fetch) => {
-    let blogPostResponse = await fetch("/getBlogPost", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-            "content-type": "application/json",
-        },
-        body: JSON.stringify({ id }),
-    });
-    let blogPost = await blogPostResponse.json();
-    return blogPost;
-}
-
 const getFiles = async (recordID, fetch) => {
     let files = [];
     const fileRequest = await fetch("/getImages", {

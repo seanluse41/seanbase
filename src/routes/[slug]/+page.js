@@ -1,39 +1,95 @@
 // /src/routes/[slug]/+page.js
+
 /** @type {import('./$types').PageLoad} */
 import { get } from 'svelte/store';
 import { projectsStore } from '../../stores/projects.js';
 import { error } from '@sveltejs/kit';
-import { getAllProjects, getProjectBySlug } from '../../requests/kintoneProjectRequests';
-
 export async function load({ params, fetch }) {
     let projects = get(projectsStore);
 
     if (projects.length === 0) {
         projects = await getAllProjects(fetch);
     }
+    let project = await getProject(params.slug, projects, fetch);
+    if (project) {
+        return { project };
+    }
+    throw error(404, 'Not found');
+}
 
-    try {
-        let project = getProjectBySlug(params.slug, projects);
-        
-        // Keep the original logic for detail images
-        if (project.detailImagesStore.length === 0 && project.detailImages.value.length > 0) {
-            const files = await getFiles(project.Record_number.value, fetch);
-            project.detailImagesStore = files;
+const getAllProjects = async (fetch) => {
+    const projectRequest = await fetch("/", {
+        method: "GET",
+        credentials: "same-origin",
+        headers: {
+            "content-type": "application/json",
+        },
+    });
+    let projects = await projectRequest.json();
+    for (const project of projects) {
+        if (!project.imageURL && project.image.value.length > 0) {
+            let imageURL = await getImage(project.Record_number.value, fetch);
+            project.imageURL = imageURL;
+        }
+        if (!project.detailImagesStore) {
+            project.detailImagesStore = [];
+        }
+    }
+    projectsStore.set(projects);
+    return projects;
+};
+
+const getImage = async (recordID, fetch) => {
+    let imageURL;
+    const imageRequest = await fetch("/getImage", {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+            "content-type": "application/json",
+        },
+        body: JSON.stringify({ recordID }),
+    });
+    if (imageRequest.status == 200) {
+        let imageBlob = await imageRequest.blob();
+        imageURL = URL.createObjectURL(imageBlob);
+    } else {
+        imageURL = null;
+    }
+    return imageURL;
+};
+
+const getProject = async (slug, projects, fetch) => {
+    let projectIndex = projects.findIndex(project => project.link.value === slug);
+    if (projectIndex === -1) {
+        throw error(404, 'Project not found');
+    }
+    let projectObject = { ...projects[projectIndex] };
+
+    // Check if we already loaded project's detail images
+    if (projectObject.detailImagesStore) {
+        if (projectObject.detailImagesStore.length === 0 && projectObject.detailImages.value.length > 0) {
+            const files = await getFiles(projectObject.Record_number.value, fetch);
+            projectObject.detailImagesStore = files;
             // Update the store with the new project data
             projectsStore.update(currentProjects => {
                 let updatedProjects = [...currentProjects];
-                let index = updatedProjects.findIndex(p => p.link.value === params.slug);
-                if (index !== -1) {
-                    updatedProjects[index] = project;
-                }
+                updatedProjects[projectIndex] = projectObject;
                 return updatedProjects;
             });
         }
-
-        return { project };
-    } catch (e) {
-        throw error(404, 'Not found');
+    } else {
+        const files = await getFiles(projectObject.Record_number.value, fetch);
+        projectObject.detailImagesStore = files;
+        // Update the store with the new project data
+        projectsStore.update(currentProjects => {
+            let updatedProjects = [...currentProjects];
+            updatedProjects[projectIndex] = projectObject;
+            return updatedProjects;
+        });
     }
+
+
+    return projectObject;
 }
 
 const getFiles = async (recordID, fetch) => {
