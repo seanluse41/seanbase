@@ -1,10 +1,17 @@
 <script>
     import { onMount } from "svelte";
-    import { Heading, P, Breadcrumb, BreadcrumbItem, Card, Hr } from "flowbite-svelte";
+    import {
+        Heading,
+        P,
+        Breadcrumb,
+        BreadcrumbItem,
+        Card,
+        Hr,
+    } from "flowbite-svelte";
     import Loader from "../../../components/loader.svelte";
     import BadgePicker from "../../../components/badgePicker.svelte";
     import ImageEnlarger from "../../../components/ImageEnlarger.svelte";
-    
+
     export let data;
     let images = [];
     let imagesLoaded = false;
@@ -59,6 +66,11 @@
             }
         }
         return div.innerHTML;
+    };
+
+    function formatDate(dateString) {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString(undefined, options);
     }
 
     let image1Position = data.post.imageLocation1.value;
@@ -76,6 +88,8 @@
         {#each data.post.tags.value as tag}
             <BadgePicker type={tag} />
         {/each}
+        <P class="self-end">Updated: {formatDate(data.post.updatedTime.value)}</P>
+
     </div>
 </div>
 
@@ -83,46 +97,58 @@
     <p>Loading...</p>
     <Loader />
 {:else}
-<Card size="lg" class="mt-8 max-w-max lg:p-24">
-    <P class="mt-8 text-slate-900 lg:text-2xl">{@html processHtml(data.post.blogIntro.value)}</P>
-    <Hr classHr="my-8" />
+    <Card size="lg" class="mt-8 max-w-max lg:p-24">
+        <P class="mt-8 text-slate-900 lg:text-2xl"
+            >{@html processHtml(data.post.blogIntro.value)}</P
+        >
+        <Hr classHr="my-8" />
 
-    <!-- First image and text section -->
-    <div class="mt-8 flex flex-col md:flex-row gap-4">
-        <div class="flex-1 {image1Position === 'left' ? 'md:order-last' : ''}">
-            <P class="text-slate-900 lg:text-2xl">{data.post.body.value}</P>
-        </div>
-        {#if imagesLoaded && images.length > 0}
-            <div class="flex-1 flex justify-center items-center">
-                <ImageEnlarger
-                    src={images[0].src}
-                    alt={images[0].alt}
-                    title={images[0].title}
-                />
+        <!-- First image and text section -->
+        <div class="mt-8 flex flex-col md:flex-row gap-4">
+            <div
+                class="flex-1 {image1Position === 'left'
+                    ? 'md:order-last'
+                    : ''}"
+            >
+                <P class="text-slate-900 lg:text-2xl">{data.post.body.value}</P>
             </div>
-        {/if}
-    </div>
-    <Hr classHr="my-8" />
-
-    <!-- Second image and text section -->
-    <div class="mt-8 flex flex-col md:flex-row gap-4">
-        <div class="flex-1 {image2Position === 'left' ? 'md:order-last' : ''}">
-            <P class="text-slate-900 lg:text-2xl">{data.post.body2.value}</P>
+            {#if imagesLoaded && images.length > 0}
+                <div class="flex-1 flex justify-center items-center">
+                    <ImageEnlarger
+                        src={images[0].src}
+                        alt={images[0].alt}
+                        title={images[0].title}
+                    />
+                </div>
+            {/if}
         </div>
-        {#if imagesLoaded && images.length > 1}
-            <div class="flex-1 flex justify-center items-center">
-                <ImageEnlarger
-                    src={images[1].src}
-                    alt={images[1].alt}
-                    title={images[1].title}
-                />
-            </div>
-        {/if}
-    </div>
-    <Hr classHr="my-8" />
-    <P class="mt-8 text-slate-900 lg:text-2xl">{@html processHtml(data.post.ending.value)}</P>
+        <Hr classHr="my-8" />
 
-</Card>
+        <!-- Second image and text section -->
+        <div class="mt-8 flex flex-col md:flex-row gap-4">
+            <div
+                class="flex-1 {image2Position === 'left'
+                    ? 'md:order-last'
+                    : ''}"
+            >
+                <P class="text-slate-900 lg:text-2xl">{data.post.body2.value}</P
+                >
+            </div>
+            {#if imagesLoaded && images.length > 1}
+                <div class="flex-1 flex justify-center items-center">
+                    <ImageEnlarger
+                        src={images[1].src}
+                        alt={images[1].alt}
+                        title={images[1].title}
+                    />
+                </div>
+            {/if}
+        </div>
+        <Hr classHr="my-8" />
+        <P class="mt-8 text-slate-900 lg:text-2xl"
+            >{@html processHtml(data.post.ending.value)}</P
+        >
+    </Card>
 {/if}
 
 <style>

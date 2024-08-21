@@ -1,12 +1,17 @@
+<!-- /src/components/paymentStartCard.svelte -->
 <script>
     import { Card, Button } from "flowbite-svelte";
     import { CheckCircleSolid } from "flowbite-svelte-icons";
     import { _ } from "svelte-i18n";
-    import ContactForm from './contactForm.svelte';
+    import ContactForm from "./contactForm.svelte";
+    import StripeModal from "./stripeModal.svelte";
 
-    export let onPayStartClicked;
+    let stripeModalOpen = false;
+
+    let onPayStartClicked = () => {
+        stripeModalOpen = true;
+    };
     let contactFormOpen = false;
-
 </script>
 
 <Card size="xl" padding="xl" class="shadow-lg shadow-purple-500">
@@ -87,9 +92,17 @@
         </li>
     </ul>
     <div class="flex">
-        <Button on:click={onPayStartClicked} class="w-1/2 m-1">{$_("payment_card_subscribe_now")}</Button>
-        <Button on:click={() => contactFormOpen = true} class="w-1/2 m-1">{$_("payment_card_inquiry")}</Button>
+        <Button on:click={onPayStartClicked} class="w-1/2 m-1"
+            >{$_("payment_card_subscribe_now")}</Button
+        >
+        <Button on:click={() => (contactFormOpen = true)} class="w-1/2 m-1"
+            >{$_("payment_card_inquiry")}</Button
+        >
     </div>
 </Card>
 
 <ContactForm bind:open={contactFormOpen} />
+<StripeModal
+    bind:isOpen={stripeModalOpen}
+    onClose={() => (stripeModalOpen = false)}
+/>
