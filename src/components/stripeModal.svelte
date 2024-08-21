@@ -6,6 +6,7 @@
 
     export let isOpen = false;
     export let onClose = () => {};
+    export let productID;
 
     let stripe;
     let elements;
@@ -19,6 +20,7 @@
     let formValid = false;
     let emailError = '';
     let form;
+    let submitError = '';
 
     $: formValid = name && email && phone && cardComplete && !cardError && !emailError;
 
@@ -52,12 +54,51 @@
         }
     });
 
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault();
         if (formValid) {
-            console.log('Payment submitted');
-            resetForm();
-            onClose();
+            try {
+                const { paymentMethod, error } = await stripe.createPaymentMethod({
+                    type: 'card',
+                    card: card,
+                    billing_details: {
+                        name: name,
+                        email: email,
+                        phone: phone,
+                    },
+                });
+
+                if (error) {
+                    throw new Error(error.message);
+                }
+
+                const response = await fetch('/handleSubscription', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        productId: productID,
+                        paymentMethodId: paymentMethod.id,
+                        name,
+                        email,
+                        phone,
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to process subscription');
+                }
+
+                const result = await response.json();
+                console.log('Subscription processed:', result);
+
+                resetForm();
+                onClose();
+            } catch (error) {
+                console.error('Error processing subscription:', error);
+                submitError = error.message;
+            }
         }
     }
 
@@ -76,6 +117,7 @@
         phone = '';
         cardError = '';
         emailError = '';
+        submitError = '';
         cardComplete = false;
         if (form) form.reset();
     }

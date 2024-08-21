@@ -7,6 +7,7 @@
     import StripeModal from "./stripeModal.svelte";
 
     let stripeModalOpen = false;
+    export let productID;
 
     let onPayStartClicked = () => {
         stripeModalOpen = true;
@@ -105,4 +106,5 @@
 <StripeModal
     bind:isOpen={stripeModalOpen}
     onClose={() => (stripeModalOpen = false)}
+    productID={productID}
 />

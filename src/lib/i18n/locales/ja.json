@@ -62,7 +62,7 @@
     "phone": "電話番号",
     "phonePlaceholder": "090-0000-0000",
     "cardInfo": "クレジットカード情報",
-    "payNow": "今すぐ支払う"
+    "payNow": "支払う"
   },
   "email": {
     "required": "メールアドレスを入力してください。",

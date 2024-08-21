@@ -97,7 +97,7 @@
                 <P class="mt-8">{@html project.longDescription3.value}</P>
                 {#if forSale}
                     <div class="mt-8" bind:this={paymentCardRef}>
-                        <PaymentStartCard />
+                        <PaymentStartCard productID={project.stripeProductID.value} />
                     </div>
                 {/if}
                 <div class="mt-8">
