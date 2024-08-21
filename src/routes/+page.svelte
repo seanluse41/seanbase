@@ -1,3 +1,4 @@
+<!-- /src/routes/+page.svelte -->
 <script lang="js">
     import { _ } from "svelte-i18n";
     import { Heading, P } from "flowbite-svelte";
