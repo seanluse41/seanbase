@@ -62,7 +62,8 @@
     "phone": "Phone Number",
     "phonePlaceholder": "555-0000-0000",
     "cardInfo": "Credit Card Information",
-    "payNow": "Subscribe"
+    "payNow": "Subscribe",
+    "processing": "Processing..."
   },
   "email": {
     "required": "Please enter an email address.",
@@ -70,5 +71,10 @@
   },
   "card": {
     "errorPrefix": "Card error:"
+  },
+  "error": {
+    "title": "An error occurred",
+    "cancel": "Cancel",
+    "contactSupport": "Contact Support"
   }
 }

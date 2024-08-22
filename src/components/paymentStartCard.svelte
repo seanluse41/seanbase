@@ -13,6 +13,11 @@
         stripeModalOpen = true;
     };
     let contactFormOpen = false;
+
+    function handleContactSupport() {
+        stripeModalOpen = false;  // Close the StripeModal
+        contactFormOpen = true;   // Open the ContactForm
+    }
 </script>
 
 <Card size="xl" padding="xl" class="shadow-lg shadow-purple-500">
@@ -106,5 +111,6 @@
 <StripeModal
     bind:isOpen={stripeModalOpen}
     onClose={() => (stripeModalOpen = false)}
-    productID={productID}
+    {productID}
+    {handleContactSupport}
 />

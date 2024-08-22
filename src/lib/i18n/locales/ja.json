@@ -62,7 +62,8 @@
     "phone": "電話番号",
     "phonePlaceholder": "090-0000-0000",
     "cardInfo": "クレジットカード情報",
-    "payNow": "支払う"
+    "payNow": "支払う",
+    "processing": "処理中..."
   },
   "email": {
     "required": "メールアドレスを入力してください。",
@@ -70,5 +71,10 @@
   },
   "card": {
     "errorPrefix": "カードエラー："
+  },
+  "error": {
+    "title": "エラーが発生しました",
+    "cancel": "キャンセル",
+    "contactSupport": "サポートに連絡する"
   }
 }
