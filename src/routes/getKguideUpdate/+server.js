@@ -12,9 +12,7 @@ export async function GET({ url, setHeaders }) {
     let subdomain = import.meta.env.VITE_SUBDOMAIN;
 
     // Get the current version from the query parameter
-    console.log("checking version...")
     const currentVersion = url.searchParams.get('version');
-    console.log(currentVersion)
     if (!currentVersion) {
         return json({ error: 'Version parameter is required' }, { status: 400 });
     }

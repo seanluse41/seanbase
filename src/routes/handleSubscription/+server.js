@@ -37,10 +37,19 @@ export async function POST({ request }) {
             }
         });
         if (subscription.status === 'active') {
+            const price = await stripe.prices.retrieve(product.default_price);
+
             return json({
                 subscriptionId: subscription.id,
                 clientSecret: subscription.latest_invoice.payment_intent.client_secret,
-                status: subscription.status
+                status: subscription.status,
+                customer_name: name,
+                customer_email: email,
+                customer_phone: phone,
+                current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
+                amount: price.unit_amount,
+                currency: price.currency,
+                product: product.name
             });
         } else {
             throw new Error('Subscription failed');

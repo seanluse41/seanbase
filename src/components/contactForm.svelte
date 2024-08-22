@@ -21,7 +21,6 @@
       
       // Check honeypot field
       if (formData.get('website')) {
-        console.log('Potential bot submission detected');
         submitting = false;
         return;
       }
@@ -30,7 +29,6 @@
       const submissionTime = Date.now();
       const timeElapsed = submissionTime - formStartTime;
       if (timeElapsed < 3000) {  // Less than 3 seconds
-        console.log('Submission too quick, potential bot');
         submitting = false;
         return;
       }

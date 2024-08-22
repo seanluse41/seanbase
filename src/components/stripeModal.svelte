@@ -1,5 +1,6 @@
 <script>
     import { onMount, afterUpdate } from "svelte";
+    import { goto } from '$app/navigation';
     import { loadStripe } from "@stripe/stripe-js";
     import {
         Modal,
@@ -97,8 +98,18 @@
                     throw new Error("Failed to process subscription");
 
                 const result = await response.json();
-                console.log("Subscription processed:", result);
-
+                // Redirect to success page with data
+                goto("/subscriptionSuccess", {
+                    state: {
+                        customer_name: result.customer_name,
+                        customer_email: result.customer_email,
+                        customer_phone: result.customer_phone,
+                        current_period_end: result.current_period_end,
+                        amount: result.amount,
+                        currency: result.currency,
+                        product: result.product
+                    },
+                });
                 resetForm();
                 onClose();
             } catch (error) {
@@ -235,6 +246,6 @@
 <ErrorModal
     bind:open={errorModalOpen}
     errorMessage={submitError}
-    onClose={() => errorModalOpen = false}
+    onClose={() => (errorModalOpen = false)}
     onContactSupport={onErrorContactSupport}
 />

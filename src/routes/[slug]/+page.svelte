@@ -84,8 +84,8 @@
                 {#if project.youtube.value}
                     <div class="mt-10 flex justify-center">
                         <iframe
-                            width="560"
-                            height="315"
+                            width="740"
+                            height="416"
                             src={project.youtube.value}
                             title="YouTube video player"
                             frameborder="0"
@@ -94,7 +94,7 @@
                         ></iframe>
                     </div>
                 {/if}
-                <P class="mt-8">{@html project.longDescription3.value}</P>
+                <P class="mt-8 lg:text-2xl">{@html project.longDescription3.value}</P>
                 {#if forSale}
                     <div class="mt-8" bind:this={paymentCardRef}>
                         <PaymentStartCard productID={project.stripeProductID.value} />
