@@ -92,14 +92,14 @@
     "nextStepsTitle": "Next Steps",
     "nextSteps": {
       "step1": "An email will be sent to {email}",
-      "step2": "The email will contain the kGuide Plugin in .zip format, and your secret key.",
+      "step2": "The email will contain the a download link for the kGuide Plugin in .zip format, and your secret key.",
       "step3": "In your Kintone environment, install the plugin on the Kintone Administration page.",
       "step4": "Then, install the plugin to as many Apps as you want.",
       "step5": "On the App's plugin settings page, click the cog wheel.",
       "step6": "Enter your secret key from the email into the subscription key field.",
       "step7": "Click on \"Create Repository App\" to create the repository for guides. This will create a new Kintone App, and only needs to be done once.",
       "step8": "Update your App settings, and create your first guide.",
-      "step9": "Contact customer support at any time at seanluse41@gmail.com or via the Customer Support Button on the Plugin Configuration Settings Screen."
+      "step9": "Contact customer support at any time at admin@seanbase.com or via the Customer Support Button on the Plugin Configuration Settings Screen."
     }
   }
 }
