@@ -1,8 +1,7 @@
 import { PDFDocument, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
-import { read } from '$app/server';
-import notoFont from '../../lib/NotoSansJP-Regular.ttf'
-import companyLogo from '../../lib/logo-cropped.png'
+import notoFontUrl from '$lib/NotoSansJP-Regular.ttf';
+import companyLogoUrl from '$lib/logo-cropped.png';
 
 export async function GET({ url }) {
     // Extract query parameters (unchanged)
