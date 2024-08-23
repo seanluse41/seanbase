@@ -2,6 +2,7 @@ import { PDFDocument, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import notoFontUrl from '$lib/NotoSansJP-Regular.ttf';
 import companyLogoUrl from '$lib/logo-cropped.png';
+import { assets } from '$app/paths';
 
 export async function GET({ url }) {
     // Extract query parameters (unchanged)
@@ -22,7 +23,7 @@ export async function GET({ url }) {
     const { height, width } = page.getSize();
 
     // Load and embed a custom font that supports Japanese characters
-    const fontResponse = await fetch(notoFontUrl);
+    const fontResponse = await fetch(`${assets}/NotoSansJP-Regular.ttf`);
     const fontArrayBuffer = await fontResponse.arrayBuffer();
     const customFont = await pdfDoc.embedFont(fontArrayBuffer);
 
@@ -160,7 +161,7 @@ export async function GET({ url }) {
 
     // Read and embed the logo
     try {
-        const logoResponse = await fetch(companyLogoUrl);
+        const logoResponse = await fetch(`${assets}/logo-cropped.png`);
         const logoArrayBuffer = await logoResponse.arrayBuffer();
         const logo = await pdfDoc.embedPng(logoArrayBuffer);
 

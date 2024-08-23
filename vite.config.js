@@ -7,5 +7,6 @@ export default defineConfig({
 	  rollupOptions: {
 		external: ['fs']
 	  }
-	}
+	},
+	assetsInclude: ['**/*.ttf', '**/*.png'],
   });
