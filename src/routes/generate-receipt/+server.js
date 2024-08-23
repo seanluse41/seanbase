@@ -23,8 +23,9 @@ export async function GET({ url }) {
     const { height, width } = page.getSize();
 
     // Load and embed a custom font that supports Japanese characters
-    const fontBytes = await read(notoFont);
-    const customFont = await pdfDoc.embedFont(fontBytes);
+    const fontResponse = await fetch(notoFontUrl);
+    const fontArrayBuffer = await fontResponse.arrayBuffer();
+    const customFont = await pdfDoc.embedFont(fontArrayBuffer);
 
     // Define styles
     const fontSize = 14;
@@ -160,8 +161,9 @@ export async function GET({ url }) {
 
     // Read and embed the logo
     try {
-        const logoBuffer = await read(companyLogo);
-        const logo = await pdfDoc.embedPng(logoBuffer);
+        const logoResponse = await fetch(companyLogoUrl);
+        const logoArrayBuffer = await logoResponse.arrayBuffer();
+        const logo = await pdfDoc.embedPng(logoArrayBuffer);
 
         // Calculate scaling factor to fit logo within a 125x125 point box (25% larger than before)
         const maxDimension = 125;
