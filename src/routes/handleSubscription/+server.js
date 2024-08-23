@@ -1,11 +1,32 @@
-// src/routes/handleSubscription/+server.js
 import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
 const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
 
 const stripe = new Stripe(key);
 
-export async function POST({ request }) {
+async function sendEmail(fetch, to, subject, text) {
+  const response = await fetch('/sendSubscriptionEmail', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      to,
+      subject,
+      text,
+      attachmentData: '', // No attachment for now
+      attachmentName: '' // No attachment for now
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Failed to send email');
+  }
+
+  return response.json();
+}
+
+export async function POST({ request, fetch }) {
     try {
         const { productId, paymentMethodId, name, email, phone } = await request.json();
 
@@ -25,6 +46,7 @@ export async function POST({ request }) {
                 default_payment_method: paymentMethodId,
             },
         });
+
         // Create the subscription using the default price
         const subscription = await stripe.subscriptions.create({
             customer: customer.id,
@@ -36,8 +58,22 @@ export async function POST({ request }) {
                 customer_phone: phone
             }
         });
+
         if (subscription.status === 'active') {
             const price = await stripe.prices.retrieve(product.default_price);
+
+            // Send confirmation email
+            try {
+                await sendEmail(
+                    fetch,
+                    email,
+                    'Subscription Confirmation',
+                    'Thank you for your subscription!'
+                );
+            } catch (emailError) {
+                console.error('Failed to send confirmation email:', emailError);
+                // Don't throw here, as we still want to return the subscription info
+            }
 
             return json({
                 subscriptionId: subscription.id,

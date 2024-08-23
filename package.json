@@ -28,6 +28,7 @@
 		"flowbite-svelte": "^0.46.15",
 		"flowbite-svelte-icons": "^1.6.1",
 		"jsonwebtoken": "^9.0.2",
+		"nodemailer": "^6.9.14",
 		"pdf-lib": "^1.17.1",
 		"stripe": "^16.8.0",
 		"svelte-i18n": "^4.0.0",
