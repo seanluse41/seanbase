@@ -1,7 +1,7 @@
 import { PDFDocument, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
-import NotoFont from './NotoSansJP-Regular.ttf';
-import companyLogo from './logo-cropped.png'
+import NotoFont from '$lib/NotoSansJP-Regular.ttf';
+import companyLogo from '$lib/logo-cropped.png'
 import { read } from '$app/server';
 
 export async function GET({ url }) {
@@ -18,7 +18,7 @@ export async function GET({ url }) {
 
     // Register fontkit with the PDF document
     pdfDoc.registerFontkit(fontkit);
-
+    logoArrayBuffer
     const page = pdfDoc.addPage([595.28, 841.89]); // A4 size in points
     const { height, width } = page.getSize();
 
