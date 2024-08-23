@@ -1,14 +1,9 @@
 import { PDFDocument, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
-import { readFile } from 'fs/promises';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { read } from '$app/server';
 
 export async function GET({ url }) {
-    // Extract query parameters
+    // Extract query parameters (unchanged)
     const customerName = url.searchParams.get('customer_name') || 'Valued Customer';
     const customerEmail = url.searchParams.get('customer_email') || 'N/A';
     const customerPhone = url.searchParams.get('customer_phone') || 'N/A';
@@ -26,9 +21,7 @@ export async function GET({ url }) {
     const { height, width } = page.getSize();
 
     // Load and embed a custom font that supports Japanese characters
-    const fontPath = join(__dirname, '..', '..', 'lib', 'NotoSansJP-Regular.ttf');
-    console.log(fontPath)
-    const fontBytes = await readFile(fontPath);
+    const fontBytes = await read('/static/NotoSansJP-Regular.ttf');
     const customFont = await pdfDoc.embedFont(fontBytes);
 
     // Define styles
@@ -165,9 +158,7 @@ export async function GET({ url }) {
 
     // Read and embed the logo
     try {
-        const logoPath = join(__dirname, '..', '..', 'lib', 'logo-cropped.png');
-        const logoBuffer = await readFile(logoPath);
-
+        const logoBuffer = await read('/static/logo-cropped.png');
         const logo = await pdfDoc.embedPng(logoBuffer);
 
         // Calculate scaling factor to fit logo within a 125x125 point box (25% larger than before)
