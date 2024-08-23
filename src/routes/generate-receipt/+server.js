@@ -1,8 +1,7 @@
 import { PDFDocument, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
-import notoFontUrl from '$lib/NotoSansJP-Regular.ttf';
-import companyLogoUrl from '$lib/logo-cropped.png';
-import { assets } from '$app/paths';
+import NotoFont from './NotoSansJP-Regular.ttf';
+import companyLogo from './logo-cropped.png'
 
 export async function GET({ url }) {
     // Extract query parameters (unchanged)
@@ -23,9 +22,8 @@ export async function GET({ url }) {
     const { height, width } = page.getSize();
 
     // Load and embed a custom font that supports Japanese characters
-    const fontResponse = await fetch(`${assets}/static/NotoSansJP-Regular.ttf`);
-    const fontArrayBuffer = await fontResponse.arrayBuffer();
-    const customFont = await pdfDoc.embedFont(fontArrayBuffer);
+    const font_data = await read(NotoFont).arrayBuffer();
+    const customFont = await pdfDoc.embedFont(font_data)
 
     // Define styles
     const fontSize = 14;
@@ -161,9 +159,8 @@ export async function GET({ url }) {
 
     // Read and embed the logo
     try {
-        const logoResponse = await fetch(`${assets}/static/logo-cropped.png`);
-        const logoArrayBuffer = await logoResponse.arrayBuffer();
-        const logo = await pdfDoc.embedPng(logoArrayBuffer);
+        const logoData = await read(companyLogo).arrayBuffer()
+        const logo = await pdfDoc.embedPng(logoData);
 
         // Calculate scaling factor to fit logo within a 125x125 point box (25% larger than before)
         const maxDimension = 125;
