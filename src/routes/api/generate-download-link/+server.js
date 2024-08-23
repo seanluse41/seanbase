@@ -1,4 +1,3 @@
-// src/routes/api/generate-download-link/+server.js
 import { json } from '@sveltejs/kit';
 import crypto from 'crypto';
 
@@ -18,7 +17,7 @@ export async function GET({ url }) {
     }
 
     const token = generateToken(fileVersion);
-    const downloadLink = `https://seanbase.com/api/download-kguide?token=${encodeURIComponent(token)}`;
+    const downloadLink = `https://seanbase.com/api/download-kguide/${fileVersion}?token=${encodeURIComponent(token)}`;
 
     return json({ downloadLink });
 }

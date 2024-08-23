@@ -1,4 +1,3 @@
-// src/routes/api/download-kguide/+server.js
 import { error } from '@sveltejs/kit';
 import crypto from 'crypto';
 
