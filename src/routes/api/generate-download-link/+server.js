@@ -18,7 +18,7 @@ export async function GET({ url }) {
     }
 
     const token = generateToken(fileVersion);
-    const downloadLink = `${url.origin}/api/download-kguide?token=${encodeURIComponent(token)}`;
+    const downloadLink = `https://seanbase.com/api/download-kguide?token=${encodeURIComponent(token)}`;
 
     return json({ downloadLink });
 }

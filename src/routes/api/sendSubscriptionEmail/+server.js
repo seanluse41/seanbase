@@ -56,7 +56,7 @@ export async function POST({ request, fetch, url }) {
   const versionData = await versionResponse.json();
 
   // Generate a secure download link
-  const linkResponse = await fetch(`www.seanbase.com/api/generate-download-link?version=${versionData.latestVersion}`);
+  const linkResponse = await fetch(`/api/generate-download-link?version=${versionData.latestVersion}`);
   const linkData = await linkResponse.json();
   const downloadLink = linkData.downloadLink;
 
