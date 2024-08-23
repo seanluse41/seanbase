@@ -23,7 +23,7 @@ export async function GET({ url }) {
     const { height, width } = page.getSize();
 
     // Load and embed a custom font that supports Japanese characters
-    const fontResponse = await fetch(`${assets}/NotoSansJP-Regular.ttf`);
+    const fontResponse = await fetch(`${assets}/static/NotoSansJP-Regular.ttf`);
     const fontArrayBuffer = await fontResponse.arrayBuffer();
     const customFont = await pdfDoc.embedFont(fontArrayBuffer);
 
@@ -161,7 +161,7 @@ export async function GET({ url }) {
 
     // Read and embed the logo
     try {
-        const logoResponse = await fetch(`${assets}/logo-cropped.png`);
+        const logoResponse = await fetch(`${assets}/static/logo-cropped.png`);
         const logoArrayBuffer = await logoResponse.arrayBuffer();
         const logo = await pdfDoc.embedPng(logoArrayBuffer);
 
