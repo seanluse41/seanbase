@@ -2,6 +2,7 @@ import { PDFDocument, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import NotoFont from './NotoSansJP-Regular.ttf';
 import companyLogo from './logo-cropped.png'
+import { read } from '$app/server';
 
 export async function GET({ url }) {
     // Extract query parameters (unchanged)
