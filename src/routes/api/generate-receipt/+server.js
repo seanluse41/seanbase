@@ -1,3 +1,5 @@
+// /src/routes/api/generate-receipt/+server.js
+
 import { PDFDocument, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import NotoFont from '$lib/NotoSansJP-Regular.ttf';
@@ -108,17 +110,8 @@ export async function GET({ url }) {
         color: rgb(0, 0, 0),
     });
 
-    // Add "但し" line
-    page.drawText('但し', {
-        x: width / 2 - 80,
-        y: height - margin - 210,
-        size: fontSize,
-        font: customFont,
-        color: rgb(0, 0, 0),
-    });
-
     // Draw third horizontal line
-    drawHorizontalLine(height - margin - 230);
+    drawHorizontalLine(height - margin - 220);
 
     // Draw table
     const tableTop = height - margin - 250;

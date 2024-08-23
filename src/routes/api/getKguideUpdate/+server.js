@@ -1,3 +1,4 @@
+// /src/routes/api/getKguideUpdate/+server.js
 /** @type {import('./$types').RequestHandler} */
 import { json } from '@sveltejs/kit';
 
@@ -36,11 +37,42 @@ export async function GET({ url, setHeaders }) {
             const breakingChange = latestRecord.breakingChange.value;
             const isCurrent = currentVersion === latestVersion;
 
-            return json({
-                current: isCurrent,
-                latestVersion: latestVersion,
-                breakingChange: breakingChange
-            });
+            // Get the attachment information
+            const attachmentField = latestRecord.build;
+            let zipFileUrl = null;
+            let zipFileName = null;
+
+            if (attachmentField && attachmentField.value && attachmentField.value.length > 0) {
+                const attachment = attachmentField.value[0];
+                zipFileUrl = `https://${subdomain}.kintone.com/k/v1/file.json?fileKey=${attachment.fileKey}`;
+                zipFileName = attachment.name;
+            }
+
+            if (zipFileUrl) {
+                // Fetch the zip file
+                const zipResponse = await fetch(zipFileUrl, fetchOptions);
+                const zipArrayBuffer = await zipResponse.arrayBuffer();
+
+                // Convert ArrayBuffer to Base64
+                const zipBase64 = Buffer.from(zipArrayBuffer).toString('base64');
+
+                return json({
+                    current: isCurrent,
+                    latestVersion: latestVersion,
+                    breakingChange: breakingChange,
+                    zipFile: {
+                        name: zipFileName,
+                        data: zipBase64
+                    }
+                });
+            } else {
+                return json({
+                    current: isCurrent,
+                    latestVersion: latestVersion,
+                    breakingChange: breakingChange,
+                    zipFile: null
+                });
+            }
         } else {
             return json({ error: 'No version data found' }, { status: 404 });
         }

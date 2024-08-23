@@ -37,7 +37,7 @@
 
     function downloadReceipt() {
         // Construct the URL with query parameters
-        const url = `/generate-receipt?product=${encodeURIComponent(subscriptionData.product)}&customer_name=${encodeURIComponent(subscriptionData.customer_name)}&customer_email=${encodeURIComponent(subscriptionData.customer_email)}&customer_phone=${encodeURIComponent(subscriptionData.customer_phone)}&amount=${encodeURIComponent(subscriptionData.amount)}&currency=${encodeURIComponent(subscriptionData.currency)}`;
+        const url = `/api/generate-receipt?product=${encodeURIComponent(subscriptionData.product)}&customer_name=${encodeURIComponent(subscriptionData.customer_name)}&customer_email=${encodeURIComponent(subscriptionData.customer_email)}&customer_phone=${encodeURIComponent(subscriptionData.customer_phone)}&amount=${encodeURIComponent(subscriptionData.amount)}&currency=${encodeURIComponent(subscriptionData.currency)}`;
         // Trigger the download
         window.location.href = url;
     }

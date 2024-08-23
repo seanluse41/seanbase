@@ -4,22 +4,18 @@ const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
 
 const stripe = new Stripe(key);
 
-async function sendEmail(fetch, to, subject, text) {
-  const response = await fetch('/sendSubscriptionEmail', {
+async function sendEmail(fetch, subscriptionData) {
+  const response = await fetch('/api/sendSubscriptionEmail', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      to,
-      subject,
-      text,
-      attachmentData: '', // No attachment for now
-      attachmentName: '' // No attachment for now
-    }),
+    body: JSON.stringify(subscriptionData),
   });
 
   if (!response.ok) {
+    const errorText = await response.text();
+    console.error('Failed to send email. Server response:', errorText);
     throw new Error('Failed to send email');
   }
 
@@ -62,14 +58,19 @@ export async function POST({ request, fetch }) {
         if (subscription.status === 'active') {
             const price = await stripe.prices.retrieve(product.default_price);
 
+            const subscriptionData = {
+                subscriptionId: subscription.items.data[0].id,
+                customer_name: name,
+                customer_email: email,
+                customer_phone: phone,
+                amount: price.unit_amount,
+                currency: price.currency,
+                current_period_end: new Date(subscription.current_period_end * 1000).toISOString()
+            };
+
             // Send confirmation email
             try {
-                await sendEmail(
-                    fetch,
-                    email,
-                    'Subscription Confirmation',
-                    'Thank you for your subscription!'
-                );
+                await sendEmail(fetch, subscriptionData);
             } catch (emailError) {
                 console.error('Failed to send confirmation email:', emailError);
                 // Don't throw here, as we still want to return the subscription info
@@ -77,15 +78,10 @@ export async function POST({ request, fetch }) {
 
             return json({
                 subscriptionId: subscription.id,
+                product: product.name,
                 clientSecret: subscription.latest_invoice.payment_intent.client_secret,
                 status: subscription.status,
-                customer_name: name,
-                customer_email: email,
-                customer_phone: phone,
-                current_period_end: new Date(subscription.current_period_end * 1000).toISOString(),
-                amount: price.unit_amount,
-                currency: price.currency,
-                product: product.name
+                ...subscriptionData
             });
         } else {
             throw new Error('Subscription failed');

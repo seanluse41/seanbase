@@ -12,6 +12,7 @@
     } from "flowbite-svelte";
     import { _ } from "svelte-i18n";
     import ErrorModal from "./errorModal.svelte";
+    const stripePublic = import.meta.env.VITE_TEST_STRIPE_PUBLIC_KEY
 
     export let isOpen = false;
     export let onClose = () => {};
@@ -37,9 +38,7 @@
         name && email && phone && cardComplete && !cardError && !emailError;
 
     onMount(async () => {
-        stripe = await loadStripe(
-            "pk_test_51OVocxKcWxTMUXE7upe9vTk3cseppJNw5YJ2OmMlQHqzbBFwxsi4ylxqUQqdmozIF3TMB2N8aT5dlkuNxzYLMThd00o6b2mKwX",
-        );
+        stripe = await loadStripe(stripePublic);
     });
 
     afterUpdate(() => {
@@ -82,7 +81,7 @@
 
                 if (error) throw new Error(error.message);
 
-                const response = await fetch("/handleSubscription", {
+                const response = await fetch("/api/handleSubscription", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
