@@ -7,5 +7,5 @@ export default defineConfig({
 	  rollupOptions: {
 		external: ['fs']
 	  }
-	},
+	}
   });
