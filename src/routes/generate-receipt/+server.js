@@ -18,7 +18,6 @@ export async function GET({ url }) {
 
     // Register fontkit with the PDF document
     pdfDoc.registerFontkit(fontkit);
-    logoArrayBuffer
     const page = pdfDoc.addPage([595.28, 841.89]); // A4 size in points
     const { height, width } = page.getSize();
 
