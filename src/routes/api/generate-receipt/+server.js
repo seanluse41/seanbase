@@ -2,13 +2,6 @@
 
 import { PDFDocument, rgb } from 'pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
-import NotoFont from '$lib/NotoSansJP-Regular.ttf';
-import companyLogo from '$lib/logo-cropped.png'
-import { read } from '$app/server';
-
-import { PDFDocument, rgb } from 'pdf-lib';
-import fontkit from '@pdf-lib/fontkit';
-import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export async function GET({ url, fetch }) {
     // Extract query parameters (unchanged)
