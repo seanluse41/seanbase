@@ -6,7 +6,11 @@ import NotoFont from '$lib/NotoSansJP-Regular.ttf';
 import companyLogo from '$lib/logo-cropped.png'
 import { read } from '$app/server';
 
-export async function GET({ url }) {
+import { PDFDocument, rgb } from 'pdf-lib';
+import fontkit from '@pdf-lib/fontkit';
+import { PUBLIC_SITE_URL } from '$env/static/public';
+
+export async function GET({ url, fetch }) {
     // Extract query parameters (unchanged)
     const customerName = url.searchParams.get('customer_name') || 'Valued Customer';
     const customerEmail = url.searchParams.get('customer_email') || 'N/A';
@@ -23,9 +27,15 @@ export async function GET({ url }) {
     const page = pdfDoc.addPage([595.28, 841.89]); // A4 size in points
     const { height, width } = page.getSize();
 
-    // Load and embed a custom font that supports Japanese characters
-    const font_data = await read(NotoFont).arrayBuffer();
-    const customFont = await pdfDoc.embedFont(font_data)
+    // Fetch and embed the font
+    const fontResponse = await fetch(`https://seanbase.com/NotoSansJP-Regular.ttf`);
+    const fontData = await fontResponse.arrayBuffer();
+    const customFont = await pdfDoc.embedFont(fontData);
+
+    // Fetch and embed the logo
+    const logoResponse = await fetch(`https://seanbase.com/logo-cropped.png`);
+    const logoData = await logoResponse.arrayBuffer();
+    const logo = await pdfDoc.embedPng(logoData);
 
     // Define styles
     const fontSize = 14;
@@ -152,9 +162,6 @@ export async function GET({ url }) {
 
     // Read and embed the logo
     try {
-        const logoData = await read(companyLogo).arrayBuffer()
-        const logo = await pdfDoc.embedPng(logoData);
-
         // Calculate scaling factor to fit logo within a 125x125 point box (25% larger than before)
         const maxDimension = 125;
         const scaleFactor = Math.min(maxDimension / logo.width, maxDimension / logo.height);
