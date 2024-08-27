@@ -2,7 +2,6 @@
   import { _ } from "svelte-i18n";
   import { Card, ImagePlaceholder, P } from "flowbite-svelte";
   export let title;
-  export let type;
   export let description;
   export let link;
   export let imageURL;

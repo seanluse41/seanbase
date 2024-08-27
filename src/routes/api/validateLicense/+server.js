@@ -1,8 +1,8 @@
-// src/routes/validatelicense/+server.js
+// src/routes/api/validatelicense/+server.js
 
 import jwt from 'jsonwebtoken';
 import { error, json } from '@sveltejs/kit';
-import { checkLicense } from '../../requests/kintoneLicenseCheck';
+import { checkLicense } from '../../../requests/kintoneLicenseCheck';
 import { RateLimiter } from 'sveltekit-rate-limiter/server';
 
 const JWT_SECRET = import.meta.env.VITE_JWT_SECRET;
