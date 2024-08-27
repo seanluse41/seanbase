@@ -53,6 +53,7 @@
   "contact_form_submitting": "Submitting...",
   "contact_form_thank_you": "Thank you for your submission!",
   "contact_form_error": "There was an error submitting the form. Please try again.",
+  "contact_form_inquiry": "Reason for Contact",
   "payment": {
     "title": "Enter Payment Details",
     "name": "Cardholder Name",

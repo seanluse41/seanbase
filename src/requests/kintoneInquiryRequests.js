@@ -33,7 +33,8 @@ export async function submitInquiry(formData) {
         name: { value: formData.get('name') },
         companyName: { value: formData.get('company') },
         phoneNumber: { value: formData.get('phone') },
-        email: { value: formData.get('email') }
+        email: { value: formData.get('email') },
+        inquiry: { value: formData.get('inquiry')}
     };
 
     return postToKintone(record);
