@@ -41,6 +41,7 @@ export async function POST({ request, fetch }) {
             invoice_settings: {
                 default_payment_method: paymentMethodId,
             },
+            preferred_locales: ['ja-JP', 'en-US']
         });
 
         // Create the subscription using the default price

@@ -100,6 +100,9 @@
       "step7": "Click on \"Create Repository App\" to create the repository for guides. This will create a new Kintone App, and only needs to be done once.",
       "step8": "Update your App settings, and create your first guide.",
       "step9": "Contact customer support at any time at admin@seanbase.com or via the Customer Support Button on the Plugin Configuration Settings Screen."
-    }
+    },
+    "stripePortalTitle": "Manage Your Subscription",
+    "stripePortalInfo": "You can manage your subscription, update your payment method, and view your billing history through our customer portal.",
+    "accessStripePortal": "Access Customer Portal"
   }
 }

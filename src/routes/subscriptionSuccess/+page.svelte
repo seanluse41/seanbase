@@ -82,6 +82,17 @@
 
             <P>{$_("subscriptionSuccess.confirmation")}</P>
 
+            <!-- New section for Stripe Customer Portal -->
+            <Heading tag="h2" customSize="text-xl" class="mt-6 mb-2"
+                >{$_("subscriptionSuccess.stripePortalTitle")}</Heading
+            >
+            <P class="mb-4">
+                {$_("subscriptionSuccess.stripePortalInfo")}
+            </P>
+            <Button href="https://billing.stripe.com/p/login/00g9DZb7Dedw4lWaEE" target="_blank" rel="noopener noreferrer" class="w-1/4 mt-2 mb-4">
+                {$_("subscriptionSuccess.accessStripePortal")}
+            </Button>
+
             <Heading tag="h2" customSize="text-xl" class="mt-6 mb-2"
                 >{$_("subscriptionSuccess.nextStepsTitle")}</Heading
             >

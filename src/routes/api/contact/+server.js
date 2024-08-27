@@ -1,5 +1,5 @@
-// src/routes/contact/+server.js
-import { submitInquiry } from '../../requests/kintoneInquiryRequests';
+// src/routes/api/contact/+server.js
+import { submitInquiry } from '../../../requests/kintoneInquiryRequests';
 
 export async function POST({ request }) {
     try {
