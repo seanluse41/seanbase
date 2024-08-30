@@ -1,3 +1,5 @@
+// /src/requests/kintoneProjectRequests.js
+
 import { projectsStore } from '../stores/projects.js';
 import { get } from "svelte/store";
 import { error } from '@sveltejs/kit';
@@ -87,4 +89,12 @@ async function getFiles(recordID, fetch) {
         files = await fileRequest.json();
     }
     return files;
+}
+
+export async function getProjectsByType(type, fetch) {
+    let projects = get(projectsStore);
+    if (projects.length === 0 || !projectsFetched) {
+        projects = await getAllProjects(fetch);
+    }
+    return projects.filter(project => project.type.value === type);
 }
