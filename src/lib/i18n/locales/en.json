@@ -6,6 +6,26 @@
   "nav_hire": "Hire",
   "main_name": "Sean Luse",
   "main_subtitle": "Developer in Tokyo, working on Web Development, Game Development, and Kintone Customizations. Click on a project, read my dumb blog... the possibilities are endless!",
+  "projects": {
+    "kintone": {
+      "title": "Power up your organization with ",
+      "titleHighlight": "Kintone Plugins",
+      "introduction": "Using Kintone development best practices to solve your organization's pain points with monthly subscription based Kintone plugins.",
+      "explore": "Explore my Kintone projects..."
+    },
+    "gamedev": {
+      "title": "Fast, Flashy, Fun. Engage users like never before with ",
+      "titleHighlight": "Custom Game Development",
+      "introduction": "Here you can find my game development projects...",
+      "explore": "Explore my game development projects..."
+    },
+    "website": {
+      "title": "Expand your brand presence with optimized, SEO friendly ",
+      "titleHighlight": "Website Development",
+      "introduction": "Here you can find my website projects...",
+      "explore": "Explore my website projects..."
+    }
+  },
   "related_info": "Related Info",
   "related_blog_posts": "Related Blog Posts (Dev Talk)",
   "check_out_github": "Check it out on Github!",

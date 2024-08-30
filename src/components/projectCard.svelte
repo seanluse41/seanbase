@@ -7,7 +7,7 @@
   export let imageURL;
 </script>
 
-<div class="space-y-4 mt-4 mb-4 mr-8 hover:scale-105 transition ease-in-out duration-150">
+<div class="space-y-4 mb-4 mr-8 hover:scale-105 transition ease-in-out duration-150">
     <Card class="!p-0 h-[350px] w-80 flex flex-col" href={`/${link}`}>
       {#if imageURL}
         <div class="imageFrame h-48">

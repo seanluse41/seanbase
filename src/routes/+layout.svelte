@@ -5,29 +5,22 @@
     import ParticleBackground from "../components/particleBackground.svelte";
 </script>
 
-
-<div class="main">
-    <ParticleBackground/>
+<div class="flex flex-col min-h-screen bg-whitesmoke relative">
+    <ParticleBackground />
     <Navbar />
-    <div class="flex flex-col mt-8 z-10 relative">
-        <slot></slot>
+    <div class="flex-grow p-[5%] z-10 relative">
+        <div class="flex flex-col mt-8">
+            <slot></slot>
+        </div>
     </div>
 </div>
-<div class="fabContainer">
+
+<div class="fixed right-4 bottom-4 z-20">
     <Fab/>
 </div>
 
 <style>
-    .main {
-        min-height: 100vh;
+    :global(body) {
         background-color: whitesmoke;
-        padding: 5%;
-    }
-
-    .fabContainer {
-        position: fixed;
-        right: 16px;
-        bottom: 16px;
-        z-index: 20;
     }
 </style>

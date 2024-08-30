@@ -30,7 +30,7 @@
 	this="{ParticlesComponent}"
 	id="tsparticles"
 	class=""
-	style="position:absolute;z-index:0"
+	style="position:absolute;z-index:0;"
 	options="{particlesConfig}"
 	on:particlesLoaded="{onParticlesLoaded}"
 />
