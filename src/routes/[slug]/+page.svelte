@@ -19,7 +19,6 @@
     if (project.sale.value.length > 0) {
         forSale = project.sale.value[0]
     }
-
     onMount(async () => {
         if (project) {
             if (project.imageURL) {

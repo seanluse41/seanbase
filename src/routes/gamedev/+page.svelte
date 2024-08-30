@@ -17,7 +17,7 @@
         <Heading tag="h1" class="mb-4"
         >{$_("projects.gamedev.title")}<Span
             highlight
-            highlightClass="text-purple-600"
+            highlightClass="text-blue-600"
             >{$_("projects.gamedev.titleHighlight")}</Span
         >.</Heading
     >
