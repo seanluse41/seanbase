@@ -53,6 +53,7 @@
         >{$_("nav_blog")}</NavLi
       >
       <NavLi class="text-stone-700 sm:text-white" href="/kintone">{$_("nav_kintone")}</NavLi>
+      <NavLi class="text-stone-700 sm:text-white" href="/websites">{$_("nav_websites")}</NavLi>
       <NavLi class="text-stone-700 sm:text-white" href="/gamedev">{$_("nav_gamedev")}</NavLi>
       <NavLi class="text-stone-700 sm:text-white" href="/hire">{$_("nav_hire")}</NavLi>
     </NavUl>
