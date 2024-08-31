@@ -2,13 +2,12 @@
 import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
 const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
+const endpointSecret = import.meta.env.VITE_TEST_STRIPE_WEBHOOK_SECRET;
 import { fetchCustomerFromKintone } from '../../../requests/kintoneGetCustomer';
 import { addCustomerToKintone } from '../../../requests/kintoneCreateCustomer';
 import { updateKintoneRecord } from '../../../requests/kintoneUpdateCustomer';
 
 const stripe = new Stripe(key);
-
-const endpointSecret = "whsec_hkVpvrBmUhu98cVy4xOMsAvhbwvMDup9";
 
 export async function POST({ request }) {
   const payload = await request.text();

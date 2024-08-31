@@ -10,6 +10,7 @@ export async function fetchCustomerFromKintone(stripeCustomerId) {
     };
   
     const query = `stripeCustomerID = "${stripeCustomerId}"`;
+    console.log(`${url}?app=${customerAppID}&query=${encodeURIComponent(query)}`)
   
     try {
       const response = await fetch(`${url}?app=${customerAppID}&query=${encodeURIComponent(query)}`, {
