@@ -2,6 +2,7 @@
 import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
 const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
+import * as crypto from 'crypto';
 
 const stripe = new Stripe(key);
 
