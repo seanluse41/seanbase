@@ -5,26 +5,26 @@ const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
 const stripe = new Stripe(key);
 
 async function sendEmail(fetch, subscriptionData) {
-  const response = await fetch('/api/sendSubscriptionEmail', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(subscriptionData),
-  });
+    const response = await fetch('/api/sendSubscriptionEmail', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(subscriptionData),
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error('Failed to send email. Server response:', errorText);
-    throw new Error('Failed to send email');
-  }
+    if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Failed to send email. Server response:', errorText);
+        throw new Error('Failed to send email');
+    }
 
-  return response.json();
+    return response.json();
 }
 
 export async function POST({ request, fetch }) {
     try {
-        const { productId, paymentMethodId, name, email, phone } = await request.json();
+        const { productId, paymentMethodId, name, email, phone, companyName, kintoneDomain } = await request.json();
 
         // Fetch the product to get its default price
         const product = await stripe.products.retrieve(productId);
@@ -41,7 +41,11 @@ export async function POST({ request, fetch }) {
             invoice_settings: {
                 default_payment_method: paymentMethodId,
             },
-            preferred_locales: ['ja-JP', 'en-US']
+            preferred_locales: ['ja-JP', 'en-US'],
+            metadata: {
+                company_name: companyName,
+                kintone_domain: kintoneDomain
+            }
         });
 
         // Create the subscription using the default price
@@ -52,7 +56,9 @@ export async function POST({ request, fetch }) {
             metadata: {
                 customer_name: name,
                 customer_email: email,
-                customer_phone: phone
+                customer_phone: phone,
+                company_name: companyName,
+                kintone_domain: kintoneDomain
             }
         });
 
@@ -64,6 +70,8 @@ export async function POST({ request, fetch }) {
                 customer_name: name,
                 customer_email: email,
                 customer_phone: phone,
+                company_name: companyName,
+                kintone_domain: kintoneDomain,
                 amount: price.unit_amount,
                 currency: price.currency,
                 current_period_end: new Date(subscription.current_period_end * 1000).toISOString()

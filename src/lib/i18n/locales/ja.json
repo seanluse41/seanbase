@@ -76,20 +76,32 @@
   "contact_form_error": "フォームの送信中にエラーが発生しました。もう一度お試しください。",
   "contact_form_inquiry": "お問い合わせ内容",
   "payment": {
-    "title": "支払い詳細を入力してください",
-    "name": "カード名義",
-    "namePlaceholder": "山田 太郎",
+    "title": "サービスに登録する",
+    "name": "氏名",
+    "namePlaceholder": "氏名を入力してください",
+    "companyName": "会社名",
+    "companyNamePlaceholder": "会社名を入力してください",
     "email": "メールアドレス",
-    "emailPlaceholder": "name@company.com",
+    "emailPlaceholder": "メールアドレスを入力してください",
     "phone": "電話番号",
-    "phonePlaceholder": "090-0000-0000",
-    "cardInfo": "クレジットカード情報",
-    "payNow": "支払う",
-    "processing": "処理中..."
+    "phonePlaceholder": "電話番号を入力してください",
+    "kintoneDomain": "kintoneドメイン",
+    "kintoneDomainPlaceholder": "xxx.kintone.com または xxx.cybozu.com",
+    "cardNumber": "カード番号",
+    "cardExpiry": "有効期限",
+    "cardCVC": "セキュリティコード",
+    "next": "次へ",
+    "back": "戻る",
+    "processing": "処理中...",
+    "payNow": "支払う"
   },
   "email": {
-    "required": "メールアドレスを入力してください。",
-    "invalid": "有効なメールアドレスを入力してください。"
+    "required": "メールアドレスは必須です",
+    "invalid": "有効なメールアドレスを入力してください"
+  },
+  "kintoneDomain": {
+    "required": "kintoneドメインは必須です",
+    "invalid": "有効なkintoneドメインを入力してください"
   },
   "card": {
     "errorPrefix": "カードエラー："

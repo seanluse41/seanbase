@@ -34,7 +34,7 @@ export async function GET({ url, setHeaders }) {
         if (responseData.records && responseData.records.length > 0) {
             const latestRecord = responseData.records[0];
             const latestVersion = latestRecord.versionNumber.value;
-            const breakingChange = latestRecord.breakingChange.value;
+            const breakingChange = latestRecord.breaking.value;
             const isCurrent = currentVersion === latestVersion;
 
             // Get the attachment information

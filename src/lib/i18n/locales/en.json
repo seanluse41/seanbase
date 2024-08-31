@@ -76,20 +76,32 @@
   "contact_form_error": "There was an error submitting the form. Please try again.",
   "contact_form_inquiry": "Reason for Contact",
   "payment": {
-    "title": "Enter Payment Details",
-    "name": "Cardholder Name",
-    "namePlaceholder": "John Doe",
-    "email": "Email",
-    "emailPlaceholder": "name@company.com",
+    "title": "Subscribe to our service",
+    "name": "Full Name",
+    "namePlaceholder": "Enter your full name",
+    "companyName": "Company Name",
+    "companyNamePlaceholder": "Enter your company name",
+    "email": "Email Address",
+    "emailPlaceholder": "Enter your email address",
     "phone": "Phone Number",
-    "phonePlaceholder": "555-0000-0000",
-    "cardInfo": "Credit Card Information",
-    "payNow": "Subscribe",
-    "processing": "Processing..."
+    "phonePlaceholder": "Enter your phone number",
+    "kintoneDomain": "Kintone Domain",
+    "kintoneDomainPlaceholder": "xxx.kintone.com or xxx.cybozu.com",
+    "cardNumber": "Card Number",
+    "cardExpiry": "Expiration Date",
+    "cardCVC": "CVC",
+    "next": "Next",
+    "back": "Back",
+    "processing": "Processing...",
+    "payNow": "Pay Now"
   },
   "email": {
-    "required": "Please enter an email address.",
-    "invalid": "Please enter a valid email address."
+    "required": "Email is required",
+    "invalid": "Please enter a valid email address"
+  },
+  "kintoneDomain": {
+    "required": "Kintone domain is required",
+    "invalid": "Please enter a valid Kintone domain"
   },
   "card": {
     "errorPrefix": "Card error:"
@@ -114,7 +126,7 @@
     "nextStepsTitle": "Next Steps",
     "nextSteps": {
       "step1": "An email will be sent to {email}",
-      "step2": "The email will contain the a download link for the kGuide Plugin in .zip format, and your secret key.",
+      "step2": "The email will contain a download link for the kGuide Plugin in .zip format, and your secret key.",
       "step3": "In your Kintone environment, install the plugin on the Kintone Administration page.",
       "step4": "Then, install the plugin to as many Apps as you want.",
       "step5": "On the App's plugin settings page, click the cog wheel.",
