@@ -9,11 +9,11 @@ export async function fetchCustomerFromKintone(stripeCustomerId) {
     'Content-Type': 'application/json'
   };
 
-  // Properly encode the query string
+  // Encode the query string without quotes
   const fieldCode = 'stripeCustomerID';
   const operator = '=';
   const value = stripeCustomerId;
-  const query = `${fieldCode} ${operator} "${encodeURIComponent(value)}"`;
+  const query = `${fieldCode} ${operator} ${value}`;
   
   const params = new URLSearchParams({
     app: customerAppID,
