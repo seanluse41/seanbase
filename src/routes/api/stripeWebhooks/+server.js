@@ -2,61 +2,13 @@
 import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
 const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
+import { fetchCustomerFromKintone } from '../../../requests/kintoneGetCustomer';
+import { addCustomerToKintone } from '../../../requests/kintoneCreateCustomer';
+import { updateKintoneRecord } from '../../../requests/kintoneUpdateCustomer';
 
 const stripe = new Stripe(key);
 
 const endpointSecret = "whsec_hkVpvrBmUhu98cVy4xOMsAvhbwvMDup9";
-const customerAppID = import.meta.env.VITE_CUSTOMER_INFO_APPID
-const subdomain = import.meta.env.VITE_SUBDOMAIN
-const customerAppToken = import.meta.env.VITE_CUSTOMER_INFO_TOKEN
-
-async function addCustomerToKintone(customer) {
-
-    const record = {
-      companyName: { value: customer.metadata.company_name || '' },
-      email: { value: customer.email || '' },
-      current: { value: 'Yes' },
-      contactName: { value: customer.name || '' },
-      stripeCustomerID: { value: customer.id },
-      secretKey: { value: customer.metadata.secretKey },
-      domainName: { value: customer.metadata.kintone_domain || '' },
-      stripeSubscriptionID: { value: '' },
-      validToDate: { value: '' },
-      cancellationDate: { value: '' },
-      cancellationPageLink: { value: '' }
-    };
-  
-    if (customer.phone) {
-      record.companyContactNumber = { value: customer.phone };
-    } else if (customer.metadata && customer.metadata.customer_phone) {
-      record.companyContactNumber = { value: customer.metadata.customer_phone };
-    }
-    
-  const url = `https://${subdomain}.kintone.com/k/v1/record.json`;
-  const headers = {
-    'X-Cybozu-API-Token': customerAppToken,
-    'Content-Type': 'application/json'
-  };
-
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify({ app: customerAppID, record: record })
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log('Customer added to Kintone:', data);
-    return data;
-  } catch (error) {
-    console.error('Error adding customer to Kintone:', error);
-    throw error;
-  }
-}
 
 export async function POST({ request }) {
   const payload = await request.text();
@@ -75,28 +27,41 @@ export async function POST({ request }) {
   switch (event.type) {
     case 'customer.created':
       const customer = event.data.object;
-      console.log('New customer created:', customer.id);
       await addCustomerToKintone(customer);
       break;
-    
+
     case 'customer.subscription.created':
       const subscription = event.data.object;
-      console.log('New subscription created:', subscription.id);
-      // TODO: Add logic to handle new subscription
+      try {
+        // Fetch the customer record from Kintone
+        const customer = await fetchCustomerFromKintone(subscription.customer);
+        console.log(customer)
+        // Update the customer record with subscription details
+        const updatedRecord = {
+          stripeSubscriptionID: { value: subscription.id },
+          validToDate: { value: new Date(subscription.current_period_end * 1000).toISOString() }
+        };
+        await updateKintoneRecord(customer.id, updatedRecord);
+
+        console.log('Customer record updated with subscription details');
+      } catch (error) {
+        console.error('Error handling subscription creation:', error);
+        // You might want to add some error handling logic here
+      }
       break;
-    
+
     case 'invoice.paid':
       const paidInvoice = event.data.object;
       console.log('Invoice paid:', paidInvoice.id);
       // TODO: Add logic to handle paid invoice
       break;
-    
+
     case 'invoice.payment_failed':
       const failedInvoice = event.data.object;
       console.log('Invoice payment failed:', failedInvoice.id);
       // TODO: Add logic to handle failed invoice payment
       break;
-    
+
     default:
       console.log(`Unhandled event type ${event.type}`);
   }
