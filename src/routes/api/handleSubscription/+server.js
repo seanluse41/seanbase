@@ -1,8 +1,13 @@
 import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
 const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
+import * as crypto from 'crypto';
 
 const stripe = new Stripe(key);
+
+function generateSecretKey() {
+    return crypto.randomBytes(8).toString('hex');
+  }
 
 async function sendEmail(fetch, subscriptionData) {
     const response = await fetch('/api/sendSubscriptionEmail', {
@@ -23,10 +28,11 @@ async function sendEmail(fetch, subscriptionData) {
 }
 
 export async function POST({ request, fetch }) {
+    const secretKey = generateSecretKey();
+
     try {
         const { productId, paymentMethodId, name, email, phone, companyName, kintoneDomain } = await request.json();
 
-        // Fetch the product to get its default price
         const product = await stripe.products.retrieve(productId);
         if (!product.default_price) {
             throw new Error('No default price found for this product');
@@ -44,7 +50,8 @@ export async function POST({ request, fetch }) {
             preferred_locales: ['ja-JP', 'en-US'],
             metadata: {
                 company_name: companyName,
-                kintone_domain: kintoneDomain
+                kintone_domain: kintoneDomain,
+                secretKey: secretKey
             }
         });
 

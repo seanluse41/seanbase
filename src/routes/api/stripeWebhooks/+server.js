@@ -2,7 +2,6 @@
 import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
 const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
-import * as crypto from 'crypto';
 
 const stripe = new Stripe(key);
 
@@ -11,22 +10,15 @@ const customerAppID = import.meta.env.VITE_CUSTOMER_INFO_APPID
 const subdomain = import.meta.env.VITE_SUBDOMAIN
 const customerAppToken = import.meta.env.VITE_CUSTOMER_INFO_TOKEN
 
-function generateSecretKey() {
-  return crypto.randomBytes(8).toString('hex');
-}
-
 async function addCustomerToKintone(customer) {
-
-  const secretKey = generateSecretKey();
 
     const record = {
       companyName: { value: customer.metadata.company_name || '' },
       email: { value: customer.email || '' },
-      current: { value: 'Yes' }, // Assuming a new customer is current
-      contactName: { value: customer.name || '' }, // Using name as contact name if available
+      current: { value: 'Yes' },
+      contactName: { value: customer.name || '' },
       stripeCustomerID: { value: customer.id },
-      // Fields below are left empty or with placeholder values as they're not typically available in customer.created event
-      secretKey: { value: secretKey },
+      secretKey: { value: customer.metadata.secretKey },
       domainName: { value: customer.metadata.kintone_domain || '' },
       stripeSubscriptionID: { value: '' },
       validToDate: { value: '' },
@@ -34,7 +26,6 @@ async function addCustomerToKintone(customer) {
       cancellationPageLink: { value: '' }
     };
   
-    // Add company contact number if available in metadata or phone field
     if (customer.phone) {
       record.companyContactNumber = { value: customer.phone };
     } else if (customer.metadata && customer.metadata.customer_phone) {
