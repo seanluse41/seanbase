@@ -20,14 +20,14 @@ async function addCustomerToKintone(customer) {
   const secretKey = generateSecretKey();
 
     const record = {
-      companyName: { value: customer.metadata.companyName || '' },
+      companyName: { value: customer.metadata.company_name || '' },
       email: { value: customer.email || '' },
       current: { value: 'Yes' }, // Assuming a new customer is current
       contactName: { value: customer.name || '' }, // Using name as contact name if available
       stripeCustomerID: { value: customer.id },
       // Fields below are left empty or with placeholder values as they're not typically available in customer.created event
       secretKey: { value: secretKey },
-      domainName: { value: customer.metadata.domainName || '' },
+      domainName: { value: customer.metadata.kintone_domain || '' },
       stripeSubscriptionID: { value: '' },
       validToDate: { value: '' },
       cancellationDate: { value: '' },
@@ -37,10 +37,10 @@ async function addCustomerToKintone(customer) {
     // Add company contact number if available in metadata or phone field
     if (customer.phone) {
       record.companyContactNumber = { value: customer.phone };
-    } else if (customer.metadata && customer.metadata.companyContactNumber) {
-      record.companyContactNumber = { value: customer.metadata.companyContactNumber };
+    } else if (customer.metadata && customer.metadata.customer_phone) {
+      record.companyContactNumber = { value: customer.metadata.customer_phone };
     }
-
+    
   const url = `https://${subdomain}.kintone.com/k/v1/record.json`;
   const headers = {
     'X-Cybozu-API-Token': customerAppToken,
