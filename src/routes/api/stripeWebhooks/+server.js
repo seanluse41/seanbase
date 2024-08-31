@@ -7,7 +7,7 @@ const stripe = new Stripe(key);
 
 const endpointSecret = "whsec_hkVpvrBmUhu98cVy4xOMsAvhbwvMDup9";
 const customerAppID = import.meta.env.VITE_CUSTOMER_INFO_APPID
-const subdomain = import.meta.end.VITE_SUBDOMAIN
+const subdomain = import.meta.env.VITE_SUBDOMAIN
 const customerAppToken = import.meta.env.VITE_CUSTOMER_INFO_TOKEN
 
 function generateSecretKey() {
