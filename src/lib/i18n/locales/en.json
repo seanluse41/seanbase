@@ -40,7 +40,7 @@
   "kGuide_features6": "Customer Support Responses within 24 hours",
   "kGuide_features7": "A security review before installation can be conducted. Please contact us via email.",
   "payment_card_subscribe_now": "Subscribe Now",
-  "payment_card_inquiry": "Get More Information First",
+  "payment_card_inquiry": "Contact Us First",
   "commerce_disclosure_title": "Commercial Disclosure",
   "legal_name": "Legal Name",
   "legal_name_value": "Seanco",
@@ -76,7 +76,7 @@
   "contact_form_error": "There was an error submitting the form. Please try again.",
   "contact_form_inquiry": "Reason for Contact",
   "payment": {
-    "title": "Subscribe to our service",
+    "title": "Card Information",
     "name": "Full Name",
     "namePlaceholder": "Enter your full name",
     "companyName": "Company Name",

@@ -97,7 +97,7 @@
             >
         </li>
     </ul>
-    <div class="flex">
+    <div class="flex max-h-20">
         <Button on:click={onPayStartClicked} class="w-1/2 m-1"
             >{$_("payment_card_subscribe_now")}</Button
         >
