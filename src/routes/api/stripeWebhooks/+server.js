@@ -33,6 +33,7 @@ export async function POST({ request }) {
       if (customerKintoneRecordID) {
         const updatedCustomerFields = {
           companyName: { value: customer.metadata.company_name || '' },
+          number: { value: customer.phone || '' },
           email: { value: customer.email || '' },
           contactName: { value: customer.name || '' },
           stripeCustomerID: { value: customer.id || '' },
