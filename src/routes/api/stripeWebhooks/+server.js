@@ -113,6 +113,29 @@ export async function POST({ request }) {
       // TODO: Add logic to handle failed invoice payment
       break;
 
+    case 'customer.subscription.deleted':
+      const canceledSubscription = event.data.object;
+      const canceledSubscriptionKintoneRecordID = canceledSubscription.metadata.kintoneRecordID;
+
+      if (canceledSubscriptionKintoneRecordID) {
+        try {
+          const updatedFields = {
+            current: { value: 'No' },
+            cancellationDate: { value: await formatStripeTimestampForKintone(canceledSubscription.canceled_at) }
+          };
+
+          await updateKintoneRecord(canceledSubscriptionKintoneRecordID, updatedFields);
+          console.log(`Updated Kintone record ${canceledSubscriptionKintoneRecordID} for canceled subscription`);
+        } catch (error) {
+          console.error('Error updating customer record with cancellation details:', error);
+          console.error('Canceled subscription object:', JSON.stringify(canceledSubscription, null, 2));
+        }
+      } else {
+        console.error('Kintone Record ID not found in canceled subscription metadata');
+        console.error('Canceled subscription object:', JSON.stringify(canceledSubscription, null, 2));
+      }
+      break;
+
     default:
       console.log(`Unhandled event type ${event.type}`);
   }
