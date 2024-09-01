@@ -6,6 +6,11 @@ import { updateKintoneRecord } from '../../../requests/kintoneUpdateCustomer';
 
 const stripe = new Stripe(key);
 
+async function formatStripeTimestampForKintone(timestamp) {
+  const date = new Date(timestamp * 1000); // Convert seconds to milliseconds
+  return date.toISOString().split('T')[0]; // Returns "YYYY-MM-DD"
+}
+
 export async function POST({ request }) {
   const payload = await request.text();
   const sig = request.headers.get('stripe-signature');
@@ -24,7 +29,7 @@ export async function POST({ request }) {
     case 'customer.created':
       const customer = event.data.object;
       const customerKintoneRecordID = customer.metadata.kintoneRecordID;
-      
+
       if (customerKintoneRecordID) {
         const updatedCustomerFields = {
           companyName: { value: customer.metadata.company_name || '' },
@@ -52,13 +57,13 @@ export async function POST({ request }) {
       const subscriptionKintoneRecordID = subscription.metadata.kintoneRecordID;
 
       if (subscriptionKintoneRecordID) {
-        const updatedSubscriptionFields = {
+        const updatedFields = {
           stripeSubscriptionID: { value: subscription.id },
-          validToDate: { value: new Date(subscription.current_period_end * 1000).toISOString() }
+          validToDate: { value: formatStripeTimestampForKintone(subscription.current_period_end) }
         };
 
         try {
-          await updateKintoneRecord(subscriptionKintoneRecordID, updatedSubscriptionFields);
+          await updateKintoneRecord(subscriptionKintoneRecordID, updatedFields);
           console.log('Customer record updated with subscription details');
         } catch (error) {
           console.error('Error updating customer record with subscription details:', error);
