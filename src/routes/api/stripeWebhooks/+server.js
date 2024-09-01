@@ -57,19 +57,26 @@ export async function POST({ request }) {
       const subscriptionKintoneRecordID = subscription.metadata.kintoneRecordID;
 
       if (subscriptionKintoneRecordID) {
-        const updatedFields = {
-          stripeSubscriptionID: { value: subscription.id },
-          validToDate: { value: formatStripeTimestampForKintone(subscription.current_period_end) }
-        };
-
         try {
+          const formattedDate = await formatStripeTimestampForKintone(subscription.current_period_end);
+          console.log('Formatted date:', formattedDate); // Add this log
+
+          const updatedFields = {
+            stripeSubscriptionID: { value: subscription.id || '' },
+            validToDate: { value: formattedDate }
+          };
+
+          console.log('Updated fields:', JSON.stringify(updatedFields, null, 2)); // Add this log
+
           await updateKintoneRecord(subscriptionKintoneRecordID, updatedFields);
           console.log('Customer record updated with subscription details');
         } catch (error) {
           console.error('Error updating customer record with subscription details:', error);
+          console.error('Subscription object:', JSON.stringify(subscription, null, 2)); // Add this log
         }
       } else {
         console.error('Kintone Record ID not found in subscription metadata');
+        console.error('Subscription object:', JSON.stringify(subscription, null, 2)); // Add this log
       }
       break;
 
