@@ -2,7 +2,6 @@ import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
 const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
 const endpointSecret = import.meta.env.VITE_TEST_STRIPE_WEBHOOK_SECRET;
-import { fetchCustomerFromKintone } from '../../../requests/kintoneGetCustomer';
 import { updateKintoneRecord } from '../../../requests/kintoneUpdateCustomer';
 
 const stripe = new Stripe(key);
