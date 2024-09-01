@@ -55,7 +55,6 @@ export async function addCustomerToKintone(customer = {}) {
         }
 
         const data = await response.json();
-        console.log('Customer added to Kintone:', data);
         return data;
     } catch (error) {
         console.error('Error adding customer to Kintone:', error);

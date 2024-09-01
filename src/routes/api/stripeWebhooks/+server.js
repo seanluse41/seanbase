@@ -1,3 +1,5 @@
+// /src/routes/api/stripeWebhooks/+server.js
+
 import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
 const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
@@ -44,7 +46,6 @@ export async function POST({ request }) {
 
         try {
           await updateKintoneRecord(customerKintoneRecordID, updatedCustomerFields);
-          console.log('Customer record updated in Kintone');
         } catch (error) {
           console.error('Error updating customer record in Kintone:', error);
         }
@@ -60,17 +61,12 @@ export async function POST({ request }) {
       if (subscriptionKintoneRecordID) {
         try {
           const formattedDate = await formatStripeTimestampForKintone(subscription.current_period_end);
-          console.log('Formatted date:', formattedDate); // Add this log
-
           const updatedFields = {
             stripeSubscriptionID: { value: subscription.id || '' },
             validToDate: { value: formattedDate }
           };
 
-          console.log('Updated fields:', JSON.stringify(updatedFields, null, 2)); // Add this log
-
           await updateKintoneRecord(subscriptionKintoneRecordID, updatedFields);
-          console.log('Customer record updated with subscription details');
         } catch (error) {
           console.error('Error updating customer record with subscription details:', error);
           console.error('Subscription object:', JSON.stringify(subscription, null, 2)); // Add this log
@@ -84,7 +80,31 @@ export async function POST({ request }) {
     case 'invoice.paid':
       const paidInvoice = event.data.object;
       console.log('Invoice paid:', paidInvoice.id);
-      // TODO: Add logic to handle paid invoice
+      const lineItem = paidInvoice.lines.data[0];
+      if (lineItem && lineItem.period && lineItem.period.end) {
+        const kintoneRecordID = lineItem.metadata.kintoneRecordID;
+
+        if (kintoneRecordID) {
+          try {
+            const formattedDate = await formatStripeTimestampForKintone(lineItem.period.end);
+            const updatedFields = {
+              validToDate: { value: formattedDate }
+            };
+
+            await updateKintoneRecord(kintoneRecordID, updatedFields);
+            console.log(`Updated Kintone record ${kintoneRecordID} with new validToDate: ${formattedDate}`);
+          } catch (error) {
+            console.error('Error updating customer record with new validToDate:', error);
+            console.error('Invoice line item:', JSON.stringify(lineItem, null, 2));
+          }
+        } else {
+          console.error('Kintone Record ID not found in line item metadata');
+          console.error('Invoice line item:', JSON.stringify(lineItem, null, 2));
+        }
+      } else {
+        console.error('Period end not found in invoice line item');
+        console.error('Invoice object:', JSON.stringify(paidInvoice, null, 2));
+      }
       break;
 
     case 'invoice.payment_failed':

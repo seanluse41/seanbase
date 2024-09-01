@@ -45,7 +45,6 @@ export async function updateKintoneRecord(recordId, updatedFields) {
         }
 
         const data = await response.json();
-        console.log('Kintone record updated:', data);
         return data;
     } catch (error) {
         console.error('Error updating Kintone record:', error);

@@ -1,3 +1,5 @@
+// src/requests/kintoneGetCustomer.js
+
 const customerAppID = import.meta.env.VITE_CUSTOMER_INFO_APPID
 const subdomain = import.meta.env.VITE_SUBDOMAIN
 const customerAppToken = import.meta.env.VITE_CUSTOMER_INFO_TOKEN
@@ -7,8 +9,6 @@ export async function fetchCustomerFromKintone(recordId) {
   const headers = {
     'X-Cybozu-API-Token': customerAppToken
   };
-
-  console.log('Full URL:', url);
 
   try {
     const response = await fetch(url, {
