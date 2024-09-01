@@ -7,8 +7,10 @@
     NavUl,
     NavHamburger,
     Button,
+    Dropdown,
+    DropdownItem,
   } from "flowbite-svelte";
-  import { LanguageOutline } from "flowbite-svelte-icons";
+  import { LanguageOutline, ChevronDownOutline } from "flowbite-svelte-icons";
   import logo from "../lib/logo.svg";
   import { navigating } from "$app/stores";
 
@@ -20,8 +22,8 @@
   }
 
   const toggleHamburgerMenu = () => {
-    hamburgerMenuHidden = !hamburgerMenuHidden
-  }
+    hamburgerMenuHidden = !hamburgerMenuHidden;
+  };
 
   const changeLocale = () => {
     if (currentLocale == "en") {
@@ -50,12 +52,30 @@
     </div>
     <NavUl hidden={hamburgerMenuHidden}>
       <NavLi class="text-stone-700 sm:text-white" href="/blog"
-        >{$_("nav_blog")}</NavLi
+        >{$_("nav.blog")}</NavLi
       >
-      <NavLi class="text-stone-700 sm:text-white" href="/kintone">{$_("nav_kintone")}</NavLi>
-      <NavLi class="text-stone-700 sm:text-white" href="/websites">{$_("nav_websites")}</NavLi>
-      <NavLi class="text-stone-700 sm:text-white" href="/gamedev">{$_("nav_gamedev")}</NavLi>
-      <NavLi class="text-stone-700 sm:text-white" href="/hire">{$_("nav_hire")}</NavLi>
+      <NavLi class="text-stone-700 sm:text-white" href="/kintone"
+        >{$_("nav.kintone")}</NavLi
+      >
+      <NavLi class="text-stone-700 sm:text-white" href="/websites"
+        >{$_("nav.websites")}</NavLi
+      >
+      <NavLi class="text-stone-700 sm:text-white" href="/gamedev"
+        >{$_("nav.gamedev")}</NavLi
+      >
+      <NavLi class="text-stone-700 sm:text-white" href="/hire"
+        >{$_("nav.hire")}</NavLi
+      >
+      <NavLi class="cursor-pointer text-stone-700 sm:text-white">
+        {$_("nav.legal")}<ChevronDownOutline
+          class="w-6 h-6 ms-2 text-white inline"
+        />
+      </NavLi>
+      <Dropdown class="w-44 z-20">
+        <DropdownItem class="text-stone-700" href="/terms">{$_("nav.terms")}</DropdownItem>
+        <DropdownItem class="text-stone-700" href="/privacy">{$_("nav.privacy")}</DropdownItem>
+        <DropdownItem class="text-stone-700" href="/commerce-disclosure">{$_("nav.commerceDisclosure")}</DropdownItem>
+      </Dropdown>
     </NavUl>
   </Navbar>
 </div>

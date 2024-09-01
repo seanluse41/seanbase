@@ -1,9 +1,15 @@
 {
-  "nav_blog": "ブログ",
-  "nav_gamedev": "ゲーム開発",
-  "nav_websites": "Web開発",
-  "nav_kintone": "Kintone開発",
-  "nav_hire": "ご相談",
+  "nav": {
+    "legal": "法務",
+    "blog": "ブログ",
+    "gamedev": "ゲーム開発",
+    "websites": "Web開発",
+    "kintone": "Kintone開発",
+    "hire": "ご相談",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "commerceDisclosure": "商取引開示"
+  },
   "main_name": "ルース ショーン",
   "main_subtitle": "東京在住Web・ゲーム・Kintone開発者。10年以上日本に住んでおり、現在はサイボウズ株式会社で勤務しています。個人として開発したものを見たり、ブログをみ読んでくれたり…楽しいな。　Kintoneプラグインはぜひともお試しください。",
   "projects": {
@@ -41,29 +47,119 @@
   "kGuide_features7": "導入する前にセキュリティチェックも可能ですので気になる方はご相談ください。",
   "payment_card_subscribe_now": "購入に進む",
   "payment_card_inquiry": "まずは問い合わせる",
-  "commerce_disclosure_title": "特定商取引法に基づく表記",
-  "legal_name": "事業者名",
-  "legal_name_value": "Seanco",
-  "address": "住所",
-  "address_value": "〒114-0022 東京都北区王子本町2-15-7",
-  "phone_number": "電話番号",
-  "phone_number_value": "(+81)090-9141-0841",
-  "email_address": "メールアドレス",
-  "email_address_value": "seanluse41@gmail.com",
-  "head_of_operations": "代表者名",
-  "head_of_operations_value": "ルース　ショーン",
-  "additional_fees": "付加費用",
-  "additional_fees_value": "付加費用なし",
-  "exchanges_returns_policy": "返品・交換について",
-  "exchanges_returns_policy_value": "返品・交換は受け付けておりません",
-  "delivery_times": "商品の引渡し時期",
-  "delivery_times_value": "適用外",
-  "accepted_payment_methods": "支払方法",
-  "accepted_payment_methods_value": "クレジット決済",
-  "payment_period": "支払期間",
-  "payment_period_value": "毎月自動的に支払い",
-  "price": "販売価格",
-  "price_value": "商品によって価格が異なります",
+  "disclosure": {
+    "commerce_disclosure_title": "特定商取引法に基づく表記",
+    "legal_name": "事業者名",
+    "legal_name_value": "Seanco",
+    "address": "住所",
+    "address_value": "〒114-0022 東京都北区王子本町2-15-7",
+    "phone_number": "電話番号",
+    "phone_number_value": "(+81)090-9141-0841",
+    "email_address": "メールアドレス",
+    "email_address_value": "seanluse41@gmail.com",
+    "head_of_operations": "代表者名",
+    "head_of_operations_value": "ルース　ショーン",
+    "additional_fees": "付加費用",
+    "additional_fees_value": "付加費用なし",
+    "exchanges_returns_policy": "返品・交換について",
+    "exchanges_returns_policy_value": "返品・交換は受け付けておりません",
+    "delivery_times": "商品の引渡し時期",
+    "delivery_times_value": "適用外",
+    "accepted_payment_methods": "支払方法",
+    "accepted_payment_methods_value": "クレジット決済",
+    "payment_period": "支払期間",
+    "payment_period_value": "毎月自動的に支払い",
+    "price": "販売価格",
+    "price_value": "商品によって価格が異なります"
+  },
+  "privacy": {
+    "title": "プライバシーポリシー",
+    "info_collection": "情報収集",
+    "info_collection_text": "当社は、ユーザーが当社からソフトウェアを購入する場合にのみ個人情報を収集します。収集する情報には以下が含まれます：",
+    "info_items": [
+      "クレジットカード情報",
+      "氏名",
+      "会社名（任意）",
+      "メールアドレス",
+      "電話番号（任意）",
+      "kintoneドメイン"
+    ],
+    "how_we_collect": "情報の収集方法",
+    "how_we_collect_text": "これらの情報は、ご購入時にウェブサイト上のフォームを通じて収集されます。",
+    "use_of_info": "情報の使用目的",
+    "use_of_info_text": "収集した情報は以下の目的で使用されます：",
+    "use_of_info_items": [
+      "Stripeカスタマーアカウントの作成",
+      "当社製品のStripeサブスクリプションの設定",
+      "アカウント管理とカスタマーサポートの提供"
+    ],
+    "info_storage": "情報の保管",
+    "info_storage_text": "お客様の情報は以下の場所で安全に保管されます：",
+    "info_storage_items": [
+      "Stripeのサーバー（決済処理用）",
+      "当社のkintoneデータベース（顧客管理用）"
+    ],
+    "info_sharing": "情報の共有",
+    "info_sharing_text": "当社は、Stripeを通じた支払い処理とサブスクリプション管理に必要な場合を除き、お客様の個人情報を第三者と共有することはありません。",
+    "data_protection": "データ保護",
+    "data_protection_text": "当社は、お客様の個人情報を不正または違法な処理、偶発的な損失、破壊、または損害から保護するための適切な技術的および組織的対策を実施しています。",
+    "cookies_tracking": "クッキーとトラッキング",
+    "cookies_tracking_text": "当社のウェブサイトではクッキーや類似のトラッキング技術を使用していません。",
+    "accessing_updating": "情報へのアクセスと更新",
+    "accessing_updating_text": "お客様は以下の方法で個人情報にアクセス、更新、または削除することができます：",
+    "accessing_updating_items": [
+      "当社に直接連絡する",
+      "Stripeカスタマーポータルを使用して情報を管理する"
+    ],
+    "childrens_privacy": "子供のプライバシー",
+    "childrens_privacy_text": "当社のサービスは13歳未満の子供を対象としておらず、13歳未満の子供から意図的に個人情報を収集することはありません。",
+    "changes_to_policy": "プライバシーポリシーの変更",
+    "changes_to_policy_text": "当社は、実務の変更やその他の運用上、法律上、または規制上の理由により、必要に応じてこのプライバシーポリシーを更新する場合があります。",
+    "contact_us": "お問い合わせ",
+    "contact_us_text": "このプライバシーポリシーに関するご質問がある場合は、以下の連絡先までお問い合わせください：",
+    "contact_info": [
+      "admin@seanbase.com"
+    ]
+  },
+  "terms": {
+    "title": "利用規約",
+    "services": {
+      "title": "サービス",
+      "content": "当社はプラグインとアプリを販売しています。一部の製品、特にkintone関連のソフトウェアやプラグインは、動作にkintone環境が必要です。"
+    },
+    "account_security": {
+      "title": "アカウントとセキュリティ",
+      "content": "当社のプラグインについては、シークレットキーをメールでお送りします。このキーの機密性を保持し、他人と共有しないことはお客様の責任です。"
+    },
+    "intellectual_property": {
+      "title": "知的財産権",
+      "content": "当社が提供するすべてのソフトウェアと製品は独自のものであり、オープンソースではありません。すべての知的財産権は当社に帰属します。"
+    },
+    "payment_terms": {
+      "title": "支払い条件",
+      "content": "当社のすべての製品は月額サブスクリプション制で提供されています。"
+    },
+    "cancellation": {
+      "title": "キャンセルポリシー",
+      "content": "サブスクリプションはいつでもキャンセルできます。キャンセル後も、現在の請求期間が終了するまでサービスにアクセスできます。部分的なサブスクリプション期間に対する返金は行っていません。"
+    },
+    "termination": {
+      "title": "利用停止",
+      "content": "ソフトウェアを有害な方法で使用した場合、当社はサービスへのアクセスを終了する権利を有します。"
+    },
+    "account_termination": {
+      "title": "アカウント解約",
+      "content": "アカウントまたはサブスクリプションを解約するには、admin@seanbase.comにメールを送るか、<A class=\"underline hover:no-underline\" href=\"https://billing.stripe.com/p/login/00g9DZb7Dedw4lWaEE\" target=\"_blank\" rel=\"noopener noreferrer\">Stripeカスタマーポータル</A>を使用してください。"
+    },
+    "privacy": {
+      "title": "プライバシー",
+      "content": "お客様の情報の収集、使用、共有に関する情報については、<A class=\"underline hover:no-underline\" href=\"/privacy\">プライバシーポリシー</A>をご確認ください。"
+    },
+    "changes": {
+      "title": "規約の変更",
+      "content": "当社はいつでもこれらの規約を変更する権利を有します。重要な変更がある場合は、少なくとも30日前に通知するよう努めます。"
+    }
+  },
   "contact_form_title": "お問い合わせ",
   "contact_form_name": "お名前",
   "contact_form_company": "会社名",
