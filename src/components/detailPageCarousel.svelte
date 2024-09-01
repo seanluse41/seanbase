@@ -5,7 +5,7 @@
     export let images;
 </script>
 
-<Card size="xl">
+<Card size="xl" class="max-w-full">
     <Carousel
         imgClass="object-contain h-full w-fit rounded-sm"
         {images}
