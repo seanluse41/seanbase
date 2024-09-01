@@ -1,3 +1,5 @@
+// /src/requests/kintoneUpdateCustomer.js
+
 const customerAppID = import.meta.env.VITE_CUSTOMER_INFO_APPID
 const subdomain = import.meta.env.VITE_SUBDOMAIN
 const customerAppToken = import.meta.env.VITE_CUSTOMER_INFO_TOKEN

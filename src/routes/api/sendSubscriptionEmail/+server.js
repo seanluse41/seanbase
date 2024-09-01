@@ -3,7 +3,7 @@ import { json } from '@sveltejs/kit';
 
 function constructEmailContent(subscriptionData, downloadLink, latestVersion) {
     const {
-        subscriptionId,
+        secretKey,
         customer_name,
         customer_email,
         customer_phone,
@@ -16,7 +16,7 @@ function constructEmailContent(subscriptionData, downloadLink, latestVersion) {
 ${customer_name}様、ご登録ありがとうございます。
 
 サブスクリプション詳細:
-* 秘密キー: ${subscriptionId}
+* 秘密キー: ${secretKey}
 * メールアドレス: ${customer_email}
 * 電話番号: ${customer_phone}
 * 金額: ￥${amount}

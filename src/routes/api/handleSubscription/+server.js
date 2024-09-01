@@ -1,11 +1,12 @@
 import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
 const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
+import { addCustomerToKintone } from '../../../requests/kintoneCreateCustomer.js';
 import * as crypto from 'crypto';
 
 const stripe = new Stripe(key);
 
-function generateSecretKey() {
+async function generateSecretKey() {
     return crypto.randomBytes(8).toString('hex');
   }
 
@@ -28,7 +29,7 @@ async function sendEmail(fetch, subscriptionData) {
 }
 
 export async function POST({ request, fetch }) {
-    const secretKey = generateSecretKey();
+    const secretKey = await generateSecretKey();
 
     try {
         const { productId, paymentMethodId, name, email, phone, companyName, kintoneDomain } = await request.json();
@@ -37,6 +38,10 @@ export async function POST({ request, fetch }) {
         if (!product.default_price) {
             throw new Error('No default price found for this product');
         }
+
+        // create record db spot in advance.
+        const kintoneResponse = await addCustomerToKintone({});
+        const kintoneRecordID = kintoneResponse.id;
 
         // Create or retrieve a customer
         let customer = await stripe.customers.create({
@@ -51,7 +56,9 @@ export async function POST({ request, fetch }) {
             metadata: {
                 company_name: companyName,
                 kintone_domain: kintoneDomain,
-                secretKey: secretKey
+                secretKey: secretKey,
+                kintoneRecordID: kintoneRecordID
+
             }
         });
 
@@ -65,7 +72,9 @@ export async function POST({ request, fetch }) {
                 customer_email: email,
                 customer_phone: phone,
                 company_name: companyName,
-                kintone_domain: kintoneDomain
+                kintone_domain: kintoneDomain,
+                kintoneRecordID: kintoneRecordID,
+                secretKey: secretKey
             }
         });
 
@@ -73,7 +82,7 @@ export async function POST({ request, fetch }) {
             const price = await stripe.prices.retrieve(product.default_price);
 
             const subscriptionData = {
-                subscriptionId: subscription.items.data[0].id,
+                secretKey: secretKey,
                 customer_name: name,
                 customer_email: email,
                 customer_phone: phone,

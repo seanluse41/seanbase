@@ -1,10 +1,8 @@
-// src/routes/api/stripeWebhooks/+server.js
 import { json } from '@sveltejs/kit';
 import Stripe from 'stripe';
 const key = import.meta.env.VITE_TEST_STRIPE_SECRET_KEY
 const endpointSecret = import.meta.env.VITE_TEST_STRIPE_WEBHOOK_SECRET;
 import { fetchCustomerFromKintone } from '../../../requests/kintoneGetCustomer';
-import { addCustomerToKintone } from '../../../requests/kintoneCreateCustomer';
 import { updateKintoneRecord } from '../../../requests/kintoneUpdateCustomer';
 
 const stripe = new Stripe(key);
@@ -26,26 +24,48 @@ export async function POST({ request }) {
   switch (event.type) {
     case 'customer.created':
       const customer = event.data.object;
-      await addCustomerToKintone(customer);
+      const customerKintoneRecordID = customer.metadata.kintoneRecordID;
+      
+      if (customerKintoneRecordID) {
+        const updatedCustomerFields = {
+          companyName: { value: customer.metadata.company_name || '' },
+          email: { value: customer.email || '' },
+          contactName: { value: customer.name || '' },
+          stripeCustomerID: { value: customer.id || '' },
+          secretKey: { value: customer.metadata.secretKey || '' },
+          domainName: { value: customer.metadata.kintone_domain || '' },
+          companyContactNumber: { value: customer.phone || customer.metadata.customer_phone || '' }
+        };
+
+        try {
+          await updateKintoneRecord(customerKintoneRecordID, updatedCustomerFields);
+          console.log('Customer record updated in Kintone');
+        } catch (error) {
+          console.error('Error updating customer record in Kintone:', error);
+        }
+      } else {
+        console.error('Kintone Record ID not found in customer metadata');
+      }
       break;
 
     case 'customer.subscription.created':
       const subscription = event.data.object;
-      try {
-        // Fetch the customer record from Kintone
-        const customer = await fetchCustomerFromKintone(subscription.customer);
-        console.log(customer)
-        // Update the customer record with subscription details
-        const updatedRecord = {
+      const subscriptionKintoneRecordID = subscription.metadata.kintoneRecordID;
+
+      if (subscriptionKintoneRecordID) {
+        const updatedSubscriptionFields = {
           stripeSubscriptionID: { value: subscription.id },
           validToDate: { value: new Date(subscription.current_period_end * 1000).toISOString() }
         };
-        await updateKintoneRecord(customer.id, updatedRecord);
 
-        console.log('Customer record updated with subscription details');
-      } catch (error) {
-        console.error('Error handling subscription creation:', error);
-        // You might want to add some error handling logic here
+        try {
+          await updateKintoneRecord(subscriptionKintoneRecordID, updatedSubscriptionFields);
+          console.log('Customer record updated with subscription details');
+        } catch (error) {
+          console.error('Error updating customer record with subscription details:', error);
+        }
+      } else {
+        console.error('Kintone Record ID not found in subscription metadata');
       }
       break;
 

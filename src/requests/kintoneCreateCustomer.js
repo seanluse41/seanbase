@@ -1,27 +1,40 @@
+// /src/requests/kintoneCreateCustomer.js
+
 const customerAppID = import.meta.env.VITE_CUSTOMER_INFO_APPID
 const subdomain = import.meta.env.VITE_SUBDOMAIN
 const customerAppToken = import.meta.env.VITE_CUSTOMER_INFO_TOKEN
 
-export async function addCustomerToKintone(customer) {
-
+export async function addCustomerToKintone(customer = {}) {
+    // Create a base record with default values
     const record = {
-        companyName: { value: customer.metadata.company_name || '' },
-        email: { value: customer.email || '' },
+        companyName: { value: '' },
+        email: { value: '' },
         current: { value: 'Yes' },
-        contactName: { value: customer.name || '' },
-        stripeCustomerID: { value: customer.id },
-        secretKey: { value: customer.metadata.secretKey },
-        domainName: { value: customer.metadata.kintone_domain || '' },
+        contactName: { value: '' },
+        stripeCustomerID: { value: '' },
+        secretKey: { value: '' },
+        domainName: { value: '' },
         stripeSubscriptionID: { value: '' },
         validToDate: { value: '' },
         cancellationDate: { value: '' },
-        cancellationPageLink: { value: '' }
+        cancellationPageLink: { value: '' },
+        companyContactNumber: { value: '' }
     };
 
-    if (customer.phone) {
-        record.companyContactNumber = { value: customer.phone };
-    } else if (customer.metadata && customer.metadata.customer_phone) {
-        record.companyContactNumber = { value: customer.metadata.customer_phone };
+    // If customer object is not empty, populate the record with customer data
+    if (Object.keys(customer).length > 0) {
+        record.companyName.value = customer.metadata?.company_name || '';
+        record.email.value = customer.email || '';
+        record.contactName.value = customer.name || '';
+        record.stripeCustomerID.value = customer.id || '';
+        record.secretKey.value = customer.metadata?.secretKey || '';
+        record.domainName.value = customer.metadata?.kintone_domain || '';
+        
+        if (customer.phone) {
+            record.companyContactNumber.value = customer.phone;
+        } else if (customer.metadata?.customer_phone) {
+            record.companyContactNumber.value = customer.metadata.customer_phone;
+        }
     }
 
     const url = `https://${subdomain}.kintone.com/k/v1/record.json`;
