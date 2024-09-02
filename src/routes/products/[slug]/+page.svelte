@@ -1,12 +1,12 @@
 <script>
     import { P, Card } from "flowbite-svelte";
     import { onMount } from "svelte";
-    import DetailPageHeading from "../../components/detailPageHeading.svelte";
-    import Loader from "../../components/loader.svelte";
-    import DetailPageCarousel from "../../components/detailPageCarousel.svelte";
-    import PaymentStartCard from "../../components/paymentStartCard.svelte";
-    import RelatedBlogPosts from "../../components/detailPageRelatedBlog.svelte"
-    import DetailPageRelatedInfo from "../../components/detailPageRelatedInfo.svelte";
+    import DetailPageHeading from "../../../components/detailPageHeading.svelte";
+    import Loader from "../../../components/loader.svelte";
+    import DetailPageCarousel from "../../../components/detailPageCarousel.svelte";
+    import PaymentStartCard from "../../../components/paymentStartCard.svelte";
+    import RelatedBlogPosts from "../../../components/detailPageRelatedBlog.svelte"
+    import DetailPageRelatedInfo from "../../../components/detailPageRelatedInfo.svelte";
 
     export let data;
     let { project } = data;

@@ -51,20 +51,17 @@
       <NavHamburger onClick={toggleHamburgerMenu} />
     </div>
     <NavUl hidden={hamburgerMenuHidden}>
-      <NavLi class="text-stone-700 sm:text-white" href="/blog"
-        >{$_("nav.blog")}</NavLi
+      <NavLi class="text-stone-700 sm:text-white" href="/about"
+        >{$_("nav.about")}</NavLi
       >
-      <NavLi class="text-stone-700 sm:text-white" href="/kintone"
-        >{$_("nav.kintone")}</NavLi
-      >
-      <NavLi class="text-stone-700 sm:text-white" href="/websites"
-        >{$_("nav.websites")}</NavLi
-      >
-      <NavLi class="text-stone-700 sm:text-white" href="/gamedev"
-        >{$_("nav.gamedev")}</NavLi
+      <NavLi class="text-stone-700 sm:text-white" href="/products"
+        >{$_("nav.products")}</NavLi
       >
       <NavLi class="text-stone-700 sm:text-white" href="/hire"
         >{$_("nav.hire")}</NavLi
+      >
+      <NavLi class="text-stone-700 sm:text-white" href="/blog"
+        >{$_("nav.blog")}</NavLi
       >
       <NavLi class="cursor-pointer text-stone-700 sm:text-white">
         {$_("nav.legal")}<ChevronDownOutline
@@ -72,9 +69,15 @@
         />
       </NavLi>
       <Dropdown class="w-44 z-20">
-        <DropdownItem class="text-stone-700" href="/terms">{$_("nav.terms")}</DropdownItem>
-        <DropdownItem class="text-stone-700" href="/privacy">{$_("nav.privacy")}</DropdownItem>
-        <DropdownItem class="text-stone-700" href="/commerce-disclosure">{$_("nav.commerceDisclosure")}</DropdownItem>
+        <DropdownItem class="text-stone-700" href="/terms"
+          >{$_("nav.terms")}</DropdownItem
+        >
+        <DropdownItem class="text-stone-700" href="/privacy"
+          >{$_("nav.privacy")}</DropdownItem
+        >
+        <DropdownItem class="text-stone-700" href="/commerce-disclosure"
+          >{$_("nav.commerceDisclosure")}</DropdownItem
+        >
       </Dropdown>
     </NavUl>
   </Navbar>

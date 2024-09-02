@@ -8,7 +8,7 @@
 </script>
 
 <div class="space-y-4 mb-4 mr-8 hover:scale-105 transition ease-in-out duration-150">
-    <Card class="!p-0 h-[350px] w-80 flex flex-col" href={`/${link}`}>
+    <Card class="!p-0 h-[350px] w-80 flex flex-col" href={`/products/${link}`}>
       {#if imageURL}
         <div class="imageFrame h-48">
           <img class="p-0 rounded-t-lg h-full w-full object-cover" src={imageURL} alt={title} />          
