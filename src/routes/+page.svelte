@@ -5,7 +5,7 @@
     import ProjectCard from "../components/projectCard.svelte";
     import Loader from "../components/loader.svelte";
     import { fly } from "svelte/transition";
-    import { getAllProjects } from '../requests/kintoneProjectRequests' 
+    import { getAllProjects } from "../requests/kintoneProjectRequests";
 
     let cardDelay = 100; // Delay between each card in milliseconds
     let projectsPromise = getAllProjects(fetch);
@@ -16,9 +16,8 @@
         tag="h1"
         class="mt-8 mb-10 text-stone-700"
         customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl"
-        >{$_("main_name")}</Heading
+        >SEANCO</Heading
     >
-    <P class="mb-6 text-lg lg:text-xl text-stone-700">{$_("main_subtitle")}</P>
     {#await projectsPromise}
         <Loader />
     {:then projects}

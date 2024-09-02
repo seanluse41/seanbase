@@ -1,35 +1,29 @@
 <script>
-    import ProjectCard from "../../components/projectCard.svelte";
-    import Loader from "../../components/loader.svelte";
-    import { fly } from "svelte/transition";
-    import { Heading, P, Hr, Span, Card, Tabs, TabItem } from "flowbite-svelte";
+    import { Heading, P, Hr, Span, Card, Img } from "flowbite-svelte";
     import { _ } from "svelte-i18n";
-
+    import powerup from "../../lib/powerUp.png";
     export let data;
-    let cardDelay = 100; // Delay between each card in milliseconds
-    let activeTabValue = 0; // To keep track of the active tab
 </script>
 
-<div class="flex flex-col lg:flex-row mt-4 pb-8">
-    <!-- Combined card for mobile, split for desktop -->
-    <Card class="w-full lg:w-3/5 mt-8 mb-8" size="xl">
-        <div class="p-4 flex flex-col h-full overflow-hidden">
-            <Heading tag="h1" class="mb-4"
-                >{$_("projects.kintone.title")}<Span
-                    highlight
-                    highlightClass="text-yellow-300"
-                    >{$_("projects.kintone.titleHighlight")}</Span
-                >.</Heading
-            >
-            <Hr classHr="w-48 h-1 mx-auto my-4 rounded md:my-10" />
+<Card size="xl" class="mt-8 p-8 self-center">
+    <div class="flex flex-col md:flex-row justify-evenly items-center mb-8">
+        <div class="flex flex-col mb-4 md:mb-0 order-1 md:order-none">
+            <Heading tag="h1" class=" lg:mb-4 mt-4 sm:mb-0">
+                {$_("projects.kintone.title")}
+                <Span highlight highlightClass="text-yellow-300">
+                    {$_("projects.kintone.titleHighlight")}
+                </Span>
+                {@html $_("projects.kintone.titleEnd")}
+            </Heading>
             <P class="mb-4">
                 {$_("projects.kintone.introduction")}
             </P>
         </div>
-    </Card>
-
-    <!-- Desktop view remains unchanged -->
-    <div class="hidden lg:block lg:w-2/5 h-screen overflow-y-auto pl-4">
-
+        <Img
+            alt="notion style image of plugins"
+            class="rounded-lg sm:w-60 md:w-72 md:max-w-lg order-2 md:order-none"
+            src={powerup}
+        />
     </div>
-</div>
+    <Hr classHr="w-48 h-1 mx-auto my-4 rounded md:my-10" />
+</Card>

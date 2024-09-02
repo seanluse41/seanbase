@@ -13,9 +13,11 @@
     "commerceDisclosure": "商取引開示"
   },
   "about": {
-    "name": "Sean Luse",
-    "intro": "kintoneをパワーアップする",
-    "intro_end": "を開発しています。"
+    "intro": "現役Cybozu社員が個人開発をしてみた",
+    "name": "<br>ルース・ショーン",
+    "intro_end": "です。",
+    "subtitle": "東京在住のkintone・JS開発者。10年以上日本に住んでおり、kintone利用者のあるある悩みを有料kintoneプラグインで解決していきたいです。",
+    "ctaButton": "早速kintoneプラグインを確認する"
   },
 "timeline": {
     "1": "ウィスコンシン大学ミルウォーキー校卒業",

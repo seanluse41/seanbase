@@ -13,9 +13,11 @@
     "commerceDisclosure": "Commerce Disclosure"
   },
   "about": {
+    "intro": "My name is <br>",
     "name": "Sean Luse",
-    "intro": "Taking Kintone to the Limit in your organization with ",
-    "intro_end": "."
+    "intro_end": ". <br>A Cybozu employee creating Kintone Plugins.",
+    "subtitle": "Developer in Tokyo, working on Web Development, Game Development, and Kintone Customizations. Click on a project, read my dumb blog... the possibilities are endless!",
+    "ctaButton": "Check out the Kintone Plugins"
   },
   "timeline": {
     "1": "Graduate University of Wisconsin - Milwaukee",
@@ -45,12 +47,11 @@
     "linkBURAYAMA": "Burayama Travel Page",
     "linkCYBOZU": "Cybozu Homepage"
   },
-  "main_name": "Sean Luse",
-  "main_subtitle": "Developer in Tokyo, working on Web Development, Game Development, and Kintone Customizations. Click on a project, read my dumb blog... the possibilities are endless!",
   "projects": {
     "kintone": {
       "title": "Power up your organization with ",
       "titleHighlight": "Kintone Plugins",
+      "titleEnd": ".",
       "introduction": "Using Kintone development best practices to solve your organization's pain points with monthly subscription based Kintone plugins.",
       "explore": "Explore my Kintone projects..."
     },
