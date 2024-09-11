@@ -71,7 +71,7 @@
             {#if images.length > 0}
                 <DetailPageCarousel {images} />
             {/if}
-            <Card size="lg" class="mt-8 max-w-max lg:p-24 lg:pt-8">
+            <Card size="xl" class="mt-8 max-w-none lg:p-24 lg:pt-8">
                 <DetailPageHeading
                     title={project.title.value}
                     githubLink={project.github.value}

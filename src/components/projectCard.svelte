@@ -11,7 +11,7 @@
     <Card class="!p-0 h-[350px] w-80 flex flex-col" href={`/products/${link}`}>
       {#if imageURL}
         <div class="imageFrame h-48">
-          <img class="p-0 rounded-t-lg h-full w-full object-cover" src={imageURL} alt={title} />          
+          <img class="p-0 rounded-t-lg h-full w-full object-contain" src={imageURL} alt={title} />          
         </div>
       {:else}
         <div class="h-48">

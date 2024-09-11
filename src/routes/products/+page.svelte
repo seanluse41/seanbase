@@ -34,22 +34,24 @@
     {#await projectsPromise}
         <Loader />
     {:then projects}
-        {#each projects as project, i}
-            <div
-                in:fly|global={{
-                    y: 200,
-                    duration: 2000,
-                    delay: i * cardDelay,
-                }}
-            >
-                <ProjectCard
-                    title={project.title.value}
-                    description={project.description.value}
-                    type={project.type.value}
-                    link={project.link.value}
-                    imageURL={project.imageURL}
-                />
-            </div>
-        {/each}
+        <div class="flex flex-row">
+            {#each projects as project, i}
+                <div
+                    in:fly|global={{
+                        y: 200,
+                        duration: 2000,
+                        delay: i * cardDelay,
+                    }}
+                >
+                    <ProjectCard
+                        title={project.title.value}
+                        description={project.description.value}
+                        type={project.type.value}
+                        link={project.link.value}
+                        imageURL={project.imageURL}
+                    />
+                </div>
+            {/each}
+        </div>
     {/await}
 </Card>
