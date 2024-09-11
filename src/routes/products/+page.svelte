@@ -34,7 +34,7 @@
     {#await projectsPromise}
         <Loader />
     {:then projects}
-        <div class="flex flex-row">
+        <div class="flex flex-col items-center lg:flex-row">
             {#each projects as project, i}
                 <div
                     in:fly|global={{
@@ -49,6 +49,7 @@
                         type={project.type.value}
                         link={project.link.value}
                         imageURL={project.imageURL}
+                        targets={project.target}
                     />
                 </div>
             {/each}

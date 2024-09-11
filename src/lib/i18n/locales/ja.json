@@ -17,7 +17,7 @@
     "subheadingUS": "One Click Solutions for your",
     "subheadingUSEnd": "setup.",
     "subheading": "のワンクリックソリューション。",
-    "subheading2": "設定したら終わり -- Kintoneの専門家が開発したスマートなソリューションでがあなたの組織の課題点を解決します。仕事を効率化するプラグインとアプリ。",
+    "subheading2": "設定して終わり -- Kintoneの専門家が開発したスマートなソリューションでがあなたの組織の課題点を解決します。仕事を効率化するプラグインとアプリ。",
     "aboutButton": "Seancoについて"
   },
   "about": {
@@ -27,6 +27,16 @@
     "subtitle": "東京在住のkintone・JS開発者。10年以上日本に住んでおり、kintone利用者のあるある悩みを有料kintoneプラグインで解決していきたいです。",
     "ctaButton": "早速kintoneプラグインを確認する",
     "leadToHire": "相談ページへ"
+  },
+  "tooltip": {
+    "ep": "円滑なkintone利用に役立つ、ユーザーとアプリ数が多い組織向けです。",
+    "smb": "社員１人１人のアウトプットを最大限にしたいSMB向けです。",
+    "int": "海外メンバーや事業が多い組織向けです。",
+    "dev": "エンジニアを喜ばせる便利なソフトです。",
+    "enterprise": "エンタープライズ向け",
+    "smallBusiness": "SMB向け",
+    "international": "インターナショナル組織向け",
+    "developer": "開発者向け"
   },
   "timeline": {
     "1": "ウィスコンシン大学ミルウォーキー校卒業",

@@ -20,6 +20,16 @@
     "subheading2": "Set it and forget it -- your oraganization's pain points solved with smart, one-off solutions developed by a Kintone professional. Plugins and Apps to just help get work done.",
     "aboutButton": "About Seanco"
   },
+  "tooltip": {
+    "ep": "Useful for organizations with large numbers of users and apps, who need to make internal processes smoother",
+    "smb": "Great for letting a few Kintone users multiply their output.",
+    "int": "For international organizations without borders.",
+    "dev": "Helps every developer become a 10x engineer.",
+    "enterprise": "Enterprise",
+    "smallBusiness": "Small Business",
+    "international": "International",
+    "developer": "Developer"
+  },
   "about": {
     "intro": "My name is <br>",
     "name": "Sean Luse",
