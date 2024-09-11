@@ -12,12 +12,21 @@
     "privacy": "Privacy Policy",
     "commerceDisclosure": "Commerce Disclosure"
   },
+  "top": {
+    "subheadingIntro": "Kintone",
+    "subheading": "One Click Solutions for your Kintone setup.",
+    "subheadingUS": "One Click Solutions for your",
+    "subheadingUSEnd": "setup.",
+    "subheading2": "Set it and forget it -- your oraganization's pain points solved with smart, one-off solutions developed by a Kintone professional. Plugins and Apps to just help get work done.",
+    "aboutButton": "About Seanco"
+  },
   "about": {
     "intro": "My name is <br>",
     "name": "Sean Luse",
     "intro_end": ". <br>A Cybozu employee creating Kintone Plugins.",
     "subtitle": "Developer in Tokyo, working on Web Development, Game Development, and Kintone Customizations. Click on a project, read my dumb blog... the possibilities are endless!",
-    "ctaButton": "Check out the Kintone Plugins"
+    "ctaButton": "View Kintone Solutions",
+    "leadToHire": "Send us a message"
   },
   "timeline": {
     "1": "Graduate University of Wisconsin - Milwaukee",

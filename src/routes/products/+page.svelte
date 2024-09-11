@@ -1,8 +1,13 @@
 <script>
     import { Heading, P, Hr, Span, Card, Img } from "flowbite-svelte";
     import { _ } from "svelte-i18n";
+    import { fly } from "svelte/transition";
     import powerup from "../../lib/powerUp.png";
-    export let data;
+    import { getProjectsByType } from "../../requests/kintoneProjectRequests";
+    import Loader from "../../components/loader.svelte";
+    import ProjectCard from "../../components/projectCard.svelte";
+    let cardDelay = 100; // Delay between each card in milliseconds
+    let projectsPromise = getProjectsByType("kintone", fetch);
 </script>
 
 <Card size="xl" class="mt-8 p-8 self-center">
@@ -26,4 +31,25 @@
         />
     </div>
     <Hr classHr="w-48 h-1 mx-auto my-4 rounded md:my-10" />
+    {#await projectsPromise}
+        <Loader />
+    {:then projects}
+        {#each projects as project, i}
+            <div
+                in:fly|global={{
+                    y: 200,
+                    duration: 2000,
+                    delay: i * cardDelay,
+                }}
+            >
+                <ProjectCard
+                    title={project.title.value}
+                    description={project.description.value}
+                    type={project.type.value}
+                    link={project.link.value}
+                    imageURL={project.imageURL}
+                />
+            </div>
+        {/each}
+    {/await}
 </Card>

@@ -1,6 +1,6 @@
 <script>
     import { Card, Img, Heading, P, Hr, Span, Button } from "flowbite-svelte";
-    import { ArrowRightOutline } from "flowbite-svelte-icons";
+    import { ArrowRightOutline, MailBoxOutline } from "flowbite-svelte-icons";
     import me from "../../lib/me.png";
     import meirl from "../../lib/meirl.JPG"
     import { _ } from "svelte-i18n";
@@ -32,4 +32,5 @@
         <Timeline />
     </div>
     <Hr classHr="w-48 h-1 mx-auto my-4 rounded md:my-10" />
+    <Button size="lg" class="w-1/2 self-center m-8" href="/hire">{$_("about.leadToHire")}<MailBoxOutline class="w-5 h-5 ms-2" /></Button>
 </Card>

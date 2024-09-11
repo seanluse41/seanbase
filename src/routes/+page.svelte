@@ -1,44 +1,82 @@
-<!-- /src/routes/+page.svelte -->
-<script lang="js">
-    import { _ } from "svelte-i18n";
-    import { Heading, P } from "flowbite-svelte";
-    import ProjectCard from "../components/projectCard.svelte";
-    import Loader from "../components/loader.svelte";
+<script>
+    import { onMount } from "svelte";
     import { fly } from "svelte/transition";
-    import { getAllProjects } from "../requests/kintoneProjectRequests";
+    import { quintOut } from "svelte/easing";
+    import { Heading, P, Card, Button, Span } from "flowbite-svelte";
+    import { _, locale } from "svelte-i18n";
 
-    let cardDelay = 100; // Delay between each card in milliseconds
-    let projectsPromise = getAllProjects(fetch);
+    let visible = false;
+    let cardDelay = 250;
+
+    onMount(() => {
+        visible = true;
+    });
 </script>
 
-<div>
-    <Heading
-        tag="h1"
-        class="mt-8 mb-10 text-stone-700"
-        customSize="text-4xl font-extrabold  md:text-5xl lg:text-6xl"
-        >SEANCO</Heading
-    >
-    {#await projectsPromise}
-        <Loader />
-    {:then projects}
-        <div class="flex flex-row flex-wrap">
-            {#each projects as project, i}
-                <div
-                    in:fly|global={{
-                        y: 200,
-                        duration: 2000,
-                        delay: i * cardDelay,
-                    }}
+<main>
+    <section class="hero text-white py-24 px-4">
+        <div class="container mx-auto">
+            <Heading tag="h1" class="m-0 p-0 text-slate-700">SEANCO</Heading>
+            {#if $locale === "en-US" || $locale === "en"}
+                <Heading tag="h2" class="mb-4 text-slate-700">
+                    {$_("top.subheadingUS")}
+                    <Span highlight highlightClass="text-yellow-300">
+                        {$_("top.subheadingIntro")}
+                    </Span>
+                    {$_("top.subheadingUSEnd")}
+                </Heading>
+            {:else}
+                <Heading tag="h2" class="mb-4 text-slate-700">
+                    <Span highlight highlightClass="text-yellow-300">
+                        {$_("top.subheadingIntro")}
+                    </Span>
+                    {$_("top.subheading")}
+                </Heading>
+            {/if}
+            <P size="xl" class="mb-8 text-slate-700">
+                {$_("top.subheading2")}
+            </P>
+            <div class="flex gap-4">
+                <Button size="xl" href="/products"
+                    >{$_("about.ctaButton")}</Button
                 >
-                    <ProjectCard
-                        title={project.title.value}
-                        description={project.description.value}
-                        type={project.type.value}
-                        link={project.link.value}
-                        imageURL={project.imageURL}
-                    />
-                </div>
-            {/each}
+                <Button size="xl" href="/about" color="alternative"
+                    >{$_("top.aboutButton")}</Button
+                >
+            </div>
         </div>
-    {/await}
-</div>
+    </section>
+
+    <section class="features py-16 px-4">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                {#if visible}
+                    {#each Array(5) as _, i}
+                        <div
+                            in:fly={{
+                                delay: i * cardDelay,
+                                duration: 3000,
+                                y: 50,
+                                opacity: 0.5,
+                                easing: quintOut,
+                            }}
+                        >
+                            <Card>
+                                <Heading
+                                    tag="h3"
+                                    class="mb-4"
+                                    customSize="text-2xl font-bold"
+                                    >Feature {i + 1}</Heading
+                                >
+                                <P>
+                                    Plug and play, instant simple solutions for
+                                    your organization's Kintone environment.
+                                </P>
+                            </Card>
+                        </div>
+                    {/each}
+                {/if}
+            </div>
+        </div>
+    </section>
+</main>

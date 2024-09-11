@@ -12,14 +12,23 @@
     "privacy": "プライバシーポリシー",
     "commerceDisclosure": "商取引開示"
   },
+  "top": {
+    "subheadingIntro": "kintone",
+    "subheadingUS": "One Click Solutions for your",
+    "subheadingUSEnd": "setup.",
+    "subheading": "のワンクリックソリューション。",
+    "subheading2": "設定したら終わり -- Kintoneの専門家が開発したスマートなソリューションでがあなたの組織の課題点を解決します。仕事を効率化するプラグインとアプリ。",
+    "aboutButton": "Seancoについて"
+  },
   "about": {
     "intro": "現役Cybozu社員が個人開発をしてみた",
     "name": "<br>ルース・ショーン",
     "intro_end": "です。",
     "subtitle": "東京在住のkintone・JS開発者。10年以上日本に住んでおり、kintone利用者のあるある悩みを有料kintoneプラグインで解決していきたいです。",
-    "ctaButton": "早速kintoneプラグインを確認する"
+    "ctaButton": "早速kintoneプラグインを確認する",
+    "leadToHire": "相談ページへ"
   },
-"timeline": {
+  "timeline": {
     "1": "ウィスコンシン大学ミルウォーキー校卒業",
     "1_date": "2013年12月",
     "1_text": "千葉大学に留学し、将来のキャリアパスとして日本を選択。",
