@@ -12,7 +12,7 @@
 <div
   class="space-y-4 mb-4 lg:mr-8 transition ease-in-out duration-150"
 >
-  <Card class="!pt-2 h-[370px] w-80 flex flex-col" href={`/products/${link}`}>
+  <Card class="!pt-2 h-[370px] w-80 flex flex-col shadow-xl" href={`/products/${link}`}>
     <div class="flex justify-end mb-1">
       {#each targets.value as target}
         <TargetPicker type={target} />

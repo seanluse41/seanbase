@@ -30,6 +30,28 @@
     "international": "International",
     "developer": "Developer"
   },
+  "principles": {
+    "1": {
+      "title": "Simple product that's easy to start with",
+      "text": "Elegant UX, usable by anyone in your organization effortlessly, and easily."
+    },
+    "2": {
+      "title": "Comprehensive support",
+      "text": "Thorough, free consultation support before and after starting. We don't recommend solutions that aren't suitable for your company."
+    },
+    "3": {
+      "title": "Improving common Kintone issues",
+      "text": "As a long-time Kintone developer, I develop with users' common concerns in mind."
+    },
+    "4": {
+      "title": "Pre-implementation security checks available",
+      "text": "Kintone environments often handle personal information. We share exactly what data is transmitted and when."
+    },
+    "5": {
+      "title": "Monthly payments ideal for small starts",
+      "text": "Solutions usable from 500 yen, ideal for small starts. No cancellation fees or anything else like that."
+    }
+  },
   "about": {
     "intro": "My name is <br>",
     "name": "Sean Luse",

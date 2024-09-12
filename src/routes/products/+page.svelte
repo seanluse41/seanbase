@@ -13,7 +13,7 @@
 <Card size="xl" class="mt-8 p-8 self-center">
     <div class="flex flex-col md:flex-row justify-evenly items-center mb-8">
         <div class="flex flex-col mb-4 md:mb-0 order-1 md:order-none">
-            <Heading tag="h1" class=" lg:mb-4 mt-4 sm:mb-0">
+            <Heading tag="h1" class=" lg:mb-4 mt-4 sm:mb-0 text-slate-700">
                 {$_("projects.kintone.title")}
                 <Span highlight highlightClass="text-yellow-300">
                     {$_("projects.kintone.titleHighlight")}

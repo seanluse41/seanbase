@@ -25,5 +25,5 @@
 </script>
 
 <span class="flex items-center"
-    ><Indicator size="sm" {color} class="me-1.5 ml-1 mr-1" /><div class="text-[12px]">{$_(`tooltip.${text}`)}</div></span
+    ><Indicator size="xs" {color} class="ml-1 mr-1" /><div class="text-[12px] p-1">{$_(`tooltip.${text}`)}</div></span
 ><Tooltip>{$_(`tooltip.${type}`)}</Tooltip>
