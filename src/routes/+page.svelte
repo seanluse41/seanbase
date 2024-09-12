@@ -24,27 +24,27 @@
         {
             title: $_("principles.1.title"),
             text: $_("principles.1.text"),
-            icon: BadgeCheckOutline
+            icon: BadgeCheckOutline,
         },
         {
             title: $_("principles.2.title"),
             text: $_("principles.2.text"),
-            icon: UserHeadsetOutline
+            icon: UserHeadsetOutline,
         },
         {
             title: $_("principles.3.title"),
             text: $_("principles.3.text"),
-            icon: LightbulbOutline
+            icon: LightbulbOutline,
         },
         {
             title: $_("principles.4.title"),
             text: $_("principles.4.text"),
-            icon: LockOutline
+            icon: LockOutline,
         },
         {
             title: $_("principles.5.title"),
             text: $_("principles.5.text"),
-            icon: WalletOutline
+            icon: WalletOutline,
         },
     ];
 
@@ -92,7 +92,7 @@
     <section class="features px-4 mt-8 mb-8">
         <div class="container mx-auto">
             <Heading class="text-slate-700 my-8"
-                >5 Development Principles</Heading
+                >{$_("principles.title")}</Heading
             >
             <div class="grid md:grid-cols-3 gap-8">
                 {#if visible}
@@ -107,7 +107,7 @@
                                     easing: quintOut,
                                 }}
                             >
-                                <Card class="lg:h-56">
+                                <Card class="lg:h-56 sm:pt-3">
                                     <div
                                         class="flex items-center justify-between mb-4"
                                     >
@@ -138,17 +138,14 @@
         <Card size="xl">
             <div class="flex flex-col lg:flex-row">
                 <div class="flex flex-col">
-                    <P class="mt-8 mr-8">
-                        Occaecat dolore nisi dolor nulla in elit laboris non in.
-                        Non mollit aute do aute consectetur laborum. Ea
-                        voluptate nisi occaecat eu enim velit deserunt consequat
-                        eiusmod nostrud esse. Incididunt deserunt aliqua ut non
-                        ad laboris ad laborum aliqua. Ea ex exercitation
-                        proident aute minim mollit. Qui ipsum tempor quis veniam
-                        deserunt consequat magna.
-                    </P>
+                    <Heading
+                        tag="h1"
+                        class="text-slate-700"
+                        >{$_("top.consultHeading")}</Heading
+                    >
+                    <P class="mt-8 mr-8">{$_("top.consultText")}</P>
                     <Button href="/hire" class="mt-8 w-2/3 self-center"
-                        >Let's Talk</Button
+                        >{$_("top.consultButton")}</Button
                     >
                 </div>
                 <Img src={creation} size="max-w-xs" />

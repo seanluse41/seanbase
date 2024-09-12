@@ -18,7 +18,10 @@
     "subheadingUS": "One Click Solutions for your",
     "subheadingUSEnd": "setup.",
     "subheading2": "Set it and forget it -- your oraganization's pain points solved with smart, one-off solutions developed by a Kintone professional. Plugins and Apps to just help get work done.",
-    "aboutButton": "About Seanco"
+    "aboutButton": "About Seanco",
+    "consultHeading": "Custom Solutions for your Business Needs",
+    "consultText": "In addition to our pre-made drop in solutions, we consult and develop custom made integrations for your organization. Developed by a Kintone professional, myself, who values ownership of ideas, smart solutions, and no-frills no 'gotcha' products.",
+    "consultButton": "Let's Talk"
   },
   "tooltip": {
     "ep": "Useful for organizations with large numbers of users and apps, who need to make internal processes smoother",
@@ -31,6 +34,7 @@
     "developer": "Developer"
   },
   "principles": {
+    "title": "5 Development Principles",
     "1": {
       "title": "Simple product that's easy to start with",
       "text": "Elegant UX, usable by anyone in your organization effortlessly, and easily."
