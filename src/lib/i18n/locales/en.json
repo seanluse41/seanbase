@@ -64,6 +64,9 @@
     "ctaButton": "View Kintone Solutions",
     "leadToHire": "Send us a message"
   },
+  "hire": {
+    "title": "Send me a Message"
+  },
   "timeline": {
     "1": "Graduate University of Wisconsin - Milwaukee",
     "1_date": "December 2013",

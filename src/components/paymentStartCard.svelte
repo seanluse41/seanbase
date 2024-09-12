@@ -3,7 +3,7 @@
     import { Card, Button } from "flowbite-svelte";
     import { CheckCircleSolid } from "flowbite-svelte-icons";
     import { _ } from "svelte-i18n";
-    import ContactForm from "./contactForm.svelte";
+    import ContactFormModal from "./contactFormModal.svelte";
     import StripeModal from "./stripeModal.svelte";
 
     let stripeModalOpen = false;
@@ -107,7 +107,7 @@
     </div>
 </Card>
 
-<ContactForm bind:open={contactFormOpen} />
+<ContactFormModal bind:open={contactFormOpen} />
 <StripeModal
     bind:isOpen={stripeModalOpen}
     onClose={() => (stripeModalOpen = false)}
