@@ -17,14 +17,14 @@
     "subheadingUS": "One Click Solutions for your",
     "subheadingUSEnd": "setup.",
     "subheading": "の爆速改善。",
-    "subheading2": "設定して終わり -- Kintoneの専門家が開発したスマートなソリューションでがあなたの組織の課題点を解決します。仕事を効率化するプラグインとアプリがせっかくのkintone環境を最大限まで活用できるようになる。",
+    "subheading2": "設定して終わり -- kintoneプロが開発したスマートなソリューションでがあなたの組織の課題点を解決します。仕事を効率化するプラグインとアプリがせっかくのkintone環境を最大限まで活用できるようになる。",
     "aboutButton": "Seancoについて",
     "consultHeading": "ニーズに合わせたカスタムソリューションも",
     "consultText": "既製製品に加えて、お客様の組織に合わせたカスタムソリューションの相談と開発も行っています。オーナーシップを重視したスマートなソリューション、そして隠れ条件のないサブスクリプションを提供しております。",
     "consultButton": "相談してみよう"
   },
   "about": {
-    "intro": "現役Cybozu社員が個人開発をしてみた",
+    "intro": "個人開発をしてみた",
     "name": "<br>ルース・ショーン",
     "intro_end": "です。",
     "subtitle": "東京在住のkintone・JS開発者。10年以上日本に住んでおり、kintone利用者のあるある悩みを有料kintoneプラグインで解決していきたいです。",
@@ -64,6 +64,9 @@
       "text": "500円から使えるソリューション、スモールスタートに最適です。解約費用は一切なし"
     }
   },
+  "hire": {
+    "title": "まずは相談してみよう！"
+  },
   "timeline": {
     "1": "ウィスコンシン大学ミルウォーキー校卒業",
     "1_date": "2013年12月",
@@ -83,14 +86,14 @@
     "6": "サイボウズ株式会社で現在のデベロッパーアドボケイトのポジションに就く",
     "6_date": "2021年11月",
     "6_text": "イベントの開催、開発者向けドキュメントの管理、kintoneを使用した面白いネタを開発して、日本国内外でkintoneを促進する仕事をする。",
-    "7": "サイボウズでの仕事を続けながら、Seancoを設立し、個人のkintone関連ソフトウェアを販売するためのプラットフォームを開発。（本サイト）",
+    "7": "サイボウズでの仕事を続けながら、Seancoを設立し、サイボウズでの仕事と別で個人開発のkintoneソリューションを販売するためのプラットフォームを開発。（本サイト）",
     "7_date": "2024年8月",
-    "7_text": "サイボウズでの仕事、家族、そして夜の個人開発のバランスを取りながら、kintoneを利用する顧客のUXを向上させるソフトウェアを開発しています。",
+    "7_text": "サイボウズでの仕事、家族、そして仕事と別で行っている個人開発のバランスを取りながら、kintoneを利用者喜ばせるソフトウェアを開発しています。",
     "linkJET": "JET公式サイト",
     "linkCLAIR": "CLAIR公式サイト",
     "linkREA": "REA 公式サイト",
     "linkBURAYAMA": "ぶらやま 公式サイト",
-    "linkCYBOZU": "Cybozu 公式サイト"
+    "linkCYBOZU": "公式サイト"
   },
   "main_name": "ルース ショーン",
   "main_subtitle": "東京在住Web・ゲーム・Kintone開発者。10年以上日本に住んでおり、現在はサイボウズ株式会社で勤務しています。個人として開発したものを見たり、ブログをみ読んでくれたり…楽しいな。　Kintoneプラグインはぜひともお試しください。",
@@ -243,16 +246,25 @@
     }
   },
   "contact_form_title": "お問い合わせ",
+  "contact_form_website": "ウェブサイト",
   "contact_form_name": "お名前",
   "contact_form_company": "会社名",
   "contact_form_email": "メールアドレス",
-  "contact_form_phone": "電話番号（任意）",
-  "contact_form_submit": "送信",
-  "contact_form_website": "ホームページ",
-  "contact_form_submitting": "送信中...",
-  "contact_form_thank_you": "お問い合わせありがとうございます",
-  "contact_form_error": "フォームの送信中にエラーが発生しました。もう一度お試しください。",
+  "contact_form_phone": "電話番号",
   "contact_form_inquiry": "お問い合わせ内容",
+  "contact_form_submitting": "送信中...",
+  "contact_form_submit": "メッセージを送信",
+  "contact_form_thank_you": "お問い合わせありがとうございます！",
+  "contact_form_error": "フォームの送信中にエラーが発生しました。もう一度お試しください。",
+  "select_template": "テンプレートを選択",
+  "template_kGuide": "kGuide",
+  "template_tenKen_Buddy": "tenKen Buddy",
+  "template_custom_integration": "カスタム連携",
+  "template_bug_report": "バグ / エラー報告",
+  "template_message_kGuide": "kGuideについてもっと詳しく知りたいです。",
+  "template_message_tenKen_Buddy": "tenKen Buddyについて情報が欲しいです。",
+  "template_message_custom_integration": "カスタム連携ソリューションを探しています。",
+  "template_message_bug_report": "バグまたはエラーを報告したいです。",
   "payment": {
     "title": "お客様情報",
     "name": "氏名",

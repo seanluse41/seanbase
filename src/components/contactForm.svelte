@@ -25,16 +25,18 @@
 
   let formStartTime;
   const dispatch = createEventDispatcher();
-  let selectedTemplate = "Select a Template";
+  let selectedTemplate = "";
   let dropdownOpen = false;
   let inquiryText = "";
 
-  const templateMessages = {
-    "kGuide": "I'm interested in learning more about kGuide.",
-    "tenKen Buddy": "I'd like information about tenKen Buddy.",
-    "Custom Integration": "I'm looking for a custom integration solution.",
-    "Bug / Error Report": "I'd like to report a bug or error.",
-  };
+  $: buttonText = selectedTemplate || $_("select_template");
+
+  $: templateMessages = {
+  "kGuide": $_("template_message_kGuide"),
+  "tenKen Buddy": $_("template_message_tenKen_Buddy"),
+  "Custom Integration": $_("template_message_custom_integration"),
+  "Bug / Error Report": $_("template_message_bug_report"),
+};
 
   onMount(() => {
     formStartTime = Date.now();
@@ -52,22 +54,18 @@
 
     const formData = new FormData(event.target);
 
-    // Check honeypot field
     if (formData.get("website")) {
       submitting = false;
       return;
     }
 
-    // Check submission time
     const submissionTime = Date.now();
     const timeElapsed = submissionTime - formStartTime;
     if (timeElapsed < 3000) {
-      // Less than 3 seconds
       submitting = false;
       return;
     }
 
-    // Add submission time to form data
     formData.append("submissionTime", submissionTime.toString());
 
     try {
@@ -101,16 +99,16 @@
     {#if isModal == false}
       <div class="flex flex-row justify-evenly">
         <Button on:click={() => dropdownOpen = !dropdownOpen}>
-          {selectedTemplate}
+          {buttonText}
           <ChevronDownOutline size="xl" class="ml-2 text-white" />
         </Button>
         <Dropdown bind:open={dropdownOpen}>
-          <DropdownItem on:click={() => handleTemplateSelection("kGuide")}>kGuide</DropdownItem>
-          <DropdownItem on:click={() => handleTemplateSelection("tenKen Buddy")}>tenKen Buddy</DropdownItem>
+          <DropdownItem on:click={() => handleTemplateSelection("kGuide")}>{$_("template_kGuide")}</DropdownItem>
+          <DropdownItem on:click={() => handleTemplateSelection("tenKen Buddy")}>{$_("template_tenKen_Buddy")}</DropdownItem>
           <DropdownDivider />
-          <DropdownItem on:click={() => handleTemplateSelection("Custom Integration")}>Custom Integration</DropdownItem>
+          <DropdownItem on:click={() => handleTemplateSelection("Custom Integration")}>{$_("template_custom_integration")}</DropdownItem>
           <DropdownDivider />
-          <DropdownItem on:click={() => handleTemplateSelection("Bug / Error Report")}>Bug / Error Report</DropdownItem>
+          <DropdownItem on:click={() => handleTemplateSelection("Bug / Error Report")}>{$_("template_bug_report")}</DropdownItem>
         </Dropdown>
       </div>
     {/if}
@@ -118,7 +116,6 @@
       {$_("contact_form_title")}
     </h3>
 
-    <!-- Honeypot field -->
     <div class="hidden">
       <Label>
         <span>{$_("contact_form_website")}</span>
