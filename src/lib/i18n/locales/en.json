@@ -65,7 +65,8 @@
     "leadToHire": "Send us a message"
   },
   "hire": {
-    "title": "Send me a Message"
+    "title": "Talk to us",
+    "subtext": "Please feel free to contact us with any questions, or requests regarding our products. We provide security checks (what data is processed, sent where, and when by our products) for your organization upon request as well."
   },
   "timeline": {
     "1": "Graduate University of Wisconsin - Milwaukee",
