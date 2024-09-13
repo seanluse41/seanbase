@@ -47,10 +47,10 @@
                         title={project.title.value}
                         description={project.description.value}
                         descriptionJA={project.descriptionJA.value}
-                        type={project.type.value}
                         link={project.link.value}
                         imageURL={project.imageURL}
                         targets={project.target}
+                        forSale={project.sale.value}
                     />
                 </div>
             {/each}

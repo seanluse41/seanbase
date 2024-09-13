@@ -8,19 +8,24 @@
   export let link;
   export let imageURL;
   export let targets;
+  export let forSale;
 
   $: localizedDescription = $locale === 'ja' && descriptionJA ? descriptionJA : description;
+  $: isForSale = forSale && forSale.length > 0 && forSale[0] === 'True';
 </script>
 
-<div class="space-y-4 mb-4 lg:mr-8 transition ease-in-out duration-150">
-  <Card class="!pt-2 h-[370px] w-80 flex flex-col shadow-xl" href={`/products/${link}`}>
+<div class="space-y-4 mb-4 lg:mr-8 transition-all duration-150 ease-in-out relative">
+  <Card 
+    class="!pt-2 h-[370px] w-80 flex flex-col shadow-xl {isForSale ? '' : 'opacity-70 pointer-events-none'}" 
+    href={isForSale ? `/products/${link}` : null}
+  >
     <div class="flex justify-end mb-1">
       {#each targets.value as target}
         <TargetPicker type={target} />
       {/each}
     </div>
     {#if imageURL}
-      <div class="imageFrame h-48">
+      <div class="flex justify-center h-48">
         <img
           class="p-0 rounded-t-lg h-full w-full object-contain"
           src={imageURL}
@@ -41,11 +46,9 @@
       </P>
     </div>
   </Card>
+  {#if !isForSale}
+  <div class="absolute top-20 right-4 bg-red-500 text-white py-1 px-16 text-sm font-bold transform rotate-45 translate-x-8 -translate-y-4 shadow-md">
+    Coming Soon!
+  </div>
+  {/if}
 </div>
-
-<style>
-  .imageFrame {
-    display: flex;
-    justify-content: center;
-  }
-</style>
