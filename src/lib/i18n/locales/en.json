@@ -328,5 +328,29 @@
     "stripePortalTitle": "Manage Your Subscription",
     "stripePortalInfo": "You can manage your subscription, update your payment method, and view your billing history through our customer portal.",
     "accessStripePortal": "Access Customer Portal"
+  },
+  "pageTitle": {
+    "home": "Seanco - Custom Kintone Solutions and Plugins",
+    "about": "About Seanco - Kintone Development Expert",
+    "products": "Kintone Plugins and Products by Seanco",
+    "products.kguide": "kGuide - User Onboarding Plugin for Kintone",
+    "hire": "Hire Seanco for Custom Kintone Development",
+    "blog": "Seanco's Blog - Insights on Kintone Development",
+    "kintone": "Kintone Plugin Development Services - Seanco",
+    "privacy": "Seanco - Privacy Policy",
+    "terms": "Seanco - Terms and Conditions",
+    "commerce-disclosure": "Seanco - Commercial Disclosure"
+  },
+  "pageDescription": {
+    "home": "Seanco offers custom Kintone plugins and solutions to streamline your business processes. Explore our products and services for enhanced productivity.",
+    "about": "Learn about Sean Luse, a Kintone development expert with years of experience in creating efficient business solutions and custom plugins.",
+    "products": "Discover our range of Kintone plugins designed to boost productivity and simplify your workflow. Find the perfect solution for your business needs.",
+    "products.kguide": "kGuide: Streamline user onboarding in Kintone with interactive guides. Boost adoption rates and reduce training time with our intuitive plugin.",
+    "hire": "Looking for custom Kintone development? Hire Seanco for tailored solutions that meet your specific business requirements.",
+    "blog": "Stay updated with the latest trends in Kintone development, plugin creation, and business process optimization on Seanco's blog.",
+    "kintone": "Expert Kintone plugin development services to enhance your Kintone experience. Custom solutions for your unique business challenges.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms and Conditions",
+    "commerce-disclosure": "Commercial Disclosure"
   }
 }

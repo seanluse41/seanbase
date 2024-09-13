@@ -329,5 +329,27 @@
     "stripePortalTitle": "サブスクリプション管理",
     "stripePortalInfo": "カスタマーポータルから、サブスクリプションの管理、支払い方法の更新、請求履歴の確認ができます。",
     "accessStripePortal": "カスタマーポータルにアクセス"
+  },
+  "pageTitle": {
+    "home": "Seanco - カスタムkintoneソリューションとプラグイン",
+    "about": "Seancoについて - kintone開発のエキスパート",
+    "products": "Seancoが提供するkintoneプラグインと製品",
+    "hire": "カスタムkintone開発のご相談 - Seanco",
+    "blog": "Seancoのブログ - kintone開発に関する洞察",
+    "kintone": "kintoneプラグイン開発サービス - Seanco",
+    "privacy": "Seanco - プライバシーポリシー",
+    "terms": "Seanco - 利用規約",
+    "commerce-disclosure": "Seanco - 特定商取引法に基づく表記"
+  },
+  "pageDescription": {
+    "home": "Seancoはビジネスプロセスを効率化するカスタムkintoneプラグインとソリューションを提供します。生産性向上のための製品とサービスをご覧ください。",
+    "about": "効率的なビジネスソリューションとカスタムプラグインの作成に長年の経験を持つkintone開発エキスパート、Sean Luseについてご紹介します。",
+    "products": "生産性を向上させ、ワークフローを簡素化するために設計された当社のkintoneプラグインをご覧ください。ビジネスニーズに最適なソリューションを見つけてください。",
+    "hire": "カスタムkintone開発をお探しですか？Seancoが、お客様の特定のビジネス要件に合わせたソリューションを提供します。",
+    "blog": "Seancoのブログで、kintone開発、プラグイン作成、ビジネスプロセス最適化の最新トレンドをチェックしてください。",
+    "kintone": "kintoneの経験を向上させる専門的なプラグイン開発サービス。お客様固有のビジネス課題に対するカスタムソリューションを提供します。",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "commerce-disclosure": "特定商取引法に基づく表記"
   }
 }

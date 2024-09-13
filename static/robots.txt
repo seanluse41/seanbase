@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Block access to admin areas
+Disallow: /admin/
+Disallow: /wp-admin/
+
+# Allow access to all CSS, JS, and image files
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.gif$
+Allow: /*.svg$
+
+# Sitemap location
+Sitemap: https://seanbase.com/sitemap.xml
