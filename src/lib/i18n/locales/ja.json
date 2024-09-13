@@ -68,7 +68,6 @@
     "title": "まずは相談してみよう！",
     "subtext": "質問、製品についての問い合わせ、製品のカスタマイズについて気軽にご相談ください。導入前にセキュリティチェック（どういう時になんのデータがどこで処理されているかの確認）も提供しておりますので、お聞きください。"
   },
-
   "timeline": {
     "1": "ウィスコンシン大学ミルウォーキー校卒業",
     "1_date": "2013年12月",
@@ -258,15 +257,15 @@
   "contact_form_submit": "メッセージを送信",
   "contact_form_thank_you": "お問い合わせありがとうございます！",
   "contact_form_error": "フォームの送信中にエラーが発生しました。もう一度お試しください。",
-  "select_template": "テンプレートを選択",
+  "select_template": "テンプレートから入力",
   "template_kGuide": "kGuide",
   "template_tenKen_Buddy": "tenKen Buddy",
   "template_custom_integration": "カスタム連携",
   "template_bug_report": "バグ / エラー報告",
-  "template_message_kGuide": "kGuideについてもっと詳しく知りたいです。",
-  "template_message_tenKen_Buddy": "tenKen Buddyについて情報が欲しいです。",
-  "template_message_custom_integration": "カスタム連携ソリューションを探しています。",
-  "template_message_bug_report": "バグまたはエラーを報告したいです。",
+  "template_message_kGuide": "Seanco、\n\nkGuideについて詳しく知りたいと思っています。\n以下の時間帯で、お話しできますか？\n\n[ 候補日1 ]\n{{tomorrowDate}}\n\n[ 候補日2 ]\n<ご都合の良い日時をご記入ください>\n\n[ 候補日3 ]\n<ご都合の良い日時をご記入ください>\n\n希望する連絡方法：\n[メール]\n[電話]\n[ZOOM、TEAMSなど]\n\nよろしくお願いします。",
+  "template_message_tenKen_Buddy": "Seanco、\n\ntenKen Buddyについて情報を得たいと思っています。\n以下の時間帯で、お話しできますか？\n\n[ 候補日1 ]\n{{tomorrowDate}}\n\n[ 候補日2 ]\n<ご都合の良い日時をご記入ください>\n\n[ 候補日3 ]\n<ご都合の良い日時をご記入ください>\n\n希望する連絡方法：\n[メール]\n[電話]\n[ZOOM、TEAMSなど]\n\nよろしくお願いします。",
+  "template_message_custom_integration": "Seanco、\n\nカスタム統合ソリューションについて相談したいと思っています。\n以下の時間帯で、お話しできますか？\n\n[ 候補日1 ]\n{{tomorrowDate}}\n\n[ 候補日2 ]\n<ご都合の良い日時をご記入ください>\n\n[ 候補日3 ]\n<ご都合の良い日時をご記入ください>\n\n希望する連絡方法：\n[メール]\n[電話]\n[ZOOM、TEAMSなど]\n\nよろしくお願いします。",
+  "template_message_bug_report": "Seanco、\n\nバグまたはエラーを報告します。\n\n[製品名]\n\n[バグが発生する状況]\n\n[バグの詳細な説明をお願いします]\n\n以下の時間帯で、この件について話し合う機会はありますでしょうか？\n\n[ 候補日1 ]\n{{tomorrowDate}}\n\n[ 候補日2 ]\n<ご都合の良い日時をご記入ください>\n\n[ 候補日3 ]\n<ご都合の良い日時をご記入ください>\n\n希望する連絡方法：\n[メール]\n[電話]\n[ZOOM、TEAMSなど]\n\nよろしくお願いします。",
   "payment": {
     "title": "お客様情報",
     "name": "氏名",

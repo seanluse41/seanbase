@@ -16,7 +16,7 @@
     CheckCircleSolid,
     ChevronDownOutline,
   } from "flowbite-svelte-icons";
-  import { _ } from "svelte-i18n";
+  import { _, locale } from "svelte-i18n";
   import { onMount, createEventDispatcher } from "svelte";
 
   export let submitting = false;
@@ -31,12 +31,37 @@
 
   $: buttonText = selectedTemplate || $_("select_template");
 
+  function getTomorrowDate() {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    
+    if ($locale === 'ja') {
+      const month = tomorrow.getMonth() + 1;
+      const date = tomorrow.getDate();
+      const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'][tomorrow.getDay()];
+      return `${month}月${date}日（${dayOfWeek}）`;
+    } else {
+      return `${tomorrow.getFullYear()}/${String(tomorrow.getMonth() + 1).padStart(2, '0')}/${String(tomorrow.getDate()).padStart(2, '0')} (${['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][tomorrow.getDay()]}) @ 12pm`;
+    }
+  }
   $: templateMessages = {
-  "kGuide": $_("template_message_kGuide"),
-  "tenKen Buddy": $_("template_message_tenKen_Buddy"),
-  "Custom Integration": $_("template_message_custom_integration"),
-  "Bug / Error Report": $_("template_message_bug_report"),
-};
+    kGuide: $_("template_message_kGuide").replace(
+      "{{tomorrowDate}}",
+      getTomorrowDate(),
+    ),
+    "tenKen Buddy": $_("template_message_tenKen_Buddy").replace(
+      "{{tomorrowDate}}",
+      getTomorrowDate(),
+    ),
+    "Custom Integration": $_("template_message_custom_integration").replace(
+      "{{tomorrowDate}}",
+      getTomorrowDate(),
+    ),
+    "Bug / Error Report": $_("template_message_bug_report").replace(
+      "{{tomorrowDate}}",
+      getTomorrowDate(),
+    ),
+  };
 
   onMount(() => {
     formStartTime = Date.now();
@@ -97,20 +122,31 @@
     class="flex flex-col space-y-4"
   >
     {#if isModal == false}
-      <div class="flex flex-row justify-evenly">
-        <Button on:click={() => dropdownOpen = !dropdownOpen}>
-          {buttonText}
-          <ChevronDownOutline size="xl" class="ml-2 text-white" />
-        </Button>
-        <Dropdown bind:open={dropdownOpen}>
-          <DropdownItem on:click={() => handleTemplateSelection("kGuide")}>{$_("template_kGuide")}</DropdownItem>
-          <DropdownItem on:click={() => handleTemplateSelection("tenKen Buddy")}>{$_("template_tenKen_Buddy")}</DropdownItem>
-          <DropdownDivider />
-          <DropdownItem on:click={() => handleTemplateSelection("Custom Integration")}>{$_("template_custom_integration")}</DropdownItem>
-          <DropdownDivider />
-          <DropdownItem on:click={() => handleTemplateSelection("Bug / Error Report")}>{$_("template_bug_report")}</DropdownItem>
-        </Dropdown>
-      </div>
+      <Button
+        on:click={() => (dropdownOpen = !dropdownOpen)}
+        class="lg:w-1/4 self-center lg:mr-72"
+      >
+        {buttonText}
+        <ChevronDownOutline size="xl" class="ml-2 text-white" />
+      </Button>
+      <Dropdown bind:open={dropdownOpen}>
+        <DropdownItem on:click={() => handleTemplateSelection("kGuide")}
+          >{$_("template_kGuide")}</DropdownItem
+        >
+        <DropdownItem on:click={() => handleTemplateSelection("tenKen Buddy")}
+          >{$_("template_tenKen_Buddy")}</DropdownItem
+        >
+        <DropdownDivider />
+        <DropdownItem
+          on:click={() => handleTemplateSelection("Custom Integration")}
+          >{$_("template_custom_integration")}</DropdownItem
+        >
+        <DropdownDivider />
+        <DropdownItem
+          on:click={() => handleTemplateSelection("Bug / Error Report")}
+          >{$_("template_bug_report")}</DropdownItem
+        >
+      </Dropdown>
     {/if}
     <h3 class="text-xl font-medium text-gray-900 dark:text-white">
       {$_("contact_form_title")}
@@ -165,7 +201,14 @@
 
     <Label>
       <span>{$_("contact_form_inquiry")}</span>
-      <Textarea name="inquiry" rows="3" required disabled={submitting} bind:value={inquiryText} />
+      <Textarea
+        name="inquiry"
+        rows="10"
+        required
+        disabled={submitting}
+        bind:value={inquiryText}
+        class="inquiry-textarea"
+      />
     </Label>
 
     <Button type="submit" class="w-full" disabled={submitting}>
