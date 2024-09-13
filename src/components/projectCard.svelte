@@ -1,17 +1,18 @@
 <script>
-  import { _ } from "svelte-i18n";
+  import { _, locale } from "svelte-i18n";
   import { Card, ImagePlaceholder, P } from "flowbite-svelte";
   import TargetPicker from "./targetPicker.svelte";
   export let title;
   export let description;
+  export let descriptionJA;
   export let link;
   export let imageURL;
   export let targets;
+
+  $: localizedDescription = $locale === 'ja' && descriptionJA ? descriptionJA : description;
 </script>
 
-<div
-  class="space-y-4 mb-4 lg:mr-8 transition ease-in-out duration-150"
->
+<div class="space-y-4 mb-4 lg:mr-8 transition ease-in-out duration-150">
   <Card class="!pt-2 h-[370px] w-80 flex flex-col shadow-xl" href={`/products/${link}`}>
     <div class="flex justify-end mb-1">
       {#each targets.value as target}
@@ -36,7 +37,7 @@
         {$_(title)}
       </h5>
       <P class="flex-grow overflow-hidden" color="text-stone-700">
-        <span class="line-clamp-3">{$_(description)}</span>
+        <span class="line-clamp-3">{localizedDescription}</span>
       </P>
     </div>
   </Card>

@@ -99,7 +99,7 @@
   "projects": {
     "kintone": {
       "title": "Power up your organization with ",
-      "titleHighlight": "Kintone Plugins",
+      "titleHighlight": "<br>Kintone Plugins",
       "titleEnd": ".",
       "introduction": "Using Kintone development best practices to solve your organization's pain points with monthly subscription based Kintone plugins.",
       "explore": "Explore my Kintone projects..."

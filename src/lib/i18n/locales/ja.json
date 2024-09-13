@@ -101,7 +101,7 @@
   "projects": {
     "kintone": {
       "title": "組織をパワーアップする",
-      "titleHighlight": "kintoneプラグイン",
+      "titleHighlight": "<br>kintoneプラグイン",
       "introduction": "kintone開発のベストプラクティスを用いて御社の課題点を解決し、チームワークを促進するkintone有料プラグインを開発しています。",
       "explore": "私のkintoneプロジェクトを見る..."
     },

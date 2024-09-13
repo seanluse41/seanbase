@@ -1,6 +1,7 @@
 <script>
-    import { P, Card } from "flowbite-svelte";
+    import { P, Card, Hr } from "flowbite-svelte";
     import { onMount } from "svelte";
+    import { locale } from 'svelte-i18n';
     import DetailPageHeading from "../../../components/detailPageHeading.svelte";
     import Loader from "../../../components/loader.svelte";
     import DetailPageCarousel from "../../../components/detailPageCarousel.svelte";
@@ -19,15 +20,24 @@
     if (project.sale.value.length > 0) {
         forSale = project.sale.value[0]
     }
+
+    // Reactive declarations for localized text
+    $: title = $locale === 'ja' && project.titleJA ? project.titleJA.value : project.title.value;
+    $: description = $locale === 'ja' && project.descriptionJA ? project.descriptionJA.value : project.description.value;
+    $: longDescription = $locale === 'ja' && project.longDescriptionJA ? project.longDescriptionJA.value : project.longDescription.value;
+    $: longDescription3 = $locale === 'ja' && project.longDescription3JA ? project.longDescription3JA.value : project.longDescription3.value;
+
+    // Update mainImage when locale changes
+    $: if (project && project.imageURL) {
+        mainImage = {
+            src: project.imageURL,
+            title: title,
+            alt: description,
+        };
+    }
+
     onMount(async () => {
         if (project) {
-            if (project.imageURL) {
-                mainImage = {
-                    src: project.imageURL,
-                    title: project.title.value,
-                    alt: project.description.value,
-                };
-            }
             const detailImages = project.detailImagesStore.map((file) => {
                 const blob = new Blob([new Uint8Array(file.data)], {
                     type: file.contentType,
@@ -73,13 +83,13 @@
             {/if}
             <Card size="xl" class="mt-8 max-w-none lg:p-24 lg:pt-8">
                 <DetailPageHeading
-                    title={project.title.value}
+                    {title}
                     githubLink={project.github.value}
                     showBuyNowButton={forSale}
                     onBuyNowClick={scrollToPaymentCard}
                 />
 
-                <P class="lg:text-2xl">{project.longDescription.value}</P>
+                <P class="lg:text-2xl lg:leading-10">{@html longDescription}</P>
                 {#if project.youtube.value}
                     <div class="mt-10 flex justify-center">
                         <iframe
@@ -93,14 +103,16 @@
                         ></iframe>
                     </div>
                 {/if}
-                <P class="mt-8 lg:text-2xl">{@html project.longDescription3.value}</P>
+                <P class="mt-8 lg:text-2xl lg:leading-10">{@html longDescription3}</P>
                 {#if forSale}
-                    <div class="mt-8" bind:this={paymentCardRef}>
+                    <div class="mt-8 mb-8" bind:this={paymentCardRef}>
                         <PaymentStartCard productID={project.stripeProductID.value} />
                     </div>
                 {/if}
+                <Hr classHr="w-full h-1 mx-auto my-8 rounded md:my-16" />
+
                 <div class="mt-8">
-                    <RelatedBlogPosts project={project.title.value} />
+                    <RelatedBlogPosts project={title} />
                 </div>
                 <div class="mt-8">
                     <DetailPageRelatedInfo linkBox={project.linkBox.value} />

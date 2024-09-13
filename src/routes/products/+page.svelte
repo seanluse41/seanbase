@@ -16,7 +16,7 @@
             <Heading tag="h1" class=" lg:mb-4 mt-4 sm:mb-0 text-slate-700">
                 {$_("projects.kintone.title")}
                 <Span highlight highlightClass="text-yellow-300">
-                    {$_("projects.kintone.titleHighlight")}
+                    {@html $_("projects.kintone.titleHighlight")}
                 </Span>
                 {@html $_("projects.kintone.titleEnd")}
             </Heading>
@@ -46,6 +46,7 @@
                     <ProjectCard
                         title={project.title.value}
                         description={project.description.value}
+                        descriptionJA={project.descriptionJA.value}
                         type={project.type.value}
                         link={project.link.value}
                         imageURL={project.imageURL}
