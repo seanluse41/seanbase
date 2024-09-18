@@ -20,7 +20,7 @@
     "subheading2": "Set it and forget it -- your oraganization's pain points solved with smart, one-off solutions developed by a Kintone professional. Plugins and Apps to just help get work done.",
     "aboutButton": "About Seanco",
     "consultHeading": "Custom Solutions for your Business Needs",
-    "consultText": "In addition to our pre-made drop in solutions, we consult and develop custom made integrations for your organization. Developed by a Kintone professional, myself, who values ownership of ideas, smart solutions, and no-frills no 'gotcha' products.",
+    "consultText": "In addition to our pre-made drop in solutions, Seanbase consults and develops custom made integrations for your organization. Developed by a Kintone professional, myself, who values ownership of ideas, smart solutions, and no-frills no 'gotcha' products.",
     "consultButton": "Let's Talk"
   },
   "tooltip": {
@@ -41,7 +41,7 @@
     },
     "2": {
       "title": "Comprehensive support",
-      "text": "Thorough, free consultation support before and after starting. We don't recommend solutions that aren't suitable for your company."
+      "text": "Free consultation support before and after starting. Seanbase doesn't recommend solutions that aren't suitable for your company."
     },
     "3": {
       "title": "Improving common Kintone issues",
@@ -49,7 +49,7 @@
     },
     "4": {
       "title": "Pre-implementation security checks available",
-      "text": "Kintone environments often handle personal information. We share exactly what data is transmitted and when."
+      "text": "Kintone environments often handle personal information. Seanbase shares exactly what data is transmitted and when."
     },
     "5": {
       "title": "Monthly payments ideal for small starts",
@@ -66,7 +66,7 @@
   },
   "hire": {
     "title": "Talk to us",
-    "subtext": "Please feel free to contact us with any questions, or requests regarding our products. We provide security checks (what data is processed, sent where, and when by our products) for your organization upon request as well."
+    "subtext": "Please feel free to contact us with any questions, or requests regarding our products. Seanbase provides security checks (what data is processed, sent where, and when by our products) for your organization upon request as well."
   },
   "timeline": {
     "1": "Graduate University of Wisconsin - Milwaukee",
@@ -87,9 +87,9 @@
     "6": "Take current position as Developer Advocate at Cyobozu.",
     "6_date": "November 2021",
     "6_text": "Work promoting Kintone both in Japan and Abroad, by holding events, maintaining documentation, and building cool things using Kintone.",
-    "7": "While continuing my work at Cybozu, found Seanco and code this platform to sell my personal Kintone related software.",
+    "7": "While working as a developer advocate, found Seanco and code this platform to sell my personal Kintone related software.",
     "7_date": "August 2024",
-    "7_text": "Balancing work at Cybozu (which I love), a family, and my own personal development projects seperate from my work at Cybozu has been a challenge, but I'm excited to release software to improve people's user experience with Kintone.",
+    "7_text": "Balancing work, a family, and my own personal development projects seperate from my work, has been a challenge, but I'm excited to release software to improve people's user experience with Kintone.",
     "linkJET": "JET Homepage",
     "linkCLAIR": "CLAIR Homepage",
     "linkREA": "REA Homepage",
@@ -160,7 +160,7 @@
   "privacy": {
     "title": "Privacy Policy",
     "info_collection": "Information Collection",
-    "info_collection_text": "We collect personal information only when users purchase software from us. The information we collect includes:",
+    "info_collection_text": "Seanbase collects personal information only when users purchase software from us. The information Seanbase collects includes:",
     "info_items": [
       "Credit Card Information",
       "Full Name",
@@ -169,10 +169,10 @@
       "Phone Number (optional)",
       "Kintone Domain"
     ],
-    "how_we_collect": "How We Collect Information",
-    "how_we_collect_text": "We collect this information through a form on our website when you make a purchase.",
+    "how_we_collect": "How Seanbase Collects Information",
+    "how_we_collect_text": "Seanbase collects this information through a form on our website when you make a purchase.",
     "use_of_info": "Use of Information",
-    "use_of_info_text": "The information we collect is used to:",
+    "use_of_info_text": "The information Seanbase collects is used to:",
     "use_of_info_items": [
       "Create a Stripe Customer account",
       "Set up a Stripe Subscription for our product",
@@ -185,11 +185,11 @@
       "Our Kintone Database (for customer management)"
     ],
     "info_sharing": "Information Sharing",
-    "info_sharing_text": "We do not share your personal information with third parties, except as necessary to process payments and manage subscriptions through Stripe.",
+    "info_sharing_text": "Seanbase does not share your personal information with third parties, except as necessary to process payments and manage subscriptions through Stripe.",
     "data_protection": "Data Protection",
-    "data_protection_text": "We implement appropriate technical and organizational measures to protect your personal information against unauthorized or unlawful processing, accidental loss, destruction, or damage.",
+    "data_protection_text": "Seanbase implements appropriate technical and organizational measures to protect your personal information against unauthorized or unlawful processing, accidental loss, destruction, or damage.",
     "cookies_tracking": "Cookies and Tracking",
-    "cookies_tracking_text": "We do not use cookies or similar tracking technologies on our website.",
+    "cookies_tracking_text": "Seanbase does not use cookies or similar tracking technologies on our website.",
     "accessing_updating": "Accessing and Updating Your Information",
     "accessing_updating_text": "You can access, update, or delete your personal information by:",
     "accessing_updating_items": [
@@ -197,9 +197,9 @@
       "Using the Stripe customer portal to manage your information"
     ],
     "childrens_privacy": "Children's Privacy",
-    "childrens_privacy_text": "Our services are not directed to children under 13, and we do not knowingly collect personal information from children under 13.",
+    "childrens_privacy_text": "Our services are not directed to children under 13, and Seanbase does not knowingly collect personal information from children under 13.",
     "changes_to_policy": "Changes to This Privacy Policy",
-    "changes_to_policy_text": "We may update this privacy policy as needed to reflect changes in our practices or for other operational, legal, or regulatory reasons.",
+    "changes_to_policy_text": "Seanbase may update this privacy policy as needed to reflect changes in our practices or for other operational, legal, or regulatory reasons.",
     "contact_us": "Contact Us",
     "contact_us_text": "If you have any questions about this privacy policy, please contact us at:",
     "contact_info": [
@@ -210,7 +210,7 @@
     "title": "Terms and Conditions",
     "services": {
       "title": "Services",
-      "content": "We sell plugins and apps. Some of our products, specifically Kintone-related software and plugins, require a Kintone environment to function."
+      "content": "Seanbase sells plugins and apps. Some of our products, specifically Kintone-related software and plugins, require a Kintone environment to function."
     },
     "account_security": {
       "title": "Account and Security",
@@ -226,11 +226,11 @@
     },
     "cancellation": {
       "title": "Cancellation Policy",
-      "content": "You may cancel your subscription at any time. Upon cancellation, you will retain access to the service until the end of your current billing period. We do not offer refunds for partial subscription periods."
+      "content": "You may cancel your subscription at any time. Upon cancellation, you will retain access to the service until the end of your current billing period. Seanbase does not offer refunds for partial subscription periods."
     },
     "termination": {
       "title": "Termination",
-      "content": "We reserve the right to terminate your access to our services if you use the software in a harmful way."
+      "content": "Seanbase reserves the right to terminate your access to our services if you use the software in a harmful way."
     },
     "account_termination": {
       "title": "Account Termination",
@@ -238,11 +238,11 @@
     },
     "privacy": {
       "title": "Privacy",
-      "content": "For information about how we collect, use, and share your information, please check our <A href=\"/privacy\">Privacy Policy</A>."
+      "content": "For information about how Seanbase collects, use, and share your information, please check our <A href=\"/privacy\">Privacy Policy</A>."
     },
     "changes": {
       "title": "Changes to Terms",
-      "content": "We reserve the right to modify these terms at any time. We will try to provide at least 30 days' notice of any significant changes."
+      "content": "Seanbase reserves the right to modify these terms at any time. Seanbase will try to provide at least 30 days' notice of any significant changes."
     }
   },
   "contact_form_title": "Contact Us",

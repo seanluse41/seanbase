@@ -101,7 +101,7 @@
         </p>
         <Button href="https://burayama.com/" color="alternative" target="_blank" rel="noopener noreferrer">{$_("timeline.linkBURAYAMA")}<ArrowRightOutline class="ms-2 w-5 h-5" /></Button>
     </TimelineItem>
-    <TimelineItem title={$_("timeline.6")} date={$_("timeline.6_date")}>
+    <!-- <TimelineItem title={$_("timeline.6")} date={$_("timeline.6_date")}>
         <svelte:fragment slot="icon">
             <span
                 class="flex absolute -start-3 justify-center items-center w-6 h-6 bg-primary-200 rounded-full ring-8 ring-white dark:ring-gray-900 dark:bg-primary-900"
@@ -117,7 +117,7 @@
             {$_("timeline.6_text")}
         </p>
         <Button href="https://www.cybozu.com/" color="alternative" target="_blank" rel="noopener noreferrer">{$_("timeline.linkCYBOZU")}<ArrowRightOutline class="ms-2 w-5 h-5" /></Button>
-    </TimelineItem>
+    </TimelineItem> -->
     <TimelineItem title={$_("timeline.7")} date={$_("timeline.7_date")}>
         <svelte:fragment slot="icon">
             <span

@@ -6,6 +6,7 @@
     import { page } from '$app/stores';
     import { _, locale, waitLocale } from 'svelte-i18n';
     import { onMount } from 'svelte';
+    import { blogStore } from '../stores/blogPosts.js';
 
     // Site information
     const siteInfo = {
@@ -15,11 +16,28 @@
 
     $: path = $page.url.pathname;
     $: lang = $locale;
+    $: isBlogPost = path.startsWith('/blog/') && path !== '/blog';
+    
     // Dynamic page title and description
     $: pageKey = path === '/' ? 'home' : path.slice(1).replace(/\//g, '.');
-    $: pageTitle = $_(`pageTitle.${pageKey}`) || $_('pageTitle.default');
-    $: pageDescription = $_(`pageDescription.${pageKey}`) || $_('pageDescription.default');
+    $: pageTitle = isBlogPost 
+        ? getBlogPostTitle(path, $blogStore) 
+        : $_(`pageTitle.${pageKey}`) || $_('pageTitle.default');
+    $: pageDescription = isBlogPost 
+        ? getBlogPostDescription(path, $blogStore) 
+        : $_(`pageDescription.${pageKey}`) || $_('pageDescription.default');
 
+    function getBlogPostTitle(path, blogPosts) {
+        const slug = path.split('/').pop();
+        const post = blogPosts.find(p => p.Record_number.value === slug);
+        return post ? `Seanco Blog - ${post.title.value}` : $_('pageTitle.blog');
+    }
+
+    function getBlogPostDescription(path, blogPosts) {
+        const slug = path.split('/').pop();
+        const post = blogPosts.find(p => p.Record_number.value === slug);
+        return post ? post.blogIntro.value : $_('pageDescription.blog');
+    }
 
     onMount(async () => {
         await waitLocale();
