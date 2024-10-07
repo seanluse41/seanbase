@@ -13,6 +13,7 @@
     } from "flowbite-svelte-icons";
     import { _, locale } from "svelte-i18n";
     import creation from "../lib/course-creation-process.svg";
+    const dev = import.meta.env.VITE_TEST;
     let visible = false;
     let cardDelay = 100;
 
@@ -53,36 +54,42 @@
     });
 
     $: principles = $principlesArray;
+    console.log(dev);
 </script>
 
 <main>
     <section class="hero text-white mt-8 px-4">
         <div class="container my-16">
             <Heading tag="h1" class="m-0 p-0 text-slate-700">SEANCO</Heading>
-            {#if $locale === "en-US" || $locale === "en"}
-                <Heading tag="h2" class="mb-4 text-slate-700">
-                    {$_("top.subheadingUS")}
-                    <Span highlight highlightClass="text-yellow-300">
-                        {$_("top.subheadingIntro")}
-                    </Span>
-                    {$_("top.subheadingUSEnd")}
-                </Heading>
-            {:else}
-                <Heading tag="h2" class="mb-4 text-slate-700">
-                    <Span highlight highlightClass="text-yellow-300">
-                        {$_("top.subheadingIntro")}
-                    </Span>
-                    {$_("top.subheading")}
-                </Heading>
+            {#if !dev}
+                {#if $locale === "en-US" || $locale === "en"}
+                    <Heading tag="h2" class="mb-4 text-slate-700">
+                        {$_("top.subheadingUS")}
+                        <Span highlight highlightClass="text-yellow-300">
+                            {$_("top.subheadingIntro")}
+                        </Span>
+                        {$_("top.subheadingUSEnd")}
+                    </Heading>
+                {:else}
+                    <Heading tag="h2" class="mb-4 text-slate-700">
+                        <Span highlight highlightClass="text-yellow-300">
+                            {$_("top.subheadingIntro")}
+                        </Span>
+                        {$_("top.subheading")}
+                    </Heading>
+                {/if}
+                <P size="xl" class="mb-8 text-slate-700">
+                    {$_("top.subheading2")}
+                </P>
             {/if}
-            <P size="xl" class="mb-8 text-slate-700">
-                {$_("top.subheading2")}
-            </P>
             <div class="flex gap-4 mt-16">
-                <Button size="xl" href="/products"
-                    >{$_("about.ctaButton")}</Button
-                >
-                <Button size="xl" href="/about" color="alternative"
+                {#if !dev}
+                    <Button size="xl" href="/products"
+                        >{$_("about.ctaButton")}</Button
+                    >
+                {/if}
+
+                <Button size="xl" href="/about"
                     >{$_("top.aboutButton")}</Button
                 >
             </div>
@@ -134,22 +141,22 @@
     </section>
     <Hr classHr="w-48 h-1 mx-auto my-4 rounded md:my-10" />
 
-    <section>
-        <Card size="xl">
-            <div class="flex flex-col lg:flex-row">
-                <div class="flex flex-col">
-                    <Heading
-                        tag="h1"
-                        class="text-slate-700"
-                        >{$_("top.consultHeading")}</Heading
-                    >
-                    <P class="mt-8 mr-8">{$_("top.consultText")}</P>
-                    <Button href="/hire" class="mt-8 w-2/3 self-center"
-                        >{$_("top.consultButton")}</Button
-                    >
+    {#if !dev}
+        <section>
+            <Card size="xl">
+                <div class="flex flex-col lg:flex-row">
+                    <div class="flex flex-col">
+                        <Heading tag="h1" class="text-slate-700"
+                            >{$_("top.consultHeading")}</Heading
+                        >
+                        <P class="mt-8 mr-8">{$_("top.consultText")}</P>
+                        <Button href="/hire" class="mt-8 w-2/3 self-center"
+                            >{$_("top.consultButton")}</Button
+                        >
+                    </div>
+                    <Img src={creation} size="max-w-xs" />
                 </div>
-                <Img src={creation} size="max-w-xs" />
-            </div>
-        </Card>
-    </section>
+            </Card>
+        </section>
+    {/if}
 </main>

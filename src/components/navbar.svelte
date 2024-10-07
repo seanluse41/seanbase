@@ -13,6 +13,7 @@
   import { LanguageOutline, ChevronDownOutline } from "flowbite-svelte-icons";
   import logo from "../lib/logo.svg";
   import { navigating } from "$app/stores";
+  const dev = import.meta.env.VITE_TEST;
 
   let currentLocale = "en";
   let hamburgerMenuHidden = true;
@@ -54,12 +55,14 @@
       <NavLi class="text-stone-700 sm:text-white" href="/about"
         >{$_("nav.about")}</NavLi
       >
+      {#if !dev}
       <NavLi class="text-stone-700 sm:text-white" href="/products"
         >{$_("nav.products")}</NavLi
       >
       <NavLi class="text-stone-700 sm:text-white" href="/hire"
         >{$_("nav.hire")}</NavLi
       >
+      {/if}
       <NavLi class="text-stone-700 sm:text-white" href="/blog"
         >{$_("nav.blog")}</NavLi
       >
