@@ -339,7 +339,8 @@
     "kintone": "kintoneプラグイン開発サービス - Seanco",
     "privacy": "Seanco - プライバシーポリシー",
     "terms": "Seanco - 利用規約",
-    "commerce-disclosure": "Seanco - 特定商取引法に基づく表記"
+    "commerce-disclosure": "Seanco - 特定商取引法に基づく表記",
+    "tsuuchinoko-auth": "Seanco - Oauth 2.0 redirect for Tsuuchinoko, the Task Management Solution for Kintone"
   },
   "pageDescription": {
     "home": "Seancoはビジネスプロセスを効率化するカスタムkintoneプラグインとソリューションを提供します。生産性向上のための製品とサービスをご覧ください。",
@@ -350,6 +351,32 @@
     "kintone": "kintoneの経験を向上させる専門的なプラグイン開発サービス。お客様固有のビジネス課題に対するカスタムソリューションを提供します。",
     "privacy": "プライバシーポリシー",
     "terms": "利用規約",
-    "commerce-disclosure": "特定商取引法に基づく表記"
+    "commerce-disclosure": "特定商取引法に基づく表記",
+    "tsuuchinoko-auth": "Oauth 2.0 redirect for Tsuuchinoko, the Task Management Solution for Kintone"
+  },
+  "tsuchinoko-auth": {
+    "error": {
+      "title": "OAuth認証エラー",
+      "missing_code": "必要なOAuth認証コードパラメータがありません。"
+    },
+    "opening": {
+      "title": "Tsuchinoko を起動中...",
+      "countdown": "Tsuchinokoが{seconds}秒以内に自動的に開かない場合："
+    },
+    "steps": {
+      "install": "Tsuchinokoがインストールされていることを確認してください",
+      "retry": "下のボタンをクリックして再試行してください",
+      "copy_code": "それでも動作しない場合は、以下の認証コードをコピーしてください"
+    },
+    "buttons": {
+      "open": "Tsuchinokoを開く"
+    },
+    "auth_code": {
+      "title": "認証コード："
+    },
+    "redirect": {
+      "title": "リダイレクト中...",
+      "wait": "お待ちください..."
+    }
   }
 }

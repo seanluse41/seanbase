@@ -339,7 +339,8 @@
     "kintone": "Kintone Plugin Development Services - Seanco",
     "privacy": "Seanco - Privacy Policy",
     "terms": "Seanco - Terms and Conditions",
-    "commerce-disclosure": "Seanco - Commercial Disclosure"
+    "commerce-disclosure": "Seanco - Commercial Disclosure",
+    "tsuuchinoko-auth": "Seanco - Oauth 2.0 redirect for Tsuuchinoko, the Task Management Solution for Kintone"
   },
   "pageDescription": {
     "home": "Seanco offers custom Kintone plugins and solutions to streamline your business processes. Explore our products and services for enhanced productivity.",
@@ -351,6 +352,32 @@
     "kintone": "Expert Kintone plugin development services to enhance your Kintone experience. Custom solutions for your unique business challenges.",
     "privacy": "Privacy Policy",
     "terms": "Terms and Conditions",
-    "commerce-disclosure": "Commercial Disclosure"
+    "commerce-disclosure": "Commercial Disclosure",
+    "tsuuchinoko-auth": "Oauth 2.0 redirect for Tsuuchinoko, the Task Management Solution for Kintone"
+  },
+  "tsuchinoko-auth": {
+    "error": {
+      "title": "Invalid OAuth Response",
+      "missing_code": "Missing required OAuth code parameter."
+    },
+    "opening": {
+      "title": "Opening Tsuchinoko...",
+      "countdown": "If Tsuchinoko doesn't open automatically in {seconds} seconds:"
+    },
+    "steps": {
+      "install": "Make sure Tsuchinoko is installed",
+      "retry": "Click the button below to try again",
+      "copy_code": "If it still doesn't work, copy the authorization code below"
+    },
+    "buttons": {
+      "open": "Open Tsuchinoko"
+    },
+    "auth_code": {
+      "title": "Authorization Code:"
+    },
+    "redirect": {
+      "title": "Redirecting...",
+      "wait": "Please wait..."
+    }
   }
 }
