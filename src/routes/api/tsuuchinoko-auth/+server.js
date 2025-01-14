@@ -1,4 +1,4 @@
-// src/routes/api/tsuchinoko-auth/+server.ts
+// src/routes/api/tsuuchinoko-auth/+server.ts
 import { error, redirect } from '@sveltejs/kit';
 
 export const GET = async ({ url }) => {
@@ -29,7 +29,7 @@ export const GET = async ({ url }) => {
     // }
 
     // Construct deep link URL with parameters
-    const deepLinkUrl = new URL('tsuchinoko://oauth/callback');
+    const deepLinkUrl = new URL('tsuuchinoko://oauth/callback');
     deepLinkUrl.searchParams.set('code', code);
     if (state) {
         deepLinkUrl.searchParams.set('state', state);

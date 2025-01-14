@@ -354,22 +354,22 @@
     "commerce-disclosure": "特定商取引法に基づく表記",
     "tsuuchinoko-auth": "Oauth 2.0 redirect for Tsuuchinoko, the Task Management Solution for Kintone"
   },
-  "tsuchinoko-auth": {
+  "tsuuchinoko-auth": {
     "error": {
       "title": "OAuth認証エラー",
       "missing_code": "必要なOAuth認証コードパラメータがありません。"
     },
     "opening": {
-      "title": "Tsuchinoko を起動中...",
-      "countdown": "Tsuchinokoが{seconds}秒以内に自動的に開かない場合："
+      "title": "Tsuuchinoko を起動中...",
+      "countdown": "Tsuuchinokoが{seconds}秒以内に自動的に開かない場合："
     },
     "steps": {
-      "install": "Tsuchinokoがインストールされていることを確認してください",
+      "install": "Tsuuchinokoがインストールされていることを確認してください",
       "retry": "下のボタンをクリックして再試行してください",
       "copy_code": "それでも動作しない場合は、以下の認証コードをコピーしてください"
     },
     "buttons": {
-      "open": "Tsuchinokoを開く"
+      "open": "Tsuuchinokoを開く"
     },
     "auth_code": {
       "title": "認証コード："
