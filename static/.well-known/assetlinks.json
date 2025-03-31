@@ -1,12 +1,12 @@
 [
-    {
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "com.tsuuchinoko.app",
-        "sha256_cert_fingerprints": [
-          "d6f4fecc3e48d165edaa6373d10cc5624b1445ba75e6585da2178eaae81b7e90"
-        ]
-      }
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.tsuuchinoko.app",
+      "sha256_cert_fingerprints": [
+        "D6:F4:FE:CC:3E:48:D1:65:ED:AA:63:73:D1:0C:C5:62:4B:14:45:BA:75:E6:58:5D:A2:17:8E:AA:E8:1B:7E:90"
+      ]
     }
-  ]
+  }
+]
