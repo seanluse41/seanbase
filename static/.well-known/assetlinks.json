@@ -1,0 +1,12 @@
+[
+    {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.tsuuchinoko.app",
+        "sha256_cert_fingerprints": [
+          "d6f4fecc3e48d165edaa6373d10cc5624b1445ba75e6585da2178eaae81b7e90"
+        ]
+      }
+    }
+  ]
