@@ -13,23 +13,23 @@
         const state = $page.url.searchParams.get("state");
 
         if (code) {
-            // Determine if the user is on Android
+            // For Android, we should stay on the same page
+            // The Android system will handle redirecting to the app
+            // For desktop, we create a custom URL scheme
             const isAndroid = /Android/i.test(navigator.userAgent);
 
-            // Create deep link URL
-            const deepLinkUrl = new URL(
-                isAndroid
-                    ? "https://com.tsuuchinoko.app/oauth/callback" // Android uses https scheme for app links
-                    : "tsuuchinoko://oauth/callback",
-            ); // Desktop uses custom scheme
+            if (!isAndroid) {
+                // Only do direct URL scheme redirect for desktop
+                const deepLinkUrl = new URL("tsuuchinoko://oauth/callback");
+                deepLinkUrl.searchParams.set("code", code);
+                if (state) {
+                    deepLinkUrl.searchParams.set("state", state);
+                }
 
-            deepLinkUrl.searchParams.set("code", code);
-            if (state) {
-                deepLinkUrl.searchParams.set("state", state);
+                // Attempt to redirect
+                window.location.href = deepLinkUrl.toString();
             }
 
-            // Attempt to redirect
-            window.location.href = deepLinkUrl.toString();
             redirectAttempted = true;
 
             // Start countdown
@@ -70,20 +70,24 @@
                 <Li>{$_("tsuuchinoko-auth.steps.copy_code")}</Li>
             </List>
 
-            <Button
-                color="primary"
-                class="w-full mb-4"
-                on:click={() => {
-                    const code = $page.url.searchParams.get("code");
-                    const state = $page.url.searchParams.get("state");
-                    const deepLinkUrl = new URL("tsuuchinoko://oauth/callback");
-                    deepLinkUrl.searchParams.set("code", code);
-                    if (state) deepLinkUrl.searchParams.set("state", state);
-                    window.location.href = deepLinkUrl.toString();
-                }}
-            >
-                {$_("tsuuchinoko-auth.buttons.open")}
-            </Button>
+            {#if !/Android/i.test(navigator.userAgent)}
+                <Button
+                    color="primary"
+                    class="w-full mb-4"
+                    on:click={() => {
+                        const code = $page.url.searchParams.get("code");
+                        const state = $page.url.searchParams.get("state");
+                        const deepLinkUrl = new URL(
+                            "tsuuchinoko://oauth/callback",
+                        );
+                        deepLinkUrl.searchParams.set("code", code);
+                        if (state) deepLinkUrl.searchParams.set("state", state);
+                        window.location.href = deepLinkUrl.toString();
+                    }}
+                >
+                    {$_("tsuuchinoko-auth.buttons.open")}
+                </Button>
+            {/if}
 
             <Card padding="sm" class="mt-4">
                 <P weight="semibold" class="mb-2"
